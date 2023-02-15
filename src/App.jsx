@@ -1,10 +1,14 @@
-import { Outlet } from 'react-router-dom'
+import Header from './components/Header/Header'
+import Main from './components/Main'
+import Footer from './components/Footer/Footer'
 import ThemeContext from './context/ThemeContext'
 
 function App() {
   return (
     <ThemeContext>
-      <Outlet />
+      <Header />
+      <Main />
+      <Footer />
     </ThemeContext>
   )
 }
