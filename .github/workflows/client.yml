@@ -5,12 +5,11 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
 
 jobs:
   build:
-
-    runs-on: self-hosted
+    runs-on: gonza-linux
 
     strategy:
       matrix:
@@ -18,14 +17,17 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm install pm2 -g
-    - run: pm2 stop all
-    - run: pm2 start all
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build --if-present
+
+      - name: Run script file
+        run: |
+          chmod +x /home/gonza/ecommerceClient/_work/ecommerceClient/ecommerceClient/scripts/before_install.sh
+          /home/gonza/ecommerceClient/_work/ecommerceClient/ecommerceClient/scripts/before_install.sh
+        shell: bash
