@@ -27,8 +27,8 @@ export const Nav = () => {
       </section>
 
       <section className="flex justify-center items-center gap-8 w-full">
-        <Link to="/login">Login</Link>
-        <Link to="/register">Register</Link>
+        <Link to="/signin">Login</Link>
+        <Link to="/signup">Register</Link>
         <Link to="/favorites">Fav</Link>
         <Link to="/cart">Cart</Link>
         <button>
