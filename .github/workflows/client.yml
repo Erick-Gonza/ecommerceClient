@@ -28,6 +28,6 @@ jobs:
 
       - name: Run script file
         run: |
-          chmod +x ./home/gonza/ecommerceClient/_work/ecommerceClient/ecommerceClient/scripts/before_install.sh
-          ./home/gonza/ecommerceClient/_work/ecommerceClient/ecommerceClient/scripts/before_install.sh
+          chmod +x /home/gonza/ecommerceClient/_work/ecommerceClient/ecommerceClient/scripts/before_install.sh
+          /home/gonza/ecommerceClient/_work/ecommerceClient/ecommerceClient/scripts/before_install.sh
         shell: bash
