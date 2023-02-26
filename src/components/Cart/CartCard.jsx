@@ -1,8 +1,5 @@
 import React from 'react'
 
-
-
-
 export const CartCard = ({name, description, price}) => {
   return (
     <div className='container grid grid-cols-6 gap-1 shadow-sm  p-1 '>
