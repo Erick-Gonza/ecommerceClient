@@ -3,7 +3,7 @@ import App from '../App'
 import Home from '../views/Home'
 import SignIn from '../views/SignIn'
 import SignUp from '../views/SignUp'
-
+import SortFilter from '../views/SortFilter'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -20,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <SignUp />,
+      },
+      {
+        path: '/filter',
+        element: <SortFilter/> ,
       },
     ],
   },
