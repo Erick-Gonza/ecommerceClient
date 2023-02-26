@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import Form from '../components/Form/Form'
 import { useCreateUserMutation } from '../store/service/user/userService'
+import Form from '../components/Form/Form'
 
 const SignUp = () => {
-  const [formError, setFormError] = useState(false)
+  const [error, setError] = useState(false)
   const [createUser, results] = useCreateUserMutation()
   const [userData, setUserData] = useState({
     firstName: '',
@@ -88,12 +88,12 @@ const SignUp = () => {
       !userData.email ||
       !userData.password
     ) {
-      setFormError(true)
+      setError(true)
       return
     }
-    setFormError(false)
-    console.log(userData)
-    createUser(userData)
+    setError(false)
+    //TODO validate password, gensalt, hash
+    //TODO create user
   }
 
   return (
@@ -102,7 +102,7 @@ const SignUp = () => {
         inputs={inputsForm}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        formError={formError}
+        error={error}
       />
     </section>
   )

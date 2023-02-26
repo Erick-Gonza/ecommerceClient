@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { useLoginUserMutation } from '../store/service/user/userService'
 import Form from '../components/Form/Form'
 
 const SignIn = () => {
   const [error, setError] = useState(false)
+  const [loginUser, results] = useLoginUserMutation()
   const [userData, setUserData] = useState({
-    userLogin: '',
+    userName: '',
     password: '',
   })
 
@@ -14,7 +16,7 @@ const SignIn = () => {
       label: 'Email or Username',
       labelClass: 'block font-bold mb-4',
       type: 'text',
-      id: 'userLogin',
+      id: 'userName',
       placeholder: 'email or username...',
       className: 'border-2 w-full p-2 rounded-md placeholder-gray shadow-md',
     },
@@ -63,13 +65,13 @@ const SignIn = () => {
     e.preventDefault()
 
     // Validate form
-    console.log(userData.userLogin, userData.password)
-    if (!userData.userLogin || !userData.password) {
+    if (!userData.userName || !userData.password) {
       setError(true)
       return
     }
     setError(false)
-    console.log(userData)
+    //TODO validate password, gensalt, hash
+    //TODO login user
   }
 
   return (
