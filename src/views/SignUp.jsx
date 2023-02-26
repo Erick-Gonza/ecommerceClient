@@ -1,13 +1,25 @@
+import { useState } from 'react'
 import Form from '../components/Form/Form'
 
 const SignUp = () => {
+  const [error, setError] = useState(false)
+  const [userData, setUserData] = useState({
+    firstName: '',
+    lastName: '',
+    userName: '',
+    email: '',
+    password: '',
+    RoleId: 2,
+    StateId: 1,
+  })
+
   const inputsForm = [
     {
       index: 0,
       label: 'Name',
       labelClass: 'block font-bold pb-2',
       type: 'text',
-      id: 'name',
+      id: 'firstName',
       placeholder: 'First Name...',
       className: 'border-2 w-full rounded-md placeholder-gray shadow-md p-1',
     },
@@ -55,9 +67,40 @@ const SignUp = () => {
       value: 'SIGN UP',
     },
   ]
+
+  const handleChange = (e) => {
+    setUserData({
+      ...userData,
+      [e.target.id]: e.target.value,
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    // Validate form
+    if (
+      !userData.firstName ||
+      !userData.lastName ||
+      !userData.userName ||
+      !userData.email ||
+      !userData.password
+    ) {
+      setError(true)
+      return
+    }
+    setError(false)
+    console.log(userData)
+  }
+
   return (
     <section className="flex flex-col items-center justify-center h-full mx-2 my-3 px-3 shadow-xl">
-      <Form inputs={inputsForm} />
+      <Form
+        inputs={inputsForm}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        error={error}
+      />
     </section>
   )
 }

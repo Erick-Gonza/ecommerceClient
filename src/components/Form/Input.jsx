@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Input = ({ input, index }) => {
+const Input = ({ input, index, handleChange }) => {
   {
     if (input.type === 'text') {
       return (
@@ -14,6 +14,7 @@ const Input = ({ input, index }) => {
             id={input.id}
             placeholder={input.placeholder}
             className={input.className}
+            onChange={handleChange}
           />
         </section>
       )
