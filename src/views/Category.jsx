@@ -1,16 +1,76 @@
-import Card from "../components/Categories/Card";
-
+import React from 'react'
+import { Button } from '../components/Filter/Button'
+import { ProductCard } from '../components/Product/ProductCard'
 
 const Category = () => {
-    return (
-        <section className='lg:grid lg:grid-cols-3 px-4 py-2 h-auto w-full flex flex-col gap-6 rounded-2xl border-2 shadow-2xl'>
-            <Card  imgUrl={"https://picsum.photos/1920/800"} title={"Banner"} />
-            <Card  imgUrl={"https://picsum.photos/1920/800"} title={"Banner"} />
-            <Card  imgUrl={"https://picsum.photos/1920/800"} title={"Banner"} />
-            <Card  imgUrl={"https://picsum.photos/1920/800"} title={"Banner"} />
-            <Card  imgUrl={"https://picsum.photos/1920/800"} title={"Banner"} />
-        </section>
-    );
+    const categ = {
+        id:1,
+        name:'Bags'
+    }
+    const products = [
+        {
+            id:1,
+            name:'Mochila',
+            description:'Lorem impsum',
+            price: 23.99,
+            imageUrl: ''
+         },
+         {
+             id:2,
+             name:'Bolso1',
+             description:'Lorem impsum',
+             price: 40.50,
+             imageUrl: ''
+  
+          },
+          {
+             id:3,
+             name:'Mochila grande',
+             description:'Lorem impsum',
+             price: 60.40,
+             imageUrl: ''
+  
+          },
+          {
+            id:4,
+            name:'Mochilita',
+            description:'Lorem impsum',
+            price: 60.40,
+            imageUrl: ''
+ 
+         },
+         {
+            id:5,
+            name:'Crossbody',
+            description:'Lorem impsum',
+            price: 60.40,
+            imageUrl: ''
+ 
+         }
+        ]
+    
+    
+    
+
+  return (
+    <div className=' m-4'>
+    <div className='flex flex-row justify-between my-3'>
+        <div className='my-3 font-bold text-2xl'>{categ.name}</div>
+        <Button btntxt='SORT AND FILTER'/>
+    </div>
+        <div className='grid sm:grid-cols-1 md:grid-cols-4'>
+          {products.map((product)=>{
+            return(
+               <ProductCard prodname={product.name} price={product.price}  />  
+            )
+          })}
+        </div>
+        
+    </div>
+    
+  )
 }
+
+export default Category
 
 export default Category

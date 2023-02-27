@@ -6,6 +6,8 @@ import Home from '../views/Home'
 import Profile from '../views/Profile'
 import SignIn from '../views/SignIn'
 import SignUp from '../views/SignUp'
+import Category from '../views/Category'
+import SortFilter from '../views/SortFilter'
 
 const router = createBrowserRouter([
   {
