@@ -62,7 +62,7 @@ export const Nav = () => {
             </svg>
             CART
           </Link>
-          <Link className="flex flex-row" to="/signin">
+          <Link className="flex flex-row" to="/login">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -75,8 +75,9 @@ export const Nav = () => {
                 clipRule="evenodd"
               />
             </svg>
-            LOGIN / SIGN UP
+            LOGIN /
           </Link>
+          <Link to="/signup">SIGN UP</Link>
           <button>
             {/* add icon for theme */}
             <svg
