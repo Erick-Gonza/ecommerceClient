@@ -1,39 +1,38 @@
-import { Link } from 'react-router-dom'
-import { Nav } from './Navbar/Nav'
+import { Link } from "react-router-dom";
+import { Nav } from "./Navbar/Nav.jsx";
 
-const Footer = () => {
+const Header = () => {
   return (
-    <header className="flex flex-col px-3 py-2 justify-center items-center w-full h-auto">
+    <header className="flex flex-col justify-center items-center w-full h-auto">
       <Nav />
-
-      <section className="flex w-4/5 justify-around px-3 py-2">
+      <section className="flex w-4/5 justify-around px-3 py-2 border-slate-600">
         <Link to="/" className="font-semibold cursor-pointer hover:scale-105">
-          New
-        </Link>
+          NEW{" "}
+        </Link>{" "}
         <Link to="/" className="font-semibold cursor-pointer hover:scale-105">
-          Wear
-        </Link>
+          WEAR{" "}
+        </Link>{" "}
         <Link to="/" className="font-semibold cursor-pointer hover:scale-105">
-          Accessories
-        </Link>
+          ACCESORIES{" "}
+        </Link>{" "}
         <Link to="/" className="font-semibold cursor-pointer hover:scale-105">
-          Bags
-        </Link>
+          BAGS{" "}
+        </Link>{" "}
         <Link to="/" className="font-semibold cursor-pointer hover:scale-105">
-          Toys
-        </Link>
+          TOYS{" "}
+        </Link>{" "}
         <Link to="/" className="font-semibold cursor-pointer hover:scale-105">
-          Shoes
-        </Link>
+          SHOES{" "}
+        </Link>{" "}
         <Link
           to="/"
           className="font-bold text-red-400 cursor-pointer hover:scale-105"
         >
-          Sales
-        </Link>
-      </section>
+          SALES{" "}
+        </Link>{" "}
+      </section>{" "}
     </header>
-  )
-}
+  );
+};
 
-export default Footer
+export default Header;
