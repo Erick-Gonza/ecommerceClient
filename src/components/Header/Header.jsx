@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom'
 import { Nav } from './Navbar/Nav.jsx'
-import { Link } from 'react-router-dom'
-import { Nav } from './Navbar/Nav.jsx'
 
 const Header = () => {
   return (
