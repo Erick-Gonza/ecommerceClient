@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom'
 import { Nav } from './Navbar/Nav.jsx'
+import { Link } from 'react-router-dom'
+import { Nav } from './Navbar/Nav.jsx'
 
 const Header = () => {
   return (
     <header className="flex flex-col justify-center items-center w-full h-auto">
       <Nav />
-      <section className="flex w-4/5 justify-around px-3 py-2 border-slate-600">
+      <section className="flex w-full justify-around px-3 py-2 space-x-2 text-xs border-solid border-x-2 border-y-2 border-gray-500 md:text-xl">
         <Link to="/" className="font-semibold cursor-pointer hover:scale-105">
           NEW
         </Link>
