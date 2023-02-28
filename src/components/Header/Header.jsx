@@ -1,37 +1,33 @@
-import { Link } from 'react-router-dom'
-import { Nav } from './Navbar/Nav.jsx'
+import { useContext } from 'react'
+import { isMobile } from 'react-device-detect'
+import { themeContext } from '../../context/ThemeContext'
+import NavbarDesktop from './Navbar/NavbarDesktop'
+import NavbarMobile from './Navbar/NavbarMobile'
+import { FaRegMoon } from 'react-icons/fa'
+import { BsFillSunFill } from 'react-icons/bs'
 
 const Header = () => {
+  const { handleClick, theme } = useContext(themeContext)
   return (
-    <header className="flex flex-col justify-center items-center w-full h-auto">
-      <Nav />
-      <section className="flex w-full justify-around px-3 py-2 space-x-2 text-xs border-solid border-x-2 border-y-2 border-gray-500 md:text-xl">
-        <Link to="/" className="font-semibold cursor-pointer hover:scale-105">
-          NEW
-        </Link>
-        <Link to="/" className="font-semibold cursor-pointer hover:scale-105">
-          WEAR
-        </Link>
-        <Link to="/" className="font-semibold cursor-pointer hover:scale-105">
-          ACCESORIES
-        </Link>
-        <Link to="/" className="font-semibold cursor-pointer hover:scale-105">
-          BAGS
-        </Link>
-        <Link to="/" className="font-semibold cursor-pointer hover:scale-105">
-          TOYS
-        </Link>
-        <Link to="/" className="font-semibold cursor-pointer hover:scale-105">
-          SHOES
-        </Link>
-        <Link
-          to="/"
-          className="font-bold text-red-400 cursor-pointer hover:scale-105"
-        >
-          SALES
-        </Link>
-      </section>
-    </header>
+    <>
+      <header className="relative">
+        {!isMobile ? <NavbarDesktop /> : <NavbarMobile />}
+      </header>
+      <button
+        onClick={handleClick}
+        className={
+          isMobile
+            ? 'fixed bottom-5 right-5 z-10 bg-primary rounded-full ring-black ring-2 p-2'
+            : 'fixed top-7 right-32 z-10 bg-primary rounded-full ring-black ring-2 p-2'
+        }
+      >
+        {theme === 'dark' ? (
+          <BsFillSunFill className="w-6 h-6 text-yellow-300" />
+        ) : (
+          <FaRegMoon className="w-6 h-6 text-gray-800" />
+        )}
+      </button>
+    </>
   )
 }
 
