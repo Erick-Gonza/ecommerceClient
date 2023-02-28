@@ -1,5 +1,6 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Cart from '../../../views/Cart'
 import {
   FaHome,
   FaHeart,
@@ -9,10 +10,13 @@ import {
 } from 'react-icons/fa'
 import { BsFillSunFill } from 'react-icons/bs'
 import { themeContext } from '../../../context/ThemeContext'
+import { modalsContext } from '../../../context/ModalsContext'
+import SortFilter from '../../../views/SortFilter'
 
 export const Nav = () => {
   const { handleClick, theme } = useContext(themeContext)
-
+  const {openCart, openC} = useContext(modalsContext)
+  
   return (
     <section className="w-full bg-primary dark:bg-black">
       <nav className="flex justify-around gap-2 w-full px-4 py-3 text-white">
@@ -56,8 +60,8 @@ export const Nav = () => {
           </Link>
 
           <Link
+            clicked={openC} onClick={openCart}
             className="flex flex-row justify-center items-center gap-1"
-            to="/cart"
           >
             <FaShoppingCart className="w-6 h-6" />
             CART
@@ -79,6 +83,8 @@ export const Nav = () => {
           </button>
         </section>
       </nav>
+      <Cart/>
+      <SortFilter/>
     </section>
   )
 }

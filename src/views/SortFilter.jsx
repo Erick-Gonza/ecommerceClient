@@ -1,27 +1,18 @@
-import React from 'react'
+import {useContext} from 'react'
 import { Button } from '../components/Filter/Button'
 import { Dropdown } from '../components/Filter/Dropdown'
+import { modalsContext } from '../context/ModalsContext'
+import { HiX } from "react-icons/hi";
 
 const SortFilter = () => {
+  const {openFilter, openF} = useContext(modalsContext)
+ 
   return (
-    <section className="bg-white min-h-screen w-80 fixed top-0 right-0">
-      <div className="flex-row m-3 grid grid-cols-6">
-        <div className="col-span-1">
-          <button onClick={''}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+    <section className={`bg-white min-h-screen w-80 fixed top-0 right-0 z-50 ${openF != true ? 'hidden': 'block' } `}>
+      <div className="flex-row m-3 grid grid-cols-6"  clicked={openF} onClick={openFilter}>
+        <div className="col-span-1 " >
+          <button >
+          <HiX className='w-6 h-6 hover:scale-105'/>
           </button>
         </div>
         <div className="col-span-4 ">
@@ -42,7 +33,7 @@ const SortFilter = () => {
         <Dropdown />
         <Dropdown />
         <Dropdown />
-        <button onClick={''} className="bg-black text-white w-full mt-4">
+        <button  className="bg-black text-white w-full mt-4">
           APPLY
         </button>
       </div>
