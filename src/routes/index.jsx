@@ -8,6 +8,7 @@ import SignIn from '../views/SignIn'
 import SignUp from '../views/SignUp'
 import Category from '../views/Category'
 import SortFilter from '../views/SortFilter'
+import ProductDetail from '../views/ProductDetail'
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: '/categories',
         element: <Categories />,
+      },
+      {
+        path: '/product/:id',
+        element: <ProductDetail />,
       },
     ],
   },
