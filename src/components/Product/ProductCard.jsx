@@ -10,7 +10,7 @@ export const ProductCard = ({ prodname, price }) => {
           alt="Banner"
           className="object-cover w-full h-full"
         />
-        <div className="sm:bg-transparent md:bg-gray sm:inline-flex sm:opacity-100 md:absolute w-full sm:h16 md:h-20 bottom-0  md:opacity-0 group-hover:opacity-100 flex flex-cols justify-between px-3 ">
+        <div className="sm:bg-transparent md:bg-primary sm:inline-flex sm:opacity-100 md:absolute w-full sm:h16 md:h-20 bottom-0  md:opacity-0 group-hover:opacity-100 flex flex-cols justify-between px-3 ">
           <div className="sm:text-black md:text-white py-2">
             <p>{prodname}</p>
             <p>{price}</p>
