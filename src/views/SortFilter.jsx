@@ -1,18 +1,23 @@
-import {useContext} from 'react'
+import { useContext } from 'react'
 import { Button } from '../components/Filter/Button'
 import { Dropdown } from '../components/Filter/Dropdown'
 import { modalsContext } from '../context/ModalsContext'
-import { HiX } from "react-icons/hi";
+import { HiX } from 'react-icons/hi'
 
 const SortFilter = () => {
-  const {openFilter, openF} = useContext(modalsContext)
- 
+  const { openCard, openFilter, isCardOpen, isFilterOpen } =
+    useContext(modalsContext)
+
   return (
-    <section className={`bg-white min-h-screen w-80 fixed top-0 right-0 z-50 ${openF != true ? 'hidden': 'block' } `}>
-      <div className="flex-row m-3 grid grid-cols-6"  clicked={openF} onClick={openFilter}>
-        <div className="col-span-1 " >
-          <button >
-          <HiX className='w-6 h-6 hover:scale-105'/>
+    <section
+      className={`bg-white min-h-screen w-80 fixed top-0 right-0 z-50 ${
+        openFilter != true ? 'hidden' : 'block'
+      } `}
+    >
+      <div className="flex-row m-3 grid grid-cols-6" onClick={isFilterOpen}>
+        <div className="col-span-1 ">
+          <button>
+            <HiX className="w-6 h-6 hover:scale-105" />
           </button>
         </div>
         <div className="col-span-4 ">
@@ -33,9 +38,7 @@ const SortFilter = () => {
         <Dropdown />
         <Dropdown />
         <Dropdown />
-        <button  className="bg-black text-white w-full mt-4">
-          APPLY
-        </button>
+        <button className="bg-black text-white w-full mt-4">APPLY</button>
       </div>
     </section>
   )

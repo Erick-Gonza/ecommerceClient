@@ -1,12 +1,10 @@
 import { CartCard } from '../components/Cart/CartCard'
 import { modalsContext } from '../context/ModalsContext'
 import { useContext } from 'react'
-import { HiX } from "react-icons/hi";
-
+import { HiX } from 'react-icons/hi'
 
 const Cart = () => {
-
-  const {openCart, openC} = useContext(modalsContext)
+  const { openCard, isCardOpen } = useContext(modalsContext)
 
   let subtotal = 0
   const products = [
@@ -33,14 +31,16 @@ const Cart = () => {
     },
   ]
 
- 
-
   return (
-    <section className={`bg-white min-h-screen w-80 fixed top-0 right-0 z-50 ${openC != true ? 'hidden': 'block' }`}>
+    <section
+      className={`bg-white min-h-screen w-80 fixed top-0 right-0 z-50 ${
+        openCard != true ? 'hidden' : 'block'
+      }`}
+    >
       <div className="flex-row m-3 grid grid-cols-6">
-        <div className="col-span-1 z-10" onClick={openCart}>
-          <button >
-            <HiX className='w-6 h-6 hover:scale-105'/>
+        <div className="col-span-1 z-10" onClick={isCardOpen}>
+          <button>
+            <HiX className="w-6 h-6 hover:scale-105" />
           </button>
         </div>
         <div className="col-span-4">
@@ -50,12 +50,13 @@ const Cart = () => {
       </div>
 
       <div className="border-b-2 mx-3 py-2">
-        {products.map((product) => {
+        {products.map((product, index) => {
           return (
             <CartCard
               name={product.name}
               price={product.price}
               description={product.description}
+              key={index}
             />
           )
         })}
@@ -71,10 +72,7 @@ const Cart = () => {
           <p>{subtotal.toFixed(2)}</p>
         </div>
         <div>
-          <button
-            className="bg-black text-white font-bold p-2 w-full"
-            onClick={''}
-          >
+          <button className="bg-black text-white font-bold p-2 w-full">
             CHECKOUT
           </button>
         </div>

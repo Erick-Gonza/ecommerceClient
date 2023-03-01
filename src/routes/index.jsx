@@ -1,14 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom'
 import App from '../App'
 import Categories from '../views/Category'
-import EditProfile from '../views/EditProfile'
 import Home from '../views/Home'
 import Profile from '../views/Profile'
 import SignIn from '../views/SignIn'
 import SignUp from '../views/SignUp'
-import Category from '../views/Category'
-import SortFilter from '../views/SortFilter'
 import ProductDetail from '../views/ProductDetail'
+import AdminProducts from '../views/admin/AdminProducts'
+import EditProduct from '../views/admin/EditProduct'
 
 const router = createBrowserRouter([
   {
@@ -32,10 +31,6 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: '/editprofile',
-        element: <EditProfile />,
-      },
-      {
         path: '/categories',
         element: <Categories />,
       },
@@ -43,12 +38,11 @@ const router = createBrowserRouter([
         path: '/product/:id',
         element: <ProductDetail />,
       },
+      {
+        path: '/admin/product',
+        element: <EditProduct />,
+      },
     ],
-  },
-
-  {
-    path: '/admin',
-    element: 'Admin Page',
   },
 ])
 

@@ -1,31 +1,35 @@
-import { useState, createContext } from "react";
+import { useState, createContext } from 'react'
 
 export const modalsContext = createContext()
 const { Provider } = modalsContext
 
-export const ModalsContext =({children}) => {
+export const ModalsContext = ({ children }) => {
+  const [openCard, setOpenCard] = useState(false)
+  const [openFilter, setOpenFilter] = useState(false)
+  const [menuBlur, setMenuBlur] = useState(false)
 
-    const [openC, setopenC] = useState(false)
-    const [openF, setopenF] = useState(false)
+  const isCardOpen = () => {
+    setOpenCard(!openCard)
+  }
 
-    const openCart = () => {
-        setopenC(!openC)
-    }
+  const isFilterOpen = () => {
+    setOpenFilter(!openFilter)
+  }
 
-    const openFilter = () => {
-        setopenF(!openF)
-    }
+  const isSetMenuBlur = () => {
+    setMenuBlur(!menuBlur)
+  }
 
-    const modalS = {
-        openC,
-        openCart,
-        openF,
-        openFilter
-    }
+  const modals = {
+    openCard,
+    openFilter,
+    menuBlur,
+    isCardOpen,
+    isFilterOpen,
+    isSetMenuBlur,
+  }
 
-
-
-    return <Provider value={modalS}>{children}</Provider>
+  return <Provider value={modals}>{children}</Provider>
 }
 
 export default ModalsContext

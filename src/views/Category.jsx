@@ -5,13 +5,14 @@ import { ProductCard } from '../components/Product/ProductCard'
 import { modalsContext } from '../context/ModalsContext'
 
 const Category = () => {
-  const { openFilter, openF } = useContext(modalsContext)
+  const { openCard, openFilter, isCardOpen, isFilterOpen } =
+    useContext(modalsContext)
 
-  const categ = {
+  const categoryDummy = {
     id: 1,
     name: 'Bags',
   }
-  const products = [
+  const productsDummy = [
     {
       id: 1,
       name: 'Mochila',
@@ -52,17 +53,23 @@ const Category = () => {
   return (
     <div className=" m-4">
       <div className="flex flex-row justify-between my-3">
-        <div className="my-3 font-bold text-2xl">{categ.name}</div>
+        <div className="my-3 font-bold text-2xl">{categoryDummy.name}</div>
         <button
-          className="border border-black border-2 text-black bg-white hover:bg-black hover:text-white font-bold p-2 h-1/2 w-1/7"
-          onClick={openFilter}
+          className="border border-black text-black bg-white hover:bg-black hover:text-white font-bold p-2 h-1/2 w-1/7"
+          onClick={isFilterOpen}
         >
           Sort & Filter
         </button>
       </div>
       <div className="grid sm:grid-cols-1 md:grid-cols-4">
-        {products.map((product) => {
-          return <ProductCard prodname={product.name} price={product.price} />
+        {productsDummy.map((product, index) => {
+          return (
+            <ProductCard
+              prodName={product.name}
+              price={product.price}
+              key={index}
+            />
+          )
         })}
       </div>
     </div>

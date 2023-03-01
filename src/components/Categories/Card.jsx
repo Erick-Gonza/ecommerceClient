@@ -1,6 +1,6 @@
 const Card = ({ imgUrl, title }) => {
   return (
-    <div className="relative h-64 hover:scale-105 shadow-md ">
+    <div className="relative h-64 hover:scale-105 shadow-md cursor-pointer">
       <img
         src={imgUrl}
         alt={title}

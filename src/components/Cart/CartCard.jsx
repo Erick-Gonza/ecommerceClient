@@ -1,5 +1,5 @@
 import React from 'react'
-import { HiOutlineTrash, HiOutlinePlus, HiOutlineMinusSm } from "react-icons/hi";
+import { HiOutlineTrash, HiOutlinePlus, HiOutlineMinusSm } from 'react-icons/hi'
 
 export const CartCard = ({ name, description, price }) => {
   return (
@@ -12,25 +12,25 @@ export const CartCard = ({ name, description, price }) => {
         />
       </section>
 
-      <section className="flex flex-col w-ful col-span-3 grid grid-rows-5">
+      <section className="w-ful col-span-3 grid grid-rows-5">
         <p className="font-bold">{name}</p>
         <p className="row-span-3">{description}</p>
         <div className="flex flex-row">
-          <button className="w-6" onClick={''}>
-            <HiOutlineMinusSm/>
+          <button className="w-6">
+            <HiOutlineMinusSm />
           </button>
-          <div className="border w-6" onClick={''}>
+          <div className="border w-6">
             <h3 className="text-center "> 3 </h3>
           </div>
-          <button className="w-6" onClick={''}>
-            <HiOutlinePlus/>
+          <button className="w-6">
+            <HiOutlinePlus />
           </button>
         </div>
       </section>
 
       <section className="flex flex-col justify-between ">
-        <button className="flex justify-end" onClick={''}>
-          <HiOutlineTrash className='w-5 h-5 hover:text-red-600 m-1'/>
+        <button className="flex justify-end">
+          <HiOutlineTrash className="w-5 h-5 hover:text-red-600 m-1" />
         </button>
         <p>{price}</p>
       </section>
