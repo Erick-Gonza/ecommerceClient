@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
 import { FaHome, FaHeart, FaShoppingCart, FaUserCircle } from 'react-icons/fa'
+import { useContext } from 'react'
+import { modalsContext } from '../../../context/ModalsContext'
 
 const NavBarDesktop = () => {
+  const { isCardOpen } = useContext(modalsContext)
   return (
     <nav className="flex w-full justify-between items-center h-auto px-3 py-4 bg-primary">
       <section className="flex flex-col justify-start text-slate-100">
@@ -25,13 +28,14 @@ const NavBarDesktop = () => {
           FAV
         </Link>
 
-        <Link
+        <button
+          onClick={isCardOpen}
           className="flex flex-row justify-center items-center gap-1"
           to="/cart"
         >
           <FaShoppingCart className="w-6 h-6" />
           CART
-        </Link>
+        </button>
 
         <Link
           className="flex flex-row justify-center items-center gap-1"

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 export const Dropdown = () => {
   const subcats = [
@@ -16,6 +16,10 @@ export const Dropdown = () => {
     },
   ]
   const [open, setOpen] = useState(false)
+
+  const handleOpen = () => {
+    setOpen(!open)
+  }
   return (
     <div className="">
       <div
@@ -25,9 +29,7 @@ export const Dropdown = () => {
       >
         <button
           className="w-full relative flex justify-between"
-          onClick={() => {
-            setOpen(!open)
-          }}
+          onClick={handleOpen}
         >
           <p className="">Subcategory</p>
           <div>
@@ -35,13 +37,13 @@ export const Dropdown = () => {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
-              class="w-6 h-6"
+              className="w-6 h-6"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M19.5 8.25l-7.5 7.5-7.5-7.5"
               />
             </svg>
@@ -54,11 +56,11 @@ export const Dropdown = () => {
       >
         <ul className="space-y-1">
           <li>
-            {subcats.map((sc) => {
+            {subcats.map((sc, index) => {
               return (
-                <p className="flex">
+                <p className="flex" key={index}>
                   <input type={'checkbox'} />
-                  <span> {sc.name}</span>
+                  <span>{sc.name}</span>
                 </p>
               )
             })}

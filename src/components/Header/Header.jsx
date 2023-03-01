@@ -5,6 +5,8 @@ import NavbarDesktop from './Navbar/NavbarDesktop'
 import NavbarMobile from './Navbar/NavbarMobile'
 import { FaRegMoon } from 'react-icons/fa'
 import { BsFillSunFill } from 'react-icons/bs'
+import Cart from '../../views/Cart'
+import SortFilter from '../../views/SortFilter'
 
 const Header = () => {
   const { handleClick, theme } = useContext(themeContext)
@@ -13,12 +15,15 @@ const Header = () => {
       <header className="relative">
         {!isMobile ? <NavbarDesktop /> : <NavbarMobile />}
       </header>
+
+      <Cart />
+      <SortFilter />
       <button
         onClick={handleClick}
         className={
           isMobile
             ? 'fixed bottom-5 right-5 z-10 bg-primary rounded-full ring-black ring-2 p-2'
-            : 'fixed top-7 right-32 z-10 bg-primary rounded-full ring-black ring-2 p-2'
+            : 'absolute top-7 right-32 z-10 bg-primary rounded-full ring-black ring-2 p-2'
         }
       >
         {theme === 'dark' ? (
