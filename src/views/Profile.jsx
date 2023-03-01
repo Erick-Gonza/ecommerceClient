@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom'
 
 const dataUser = {
   name: 'testName',
-  lastname: 'testLastName',
+  lastName: 'testLastName',
   userName: 'testUserName',
   email: 'test@test.com',
-  Address: 'test address',
+  address: 'test address',
 }
 
 const Profile = () => {
@@ -27,14 +27,14 @@ const Profile = () => {
 
           <section className="px-1 w-1/2 py-5 ">
             <h3>{dataUser?.name}</h3>
-            <h3>{dataUser?.lastname}</h3>
+            <h3>{dataUser?.lastName}</h3>
             <h3>{dataUser?.userName}</h3>
             <h3>{dataUser?.email}</h3>
-            <h3>{dataUser?.Address}</h3>
+            <h3>{dataUser?.address}</h3>
           </section>
         </section>
 
-        <section className="hover:scale-105 hover:shadow-md w-40 flex justify-center items-center bg-primary text-white font-bold px-3 py-2 rounded-sm mt-4 mb-4 cursor-pointer rounded-xl h-10 ">
+        <section className="hover:scale-105 hover:shadow-md w-40 flex justify-center items-center bg-primary text-white font-bold px-3 py-2 rounded-sm mt-4 mb-4 cursor-pointer h-10 ">
           <Link to="/editprofile" className="">
             Edit Info
           </Link>
