@@ -8,6 +8,7 @@ import ProductDetail from '../views/ProductDetail'
 import AdminProducts from '../views/admin/AdminProducts'
 import EditProduct from '../views/admin/EditProduct'
 import Address from '../views/Address'
+import Order from '../views/Order'
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/categories',
         element: <Categories />,
+      },
+      {
+        path: '/order',
+        element: <Order />,
       },
       {
         path: '/product/:id',
