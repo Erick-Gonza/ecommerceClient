@@ -7,6 +7,7 @@ import Login from '../views/Login'
 import ProductDetail from '../views/ProductDetail'
 import AdminProducts from '../views/admin/AdminProducts'
 import EditProduct from '../views/admin/EditProduct'
+import Order from '../views/Order'
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
         element: <Categories />,
       },
       {
+        path: '/order',
+        element: <Order />,
+      },
+      {
         path: '/product/:id',
         element: <ProductDetail />,
       },
@@ -37,6 +42,7 @@ const router = createBrowserRouter([
         path: '/admin/product',
         element: <EditProduct />,
       },
+      
     ],
   },
 ])
