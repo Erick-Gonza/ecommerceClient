@@ -5,51 +5,76 @@ import {
   FaFacebookSquare,
   FaYoutube,
 } from 'react-icons/fa'
+import { useContext } from 'react'
+import { modalsContext } from '../../context/ModalsContext'
 
 const Footer = () => {
+  const { menuBlur } = useContext(modalsContext)
   return (
-    <footer className="w-full flex flex-col">
-      <section className="flex justify-center py-4 px-3 bg-gray-700" h-auto>
-        <img src="./logo.svg" className="h-16 md:h-18" />
-      </section>
+    <footer className={`w-full flex flex-col ${menuBlur && 'blur-md'}`}>
+      <Link className="flex justify-center py-2 bg-primary" to="/">
+        <img src="./logo.svg" className="h-16" />
+      </Link>
 
-      <section className="w-full flex flex-col items-center justify-center bg-black py-2 px-3 text-sm font-bold gap-2">
-        <section className="w-full flex flex-row justify-center py-2 text-slate-100 fill-white">
-          <div className="flex flex-row justify-center md:flex-row list-inside list-none gap-2">
-            <Link className="" to="/">
-              <FaTwitter className="w-6 h-6" />
-            </Link>
-            <Link className="" to="/">
-              <FaInstagram className="w-6 h-6" />
-            </Link>
-            <Link className="" to="/">
-              <FaFacebookSquare className="w-6 h-6" />
-            </Link>
-            <Link className="" to="/">
-              <FaYoutube className="w-6 h-6" />
-            </Link>
-          </div>
+      <section className="w-full flex flex-col items-center justify-center bg-black px-2 py-3 font-bold gap-2">
+        <section className="w-full flex flex-row items-center justify-center md:flex-row py-1 md:py-2 text-white gap-4 md:gap-6">
+          <Link
+            className="cursor-pointer p-1 hover:rounded-full opacity-80 hover:opacity-100 hover:bg-primary"
+            to="/"
+          >
+            <FaTwitter className="h-6 md:h-7 w-auto" />
+          </Link>
+          <Link
+            className="cursor-pointer p-1 hover:rounded-full opacity-80 hover:opacity-100 hover:bg-primary"
+            to="/"
+          >
+            <FaInstagram className="h-6 md:h-7 w-auto" />
+          </Link>
+          <Link
+            className="cursor-pointer p-1 hover:rounded-full opacity-80 hover:opacity-100 hover:bg-primary"
+            to="/"
+          >
+            <FaFacebookSquare className="h-6 md:h-7 w-auto" />
+          </Link>
+          <Link
+            className="cursor-pointer p-1 hover:rounded-full opacity-80 hover:opacity-100 hover:bg-primary"
+            to="/"
+          >
+            <FaYoutube className="h-6 md:h-7 w-auto" />
+          </Link>
         </section>
 
-        <section className="w-full flex flex-row items-center justify-center text-slate-100 font-bold lg:text-lg">
-          <div className="flex gap-8 text-center">
-            <a href className="About us">
-              About Us
-            </a>
-            <a href className="Privacy Notice">
-              Privacy Notice
-            </a>
-            <a href className="Careers">
-              Careers
-            </a>
-            <a href className="Help Center">
-              Help Center
-            </a>
-          </div>
+        <section className="w-full flex gap-4 items-center justify-center text-white text-sm lg:text-lg lg:gap-8">
+          <a
+            href="#"
+            className="text-center py-1 font-bold opacity-80 hover:opacity-100"
+          >
+            About Us
+          </a>
+          <a
+            href="#"
+            className="text-center py-1 font-bold opacity-80 hover:opacity-100"
+          >
+            Privacy Notice
+          </a>
+          <a
+            href="#"
+            className="text-center py-1 font-bold opacity-80 hover:opacity-100"
+          >
+            Careers
+          </a>
+          <a
+            href="#"
+            className="text-center py-1 font-bold opacity-80 hover:opacity-100"
+          >
+            Help Center
+          </a>
         </section>
 
-        <section className="w-full flex flex-row items-center justify-center text-slate-100 font-bold">
-          <h2 className="">© 2023 Pink Neon Mexico</h2>
+        <section className="w-full flex items-center justify-center text-white">
+          <h2 className="py-1 font-bold text-sm opacity-80 hover:opacity-100">
+            © 2023 Pink Neon Mexico
+          </h2>
         </section>
       </section>
     </footer>

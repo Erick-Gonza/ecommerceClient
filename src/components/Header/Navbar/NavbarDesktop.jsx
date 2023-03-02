@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom'
-import { FaHome, FaHeart, FaShoppingCart, FaUserCircle } from 'react-icons/fa'
-import { useContext } from 'react'
-import { modalsContext } from '../../../context/ModalsContext'
+import {
+  FaHome,
+  FaHeart,
+  FaShoppingCart,
+  FaUserCircle,
+  FaRegMoon,
+} from 'react-icons/fa'
+import { BsFillSunFill } from 'react-icons/bs'
 
-const NavBarDesktop = () => {
-  const { isCardOpen } = useContext(modalsContext)
+const NavBarDesktop = ({ handleTheme, theme, isCardOpen }) => {
   return (
     <nav className="flex w-full justify-between items-center h-auto px-3 py-4 bg-primary">
       <section className="flex flex-col justify-start text-slate-100">
@@ -42,8 +46,20 @@ const NavBarDesktop = () => {
           to="/signin"
         >
           <FaUserCircle className="w-6 h-6" />
-          SIGNIN / SIGNUP
+          Log In
         </Link>
+
+        <button
+          onClick={handleTheme}
+          className={`flex flex-row justify-center items-center gap-1 text-white`}
+        >
+          {theme === 'dark' ? (
+            <BsFillSunFill className="w-6 h-6" />
+          ) : (
+            <FaRegMoon className="w-6 h-6" />
+          )}
+          {theme.toUpperCase()}
+        </button>
       </section>
 
       <section className="text font-semibold text-slate-100">

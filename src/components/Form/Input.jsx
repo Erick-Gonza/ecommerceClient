@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Input = ({ input, index, handleChange }) => {
+const Input = ({ input, index, handleChange, data }) => {
   {
     if (input.type === 'text') {
       return (

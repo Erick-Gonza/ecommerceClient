@@ -3,8 +3,7 @@ import App from '../App'
 import Categories from '../views/Category'
 import Home from '../views/Home'
 import Profile from '../views/Profile'
-import SignIn from '../views/SignIn'
-import SignUp from '../views/SignUp'
+import Login from '../views/Login'
 import ProductDetail from '../views/ProductDetail'
 import AdminProducts from '../views/admin/AdminProducts'
 import EditProduct from '../views/admin/EditProduct'
@@ -19,12 +18,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/signin',
-        element: <SignIn />,
-      },
-      {
-        path: '/signup',
-        element: <SignUp />,
+        path: '/login',
+        element: <Login />,
       },
       {
         path: '/profile',

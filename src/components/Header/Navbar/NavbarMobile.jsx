@@ -1,16 +1,36 @@
-import { useContext, useState } from 'react'
-import { FiMenu, FiX } from 'react-icons/fi'
-import { FaHome, FaHeart, FaShoppingCart, FaUserCircle } from 'react-icons/fa'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { modalsContext } from '../../../context/ModalsContext'
+import { FiMenu, FiX } from 'react-icons/fi'
+import {
+  FaHome,
+  FaHeart,
+  FaShoppingCart,
+  FaUserCircle,
+  FaRegMoon,
+} from 'react-icons/fa'
+import { BsFillSunFill } from 'react-icons/bs'
 
-export const NavBarMobile = () => {
-  const { isCardOpen, isSetMenuBlur } = useContext(modalsContext)
+export const NavBarMobile = ({
+  handleTheme,
+  theme,
+  isCardOpen,
+  isSetMenuBlur,
+}) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleMenu = () => {
     setIsOpen(!isOpen)
     isSetMenuBlur()
+  }
+
+  const handleMenuCart = () => {
+    handleMenu()
+    isCardOpen()
+  }
+
+  const handleMenuTheme = () => {
+    handleMenu()
+    handleTheme()
   }
 
   return (
@@ -27,6 +47,7 @@ export const NavBarMobile = () => {
         <Link
           className="flex flex-row justify-center items-center gap-1 px-2 py-1 text-white"
           to="/"
+          onClick={handleMenu}
         >
           <FaHome className="w-6 h-6" />
           <p className="text-white font-bold drop-shadow-md">HOME</p>
@@ -35,13 +56,14 @@ export const NavBarMobile = () => {
         <Link
           className="flex flex-row justify-center items-center gap-1 px-2 py-1 text-white font-bold"
           to="/favorites"
+          onClick={handleMenu}
         >
           <FaHeart className="w-6 h-6" />
           <p className="text-white font-bold drop-shadow-md">FAV</p>
         </Link>
 
         <button
-          onClick={isCardOpen}
+          onClick={handleMenuCart}
           className="flex flex-row justify-center items-center gap-1 px-2 py-1 text-white font-bold"
           to="/cart"
         >
@@ -51,11 +73,24 @@ export const NavBarMobile = () => {
 
         <Link
           className="flex flex-row justify-center items-center gap-1 px-2 py-1 text-white font-bold"
-          to="/signin"
+          to="/login"
+          onClick={handleMenu}
         >
           <FaUserCircle className="w-6 h-6" />
-          SIGNIN / SIGNUP
+          Log In
         </Link>
+
+        <button
+          onClick={handleMenuTheme}
+          className={`flex flex-row justify-center items-center gap-1 px-2 py-1 text-white`}
+        >
+          {theme === 'dark' ? (
+            <BsFillSunFill className="w-6 h-6" />
+          ) : (
+            <FaRegMoon className="w-6 h-6" />
+          )}
+          {theme.toUpperCase()}
+        </button>
       </section>
       <section>
         <button onClick={handleMenu}>

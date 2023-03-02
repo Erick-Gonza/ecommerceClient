@@ -20,12 +20,12 @@ export const ThemeContext = ({ children }) => {
     }
   }
 
-  const handleClick = () => {
+  const handleTheme = () => {
     changeTheme()
   }
 
   const themeSession = {
-    handleClick,
+    handleTheme,
     theme,
   }
 
