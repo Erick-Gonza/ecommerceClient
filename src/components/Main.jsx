@@ -8,7 +8,9 @@ const Main = () => {
   const { menuBlur } = useContext(modalsContext)
 
   return (
-    <main className={`flex-1 flex flex-col w-full ${menuBlur && 'blur-md'}`}>
+    <main
+      className={`flex-1 flex flex-col h-auto w-full ${menuBlur && 'blur-md'}`}
+    >
       <Outlet />
       <Cart />
       <SortFilter />

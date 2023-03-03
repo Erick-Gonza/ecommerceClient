@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
-const Order = () => {
+const OrderDetail = () => {
+  const { id } = useParams()
   const dataProducts = [
     {
       id: 'id1',
@@ -37,13 +37,9 @@ const Order = () => {
     (total, product) => total + parseFloat(product.price),
     0
   )
-
   return (
-    <section className="w-full flex flex-col justify-center items-center px-4 py-2 gap-y-4 drop-shadow-lg">
-      <section className="w-full">
-        <h2 className="text-center text-2xl font-bold">Order Summary</h2>
-      </section>
-
+    <>
+      <h2>{id}</h2>
       <section className="flex w-full flex-col justify-center items-center md:flex-row mt-2 relative ">
         <section className="flex md:w-1/2 gap-2 px-1 py-5">
           <section className="flex flex-col w-full gap-y-12 drop-shadow-lg items-center">
@@ -83,15 +79,14 @@ const Order = () => {
           <h2>{totalPrice.toFixed(2)}</h2>
         </section>
         <Link
-          to={'/'}
+          to={'/profile'}
           className="flex w-40  hover:scale-105 drop-shadow-md justify-center bg-primary text-white font-bold px-3 py-2 rounded-lg mt-4 mb-4 cursor-pointer h-10"
         >
-          {' '}
           <p>Back</p>
         </Link>
       </section>
-    </section>
+    </>
   )
 }
 
-export default Order
+export default OrderDetail

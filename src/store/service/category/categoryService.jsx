@@ -7,36 +7,41 @@ export const categories = createApi({
   endpoints: (builder) => ({
     getAllCategories: builder.query({
       query: () => '/',
-      providesTags: ["Categories"]
+      providesTags: ['Categories'],
+    }),
+    getCategoryById: builder.query({
+      query: (id) => `/${id}`,
+      providesTags: ['Categories'],
     }),
     createCategory: builder.mutation({
       query: (newCategory) => ({
         url: '/',
         method: 'POST',
-        body:newCategory,
+        body: newCategory,
       }),
-      invalidatesTags: ["Categories"]
+      invalidatesTags: ['Categories'],
     }),
     updateCategory: builder.mutation({
-      query: ({id, ...rest}) => ({
+      query: ({ id }) => ({
         url: `/${id}`,
         method: 'PUT',
-        body: rest
-      })
+        body,
+      }),
     }),
     deleteCategory: builder.mutation({
       query: (id) => ({
         url: `/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ["Categories"]
+      invalidatesTags: ['Categories'],
     }),
   }),
 })
 
-export const { 
-  useGetAllCategoriesQuery, 
+export const {
+  useGetAllCategoriesQuery,
+  useGetCategoryByIdQuery,
   useCreateCategoryMutation,
   useUpdateCategoryMutation,
-  useDeleteCategoryMutation } =
-  categories
+  useDeleteCategoryMutation,
+} = categories

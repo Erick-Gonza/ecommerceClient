@@ -77,7 +77,7 @@ export const NavBarMobile = ({
           onClick={handleMenu}
         >
           <FaUserCircle className="w-6 h-6" />
-          Log In
+          LOG IN
         </Link>
 
         <button

@@ -3,13 +3,12 @@ import { ProductCard } from '../Product/ProductCard'
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl'
 import { useGetAllProductsQuery } from '../../store/service/product/productService'
 
-
 const Carousel = () => {
+  const { data, isError, isLoading, error } = useGetAllProductsQuery()
+  if (isLoading) return <div>Loading...</div>
+  else if (isError) return <div>Error</div>
+  const products = data.data
 
-const{data, isError, isLoading, error} = useGetAllProductsQuery()
-if(isLoading) return<div>Loading...</div>
-else if(isError)return<div>Error</div>
-const products = data.data
   const slideLeft = () => {
     var slider = document.getElementById('slider')
     slider.scrollLeft = slider.scrollLeft - 300
@@ -22,7 +21,7 @@ const products = data.data
 
   return (
     <section className="px-3 ">
-      <h2 className="py-3">category</h2>
+      <h2 className="py-3 font-size-2xl font-bold text-center">NEW PRODUCTS</h2>
 
       <div className="relative flex items-center">
         <SlArrowLeft
@@ -39,7 +38,11 @@ const products = data.data
                 className="px-3 inline-block cursor-pointer hover:scale-105 ease-in-out "
                 key={index}
               >
-                <ProductCard prodname={product.name} price={product.price} />
+                <ProductCard
+                  name={product.name}
+                  price={product.price}
+                  productId={product.id}
+                />
               </div>
             )
           })}

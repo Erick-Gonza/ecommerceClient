@@ -6,17 +6,18 @@ import {
   HiOutlinePlusCircle,
 } from 'react-icons/hi'
 import { Link } from 'react-router-dom'
-import {useDeleteProductMutation, useGetAllProductsQuery } from '../../store/service/product/productService'
-
+import {
+  useDeleteProductMutation,
+  useGetAllProductsQuery,
+} from '../../store/service/product/productService'
 
 export const AdminProducts = () => {
   const [deleteProduct] = useDeleteProductMutation()
-  const{data, isError, isLoading, error} = useGetAllProductsQuery()
-  if(isLoading) return<div>Loading...</div>
-  else if(isError)return<div>Error</div>
+  const { data, isError, isLoading, error } = useGetAllProductsQuery()
+  if (isLoading) return <div>Loading...</div>
+  else if (isError) return <div>Error</div>
   const products = data.data
 
-  
   return (
     <section className="py-4 px-6 flex flex-col">
       <div className="flex flex-col md:flex-row justify-between">
@@ -34,7 +35,9 @@ export const AdminProducts = () => {
             placeholder="Search by product name..."
           />
           <div className="absolute right-2">
-            <button className="h-10 rounded-lg bg-gray-400 text-white px-1">Search</button>
+            <button className="h-10 rounded-lg bg-gray-400 text-white px-1">
+              Search
+            </button>
           </div>
         </section>
         <div className="flex flex-row justify-between gap-3">
@@ -42,23 +45,29 @@ export const AdminProducts = () => {
             <HiFilter className="mx-1 w-5 h-5" />
             Filter
           </button>
-          <Link to='/admin/editcategory' className="flex mt-2  drop-shadow  items-center p-2 border border-primary hover:scale-105 hover:opacity-80 text-primary text-xs md:text-lg">
+          <Link
+            to="/admin/editcategory"
+            className="flex mt-2  drop-shadow  items-center p-2 border border-primary hover:scale-105 hover:opacity-80 text-primary text-xs md:text-lg"
+          >
             <HiOutlinePlusCircle className="mx-1 w-5 h-5 " />
             Add category
           </Link>
-          <Link to='/admin/addproduct' className="flex mt-2  drop-shadow  items-center p-2 bg-primary hover:scale-105 hover:opacity-80 text-white text-xs md:text-lg">
+          <Link
+            to="/admin/addproduct"
+            className="flex mt-2  drop-shadow  items-center p-2 bg-primary hover:scale-105 hover:opacity-80 text-white text-xs md:text-lg"
+          >
             <HiOutlinePlusCircle className="mx-1 w-5 h-5 " />
             Add product
           </Link>
         </div>
       </div>
-        <div className="my-3 flex justify-center ">
+      <div className="my-3 flex justify-center ">
         <table className="w-full md:w-4/5  ">
           <tr className="bg-primary text-xs md:text-xl ">
-            <th >Id</th>
+            <th>Id</th>
             <th>Name</th>
             <th>Category</th>
-            <th className='hidden md:block'>Description</th>
+            <th className="hidden md:block">Description</th>
             <th>Color</th>
             <th>Price</th>
             <th>Stock</th>
@@ -73,7 +82,7 @@ export const AdminProducts = () => {
                 <td>{product.id}</td>
                 <td>{product.name}</td>
                 <td>Category</td>
-                <td className='hidden md:block'>Description</td>
+                <td className="hidden md:block">Description</td>
                 <td>Color</td>
                 <td>Price</td>
                 <td>43</td>
@@ -81,10 +90,9 @@ export const AdminProducts = () => {
                   <Link to={'/admin/editproduct/' + product.id}>
                     <HiOutlinePencil className="w-4 h-4 md:w-6 md:h-6 hover:text-green-600 m-1" />
                   </Link>
-                  <button onClick={()=>deleteProduct(product.id)} >
+                  <button onClick={() => deleteProduct(product.id)}>
                     <HiOutlineTrash className="w-4 h-4 md:w-6 md:h-6 hover:text-red-600 m-1" />
                   </button>
-                  
                 </td>
               </tr>
             )
@@ -93,7 +101,7 @@ export const AdminProducts = () => {
       </div>
       <div className="flex justify-end">
         <button className="flex mt-2 drop-shadow items-center px-4 py-2 bg-gray-variant hover:scale-105 hover:opacity-90 text-white text-xs md:text-lg">
-              Exit
+          Exit
         </button>
       </div>
     </section>

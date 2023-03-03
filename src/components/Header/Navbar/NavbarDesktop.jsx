@@ -43,10 +43,10 @@ const NavBarDesktop = ({ handleTheme, theme, isCardOpen }) => {
 
         <Link
           className="flex flex-row justify-center items-center gap-1"
-          to="/signin"
+          to="/login"
         >
           <FaUserCircle className="w-6 h-6" />
-          Log In
+          LOG IN
         </Link>
 
         <button
@@ -63,9 +63,12 @@ const NavBarDesktop = ({ handleTheme, theme, isCardOpen }) => {
       </section>
 
       <section className="text font-semibold text-slate-100">
-        <button className="px-4 py-3 rounded-md font-semibold bg-darkcyan">
+        <Link
+          to="/profile"
+          className="px-4 py-3 rounded-md font-semibold bg-darkcyan"
+        >
           My Profile
-        </button>
+        </Link>
       </section>
     </nav>
   )
