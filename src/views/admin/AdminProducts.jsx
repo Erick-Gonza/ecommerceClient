@@ -1,41 +1,26 @@
-import React from 'react'
-import { Button } from '../../components/Filter/Button.jsx'
+import { useState } from 'react'
 import {
   HiOutlineTrash,
   HiOutlinePencil,
   HiFilter,
   HiOutlinePlusCircle,
 } from 'react-icons/hi'
+import { Link } from 'react-router-dom'
+import {useDeleteProductMutation, useGetAllProductsQuery } from '../../store/service/product/productService'
 
-const products = [
-  {
-    id: 1,
-    name: 'Mochila',
-    description: 'Lorem impsum',
-    price: 23.99,
-    imageUrl: '',
-  },
-  {
-    id: 2,
-    name: 'Vestido',
-    description: 'Lorem impsum',
-    price: 40.5,
-    imageUrl: '',
-  },
-  {
-    id: 2,
-    name: 'Tenis',
-    description: 'Lorem impsum',
-    price: 60.4,
-    imageUrl: '',
-  },
-]
 
 export const AdminProducts = () => {
+  const [deleteProduct] = useDeleteProductMutation()
+  const{data, isError, isLoading, error} = useGetAllProductsQuery()
+  if(isLoading) return<div>Loading...</div>
+  else if(isError)return<div>Error</div>
+  const products = data.data
+
+  
   return (
-    <section className="my-4 mx-6">
-      <div className="flex flex-row justify-between">
-        <section className="flex relative border-2 rounded-md mx-3">
+    <section className="py-4 px-6 flex flex-col">
+      <div className="flex flex-col md:flex-row justify-between">
+        <section className="w=1/3 flex relative border-2 rounded-md items-center  ">
           <div className="absolute top-5 left-1">
             <img
               src="https://img.icons8.com/ios/256/search.png"
@@ -45,33 +30,35 @@ export const AdminProducts = () => {
           </div>
           <input
             type="text"
-            className="h-14 md:w-96 pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none"
+            className="h-10 w-full pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none"
             placeholder="Search by product name..."
           />
-          <div className="absolute top-2 right-2">
-            <button className="h-10 w-20 rounded-lg bg-gray-400">Search</button>
+          <div className="absolute right-2">
+            <button className="h-10 rounded-lg bg-gray-400 text-white px-1">Search</button>
           </div>
         </section>
         <div className="flex flex-row justify-between gap-3">
-          <button className="flex border border-black h-1/2 items-center p-2 hover:scale-105 ">
+          <button className="flex mt-2 border border-black  items-center p-2 hover:scale-105  ">
             <HiFilter className="mx-1 w-5 h-5" />
             Filter
           </button>
-
-          <button className="flex drop-shadow h-1/2 items-center p-2 bg-primary hover:scale-105 text-white">
-            <HiOutlinePlusCircle className="mx-1 w-5 h-5" />
-            Create new product
-          </button>
+          <Link to='/admin/editcategory' className="flex mt-2  drop-shadow  items-center p-2 border border-primary hover:scale-105 hover:opacity-80 text-primary text-xs md:text-lg">
+            <HiOutlinePlusCircle className="mx-1 w-5 h-5 " />
+            Add category
+          </Link>
+          <Link to='/admin/addproduct' className="flex mt-2  drop-shadow  items-center p-2 bg-primary hover:scale-105 hover:opacity-80 text-white text-xs md:text-lg">
+            <HiOutlinePlusCircle className="mx-1 w-5 h-5 " />
+            Add product
+          </Link>
         </div>
       </div>
-
-      <div className="my-3 flex justify-center text-center">
-        <table className="w-full">
-          <tr className=" bg-primary">
-            <th>Id</th>
+        <div className="my-3 flex justify-center ">
+        <table className="w-full md:w-4/5  ">
+          <tr className="bg-primary text-xs md:text-xl ">
+            <th >Id</th>
             <th>Name</th>
             <th>Category</th>
-            <th>Description</th>
+            <th className='hidden md:block'>Description</th>
             <th>Color</th>
             <th>Price</th>
             <th>Stock</th>
@@ -81,27 +68,33 @@ export const AdminProducts = () => {
             return (
               <tr
                 key={key}
-                className="text-center border-b-2 hover:bg-neutral-200 "
+                className="text-center border-b-2 hover:bg-neutral-200 text-xs md:text-xl"
               >
                 <td>{product.id}</td>
                 <td>{product.name}</td>
                 <td>Category</td>
-                <td>{product.description}</td>
+                <td className='hidden md:block'>Description</td>
                 <td>Color</td>
-                <td>{product.price}</td>
+                <td>Price</td>
                 <td>43</td>
-                <td className="flex">
-                  <HiOutlinePencil className="w-5 h-5 hover:text-green-600 m-1" />
-                  <HiOutlineTrash className="w-5 h-5 hover:text-red-600 m-1" />
+                <td className="flex flex-row">
+                  <Link to={'/admin/editproduct/' + product.id}>
+                    <HiOutlinePencil className="w-4 h-4 md:w-6 md:h-6 hover:text-green-600 m-1" />
+                  </Link>
+                  <button onClick={()=>deleteProduct(product.id)} >
+                    <HiOutlineTrash className="w-4 h-4 md:w-6 md:h-6 hover:text-red-600 m-1" />
+                  </button>
+                  
                 </td>
               </tr>
             )
           })}
         </table>
       </div>
-
       <div className="flex justify-end">
-        <Button btntxt={'Exit'} />
+        <button className="flex mt-2 drop-shadow items-center px-4 py-2 bg-gray-variant hover:scale-105 hover:opacity-90 text-white text-xs md:text-lg">
+              Exit
+        </button>
       </div>
     </section>
   )

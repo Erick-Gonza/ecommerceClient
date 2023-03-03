@@ -8,6 +8,8 @@ import SignUp from '../views/SignUp'
 import ProductDetail from '../views/ProductDetail'
 import AdminProducts from '../views/admin/AdminProducts'
 import EditProduct from '../views/admin/EditProduct'
+import EditCategory from '../views/admin/EditCategory'
+import AddProduct from '../views/admin/AddProduct'
 
 const router = createBrowserRouter([
   {
@@ -40,7 +42,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/admin/product',
-        element: <EditProduct />,
+        element: <AdminProducts/>,
+      },
+      {
+        path: '/admin/editcategory',
+        element: <EditCategory/>,
+      },
+      {
+        path: '/admin/editproduct/:id',
+        element: <EditProduct/>,
+      },
+      {
+        path: '/admin/addproduct/',
+        element: <AddProduct/>,
       },
     ],
   },

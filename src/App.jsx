@@ -7,7 +7,7 @@ import ModalsContext from './context/ModalsContext'
 function App() {
   return (
     <ThemeContext>
-      <ModalsContext>
+         <ModalsContext>
         <Header />
         <Main />
         <Footer />
