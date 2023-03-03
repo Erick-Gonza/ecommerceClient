@@ -1,64 +1,15 @@
 import React from 'react'
 import { ProductCard } from '../Product/ProductCard'
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl'
+import { useGetAllProductsQuery } from '../../store/service/product/productService'
+
 
 const Carousel = () => {
-  const categ = {
-    id: 1,
-    name: 'Bags',
-  }
-  const products = [
-    {
-      id: 1,
-      name: 'Mochila',
-      description: 'Lorem impsum',
-      price: 23.99,
-      imageUrl: '',
-    },
-    {
-      id: 2,
-      name: 'Bolso1',
-      description: 'Lorem impsum',
-      price: 40.5,
-      imageUrl: '',
-    },
-    {
-      id: 3,
-      name: 'Mochila grande',
-      description: 'Lorem impsum',
-      price: 60.4,
-      imageUrl: '',
-    },
-    {
-      id: 4,
-      name: 'Mochilita',
-      description: 'Lorem impsum',
-      price: 60.4,
-      imageUrl: '',
-    },
-    {
-      id: 5,
-      name: 'Crossbody',
-      description: 'Lorem impsum',
-      price: 60.4,
-      imageUrl: '',
-    },
-    {
-      id: 5,
-      name: 'Crossbody',
-      description: 'Lorem impsum',
-      price: 60.4,
-      imageUrl: '',
-    },
-    {
-      id: 5,
-      name: 'Crossbody',
-      description: 'Lorem impsum',
-      price: 60.4,
-      imageUrl: '',
-    },
-  ]
 
+const{data, isError, isLoading, error} = useGetAllProductsQuery()
+if(isLoading) return<div>Loading...</div>
+else if(isError)return<div>Error</div>
+const products = data.data
   const slideLeft = () => {
     var slider = document.getElementById('slider')
     slider.scrollLeft = slider.scrollLeft - 300
@@ -71,7 +22,7 @@ const Carousel = () => {
 
   return (
     <section className="px-3 ">
-      <h2 className="py-3">{categ.name}</h2>
+      <h2 className="py-3">category</h2>
 
       <div className="relative flex items-center">
         <SlArrowLeft

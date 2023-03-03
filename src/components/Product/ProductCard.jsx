@@ -13,7 +13,7 @@ export const ProductCard = ({ prodName, price }) => {
         <div className="sm:bg-transparent md:bg-primary sm:inline-flex sm:opacity-100 md:absolute w-full sm:h16 md:h-20 bottom-0  md:opacity-0 group-hover:opacity-100 flex flex-cols justify-between px-3 ">
           <div className="sm:text-black md:text-white py-2">
             <p>{prodName}</p>
-            <p>{price}</p>
+            <p>{"$" + price}</p>
           </div>
           <div className="py-2 grid grid-rows-2 ">
             <div></div>
