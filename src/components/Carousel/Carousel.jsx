@@ -21,7 +21,7 @@ const Carousel = () => {
 
   return (
     <section className="px-3 ">
-      <h2 className="py-3 font-size-2xl font-bold text-center">NEW PRODUCTS</h2>
+      <h2 className="py-3 text-2xl md:text-4xl font-bold text-center">NEW PRODUCTS</h2>
 
       <div className="relative flex items-center">
         <SlArrowLeft

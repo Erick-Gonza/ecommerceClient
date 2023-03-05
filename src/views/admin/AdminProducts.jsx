@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import EditProduct from './EditProduct'
 import {
   HiOutlineTrash,
   HiOutlinePencil,
@@ -12,15 +13,19 @@ import {
 } from '../../store/service/product/productService'
 
 export const AdminProducts = () => {
+  const [searchString, setSearchString] = useState("")
   const [deleteProduct] = useDeleteProductMutation()
+  const [openModal, setOpenModal] = useState(false)
+  const [id, setId] = useState(null)
   const { data, isError, isLoading, error } = useGetAllProductsQuery()
   if (isLoading) return <div>Loading...</div>
   else if (isError) return <div>Error</div>
-  const products = data.data
+  const products = data?.data
 
   return (
-    <section className="py-4 px-6 flex flex-col">
-      <div className="flex flex-col md:flex-row justify-between">
+    <section className="py-4 px-6 flex flex-col static items-center ">
+      <div className='w-full'>
+         <div className="flex flex-col md:flex-row justify-between">
         <section className="w=1/3 flex relative border-2 rounded-md items-center  ">
           <div className="absolute top-5 left-1">
             <img
@@ -33,6 +38,7 @@ export const AdminProducts = () => {
             type="text"
             className="h-10 w-full pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none"
             placeholder="Search by product name..."
+            onChange={(e)=>{setSearchString(e.target.value)}}
           />
           <div className="absolute right-2">
             <button className="h-10 rounded-lg bg-gray-400 text-white px-1">
@@ -73,7 +79,13 @@ export const AdminProducts = () => {
             <th>Stock</th>
             <th></th>
           </tr>
-          {products.map((product, key) => {
+          {products.filter((product)=>{
+            if(searchString == ""){
+              return product
+            }else if(product.name.toLowerCase().includes(searchString.toLowerCase())){
+              return product
+            }
+          }).map((product, key) => {
             return (
               <tr
                 key={key}
@@ -87,9 +99,11 @@ export const AdminProducts = () => {
                 <td>Price</td>
                 <td>43</td>
                 <td className="flex flex-row">
-                  <Link to={'/admin/editproduct/' + product.id}>
+                  <button onClick={()=>{
+                    setOpenModal(true) 
+                    setId(product.id)}}>
                     <HiOutlinePencil className="w-4 h-4 md:w-6 md:h-6 hover:text-green-600 m-1" />
-                  </Link>
+                  </button>
                   <button onClick={() => deleteProduct(product.id)}>
                     <HiOutlineTrash className="w-4 h-4 md:w-6 md:h-6 hover:text-red-600 m-1" />
                   </button>
@@ -104,6 +118,9 @@ export const AdminProducts = () => {
           Exit
         </button>
       </div>
+      </div>
+      <EditProduct open={openModal} onClose={()=> setOpenModal(false)}  productId={id}/>
+      
     </section>
   )
 }

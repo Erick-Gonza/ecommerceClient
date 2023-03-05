@@ -15,18 +15,21 @@ import {
 } from '../../store/service/category/categoryService'
 
 const EditCategory = () => {
-  const [id, SetId] = useState()
-  const { data, isError, isLoading, error } = useGetAllCategoriesQuery()
+  const { data} = useGetAllCategoriesQuery()
   const [createCategory] = useCreateCategoryMutation()
   const [deleteCategory] = useDeleteCategoryMutation()
   const [updateCategory] = useUpdateCategoryMutation()
-
   const categories = data?.data
+  const [categoryEdit, setCategoryEdit] = useState(null)
 
   const handleSubmit = (e) => {
+    if(categoryEdit.id == null){
     e.preventDefault()
-    const name = e.target.elements.name.value.trim()
-    createCategory({ name })
+    const newCategory = {...categoryEdit}
+    createCategory({ ...newCategory})
+    }else{
+    updateCategory({...categoryEdit})
+    }
   }
 
   return (
@@ -50,6 +53,7 @@ const EditCategory = () => {
               {categories?.map((category, key) => {
                 return (
                   <tr
+                    onClick={()=>setCategoryEdit({...category})}
                     key={key}
                     className="hover:bg-gray-variant hover:bg-opacity-50 cursor-pointer"
                   >
@@ -67,16 +71,16 @@ const EditCategory = () => {
                 )
               })}
             </tbody>
+            {console.log(categoryEdit)}
           </table>
 
           <div className="w-full flex flex-col px-3">
-            <form onSubmit={handleSubmit} className="mb-4 w-full">
+            <form className="mb-4 w-full">
               <label className="block font-bold mb-4">Id</label>
               <input
                 type="text"
                 id="id"
-                placeholder="
-              #"
+                placeholder={categoryEdit? categoryEdit.id : null}
                 className="border-2 w-full p-2 rounded-md placeholder-gray shadow-md"
                 disabled
               />
@@ -85,9 +89,13 @@ const EditCategory = () => {
                 type="text"
                 id="name"
                 placeholder="Category name"
+                value={categoryEdit? categoryEdit.name : null}
+                onChange={(e) =>
+                  setCategoryEdit({ ...categoryEdit, name: e.target.value })
+                }
                 className="border-2 w-full p-2 rounded-md placeholder-gray shadow-md"
               />
-              <button className="w-full text-center mt-2 py-2 border rounded bg-primary text-white">
+              <button onClick={handleSubmit} className="w-full text-center mt-2 py-2 border rounded bg-primary text-white">
                 Confirm
               </button>
             </form>

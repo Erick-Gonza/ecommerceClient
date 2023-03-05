@@ -1,26 +1,35 @@
 import { useEffect, useState } from 'react'
 import { BsUpload } from 'react-icons/bs'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useGetProductByIdQuery } from '../../store/service/product/productService'
+import { useGetProductByIdQuery, useUpdateProductMutation } from '../../store/service/product/productService'
 
-const EditProduct = () => {
+
+const EditProduct = ({open, onClose, productId}) => {
   const [product, setProduct] = useState({
+    id: productId,
     name: '',
-    subcategory: 1,
+    subcategory: null,
   })
-  const { id } = useParams()
-  const { data, isLoading, isSuccess } = useGetProductByIdQuery(id)
+  const { data, isLoading, isSuccess } = useGetProductByIdQuery(productId)
+  const [updateProduct] = useUpdateProductMutation()
 
   useEffect(() => {
     setProduct({
+      id: productId,
       name: data?.data?.name,
       subcategory: data?.data?.subcategory,
     })
+    console.log(productId)
+    console.log(product)
   }, [data])
 
+  
+
+  if(!open) return null
   return (
-    <section className="flex flex-row justify-center my-4">
-      <form className="flex flex-col h-full px-3 py-4 bg-white md:border-2 rounded-md w-full md:w-1/3 ">
+    <section className="flex bg-white flex-col  absolute rounded-md border drop-shadow-md w-full md:w-1/3 ">
+      <div className='flex flex-col items-center'>
+      <form  className="flex flex-col px-3 py-4 bg-white ">
         <h2 className="font-bold text-center text-2xl mb-4">Edit product</h2>
         <div className="flex flex-row ">
           <div className="w-1/3 h-full mx-2 flex flex-col justify-center self-center gap-3">
@@ -42,8 +51,7 @@ const EditProduct = () => {
                 <input
                   type="text"
                   id="productName"
-                  placeholder="
-              #"
+                  placeholder={productId}
                   className="border-2 w-full p-2 rounded-md placeholder-gray shadow-md"
                   disabled
                 />
@@ -137,15 +145,20 @@ const EditProduct = () => {
         <div className="flex flex-row justify-between ">
           <p>Created</p>
           <div className="flex flex-row justify-end gap-3">
-            <button className="border border-black rounded p-2 hover:bg-black hover:text-white">
-              Cancel
-            </button>
-            <button className="bg-primary rounded p-2 hover:opacity-70 text-white">
+            
+            <button onClick={()=>updateProduct({...product})} className="bg-primary rounded p-2 hover:opacity-70 text-white">
               Save
             </button>
           </div>
         </div>
       </form>
+      <button onClick={onClose} className="border bg-white border-black rounded p-2 hover:bg-black hover:text-white w-1/2 ">
+              Cancel
+      </button>
+      </div>
+      {console.log(product)}
+      
+      
     </section>
   )
 }

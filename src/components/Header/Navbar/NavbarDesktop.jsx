@@ -11,9 +11,9 @@ import { BsFillSunFill } from 'react-icons/bs'
 const NavBarDesktop = ({ handleTheme, theme, isCardOpen }) => {
   return (
     <nav className="flex w-full justify-between items-center h-auto px-3 py-4 bg-primary">
-      <section className="flex flex-col justify-start text-slate-100">
+      <Link to="/" className="flex flex-col justify-start text-slate-100">
         <img src="./logo.svg" className="h-16 w-auto object-contain" />
-      </section>
+      </Link>
 
       <section className="flex gap-12 text-slate-100 font-bold">
         <Link

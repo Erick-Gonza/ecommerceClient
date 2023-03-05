@@ -22,10 +22,10 @@ export const categories = createApi({
       invalidatesTags: ['Categories'],
     }),
     updateCategory: builder.mutation({
-      query: ({ id }) => ({
-        url: `/${id}`,
+      query: (categoryEdit) => ({
+        url: `/${categoryEdit.id}`,
         method: 'PUT',
-        body,
+        body: categoryEdit,
       }),
     }),
     deleteCategory: builder.mutation({
