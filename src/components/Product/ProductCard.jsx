@@ -1,8 +1,10 @@
-import React from 'react'
+import {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '../Filter/Button'
+import { HiOutlineHeart, HiHeart } from "react-icons/hi";
 
 export const ProductCard = ({ name, price, productId }) => {
+  const [isFav, setIsFav] = useState(false)
   return (
     <div className="">
       <Link to={'/product/' + productId} className="">
@@ -17,8 +19,13 @@ export const ProductCard = ({ name, price, productId }) => {
               <p>{name}</p>
               <p>{'$' + price}</p>
             </div>
-            <div className="py-2 grid grid-rows-2 ">
-              <div></div>
+            <div className="py-2 grid grid-rows-2  ">
+              <div className='z-100 '>
+              {!isFav
+              ? <HiOutlineHeart className='w-6 h-6' onClick={()=>setIsFav(true)}/>
+              : <HiHeart onClick={()=>setIsFav(false)}/>
+              }
+              </div>
               <Button btntxt="Buy now" />
             </div>
           </div>
