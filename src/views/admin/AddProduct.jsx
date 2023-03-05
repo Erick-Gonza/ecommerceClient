@@ -1,36 +1,50 @@
+import { useState } from 'react'
 import { BsUpload } from 'react-icons/bs'
 import { useCreateProductMutation } from '../../store/service/product/productService'
 
 const AddProduct = () => {
   const [createProduct] = useCreateProductMutation()
+  const [fileData, setFiledata] = useState()
+  const [product, setProduct] = useState({
+    name: '',
+    description: '',
+    price: null,
+    stock: null,
+    categoryId: 1,
+    subcategoryId: null,
+  })
+
+  const handleChange = (e) => {
+    setProduct({
+      ...product,
+      [e.target.id]: e.target.value,
+    })
+  }
+
+  const fileChangeHandler = (e) => {
+    setFiledata(e.target.files[0])
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const name = e.target.elements.name.value.trim()
-    const description = e.target.elements.name.value.trim()
-    const stock = e.target.elements.stock.value
-    const price = e.target.elements.price.value
-    const categoryId = 1
-    const subcategoryId = e.target.elements.subcategory.value
-    const file = e.target.elements.file.files
+    let formData = new FormData()
+    formData.append('name', product.name)
+    formData.append('description', product.description)
+    formData.append('price', product.price)
+    formData.append('stock', product.stock)
+    formData.append('file', fileData)
+    formData.append('categoryId', product.categoryId)
+    formData.append('subcategoryId', product.subcategoryId)
 
-    createProduct({
-      name,
-      description,
-      stock,
-      price,
-      categoryId,
-      subcategoryId,
-      file,
-    })
+    createProduct(formData)
   }
 
   return (
     <section className="flex flex-row justify-center my-4">
       <form
-        onSubmit={handleSubmit}
-        className="flex flex-col h-full px-3 py-4 bg-white md:border-2 rounded-md w-full md:w-1/3 "
         encType="multipart/form-data"
+        onSubmit={handleSubmit}
+        className="flex flex-col h-full px-3 py-4 bg-white md:border-2 rounded-md w-full md:w-1/3"
       >
         <h2 className="font-bold text-center text-2xl mb-4">
           Edit/Create product
@@ -45,10 +59,13 @@ const AddProduct = () => {
             <label className="flex justify-center border bg-gray-variant rounded text-white p-1 hover:bg-primary">
               <BsUpload className="h-5 w-5 mx-1" />
               <input
+                multiple
                 className="hidden w-1"
                 type="file"
                 name="file"
-                accept="image/png, image/jpeg"
+                id="file"
+                accept="image/png, image/jpeg image/jpg"
+                onChange={fileChangeHandler}
               />
               Upload image
             </label>
@@ -73,6 +90,7 @@ const AddProduct = () => {
                   id="name"
                   placeholder="Product name"
                   className="border-2 w-full p-2 rounded-md placeholder-gray shadow-md"
+                  onChange={handleChange}
                 />
               </section>
             </section>
@@ -81,9 +99,10 @@ const AddProduct = () => {
               <label className="block font-bold mb-4">Description</label>
               <input
                 type="text"
-                id="productDescription"
+                id="description"
                 placeholder="Add a product description"
                 className="border-2 w-full p-2 rounded-md placeholder-gray shadow-md"
+                onChange={handleChange}
               />
             </section>
 
@@ -101,9 +120,10 @@ const AddProduct = () => {
                 <label className="block font-bold mb-4">Subcategory</label>
                 <input
                   type="number"
-                  id="subcategory"
+                  id="subcategoryId"
                   placeholder="subcategory"
                   className="border-2 w-full p-2 rounded-md placeholder-gray shadow-md"
+                  onChange={handleChange}
                 />
               </section>
             </section>
@@ -115,7 +135,7 @@ const AddProduct = () => {
             <label className="block font-bold mb-4">Color</label>
             <input
               type="text"
-              id="productDescription"
+              id="color"
               placeholder=""
               className="border-2 w-full p-2 rounded-md placeholder-gray shadow-md"
             />
@@ -127,6 +147,7 @@ const AddProduct = () => {
               id="stock"
               placeholder=""
               className="border-2 w-full p-2 rounded-md placeholder-gray shadow-md"
+              onChange={handleChange}
             />
           </section>
           <section className="mb-4 w-1/4">
@@ -136,6 +157,7 @@ const AddProduct = () => {
               id="price"
               placeholder=""
               className="border-2 w-full p-2 rounded-md placeholder-gray shadow-md"
+              onChange={handleChange}
             />
           </section>
           <section className="mb-4 w-1/4">
