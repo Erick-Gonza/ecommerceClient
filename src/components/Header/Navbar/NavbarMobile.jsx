@@ -15,6 +15,8 @@ export const NavBarMobile = ({
   theme,
   isCardOpen,
   isSetMenuBlur,
+  isAuthenticated,
+  clearToken,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -31,6 +33,10 @@ export const NavBarMobile = ({
   const handleMenuTheme = () => {
     handleMenu()
     handleTheme()
+  }
+
+  const handleLogout = () => {
+    clearToken()
   }
 
   return (
@@ -71,14 +77,24 @@ export const NavBarMobile = ({
           <p className="text-white font-bold drop-shadow-md">CART</p>
         </button>
 
-        <Link
-          className="flex flex-row justify-center items-center gap-1 px-2 py-1 text-white font-bold"
-          to="/login"
-          onClick={handleMenu}
-        >
-          <FaUserCircle className="w-6 h-6" />
-          LOG IN
-        </Link>
+        {isAuthenticated ? (
+          <Link
+            className="flex flex-row justify-center items-center gap-1 px-2 py-1 text-white font-bold"
+            to="/login"
+            onClick={handleMenu}
+          >
+            <FaUserCircle className="w-6 h-6" />
+            LOG IN
+          </Link>
+        ) : (
+          <Link
+            className="flex flex-row justify-center items-center gap-1 px-2 py-1 text-white font-bold"
+            to="/login"
+            onClick={handleLogout}
+          >
+            LOG OUT
+          </Link>
+        )}
 
         <button
           onClick={handleMenuTheme}

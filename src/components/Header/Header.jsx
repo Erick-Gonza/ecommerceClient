@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { isMobile } from 'react-device-detect'
+import { authContext } from '../../context/authContext'
 import { modalsContext } from '../../context/ModalsContext'
 import { themeContext } from '../../context/ThemeContext'
 import NavbarDesktop from './Navbar/NavbarDesktop'
@@ -7,6 +8,7 @@ import NavbarMobile from './Navbar/NavbarMobile'
 
 const Header = () => {
   const { handleTheme, theme } = useContext(themeContext)
+  const { isAuthenticated, clearToken } = useContext(authContext)
   const { isCardOpen, isSetMenuBlur } = useContext(modalsContext)
   return (
     <>
@@ -16,6 +18,8 @@ const Header = () => {
             isCardOpen={isCardOpen}
             handleTheme={handleTheme}
             theme={theme}
+            isAuthenticated={isAuthenticated}
+            clearToken={clearToken}
           />
         ) : (
           <NavbarMobile
@@ -23,6 +27,8 @@ const Header = () => {
             handleTheme={handleTheme}
             theme={theme}
             isSetMenuBlur={isSetMenuBlur}
+            isAuthenticated={isAuthenticated}
+            clearToken={clearToken}
           />
         )}
       </header>

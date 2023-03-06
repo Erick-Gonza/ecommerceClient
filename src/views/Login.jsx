@@ -21,8 +21,8 @@ const SignIn = () => {
     userName: '',
     email: '',
     password: '',
-    RoleId: 2,
-    StateId: 1,
+    roleId: 2,
+    statusId: 1,
   })
   const inputsLogin = loginInputsFrom
   const inputsRegister = registerInputsForm
@@ -33,28 +33,29 @@ const SignIn = () => {
         ...loginData,
         [e.target.id]: e.target.value,
       })
-      console.log({ [e.target.id]: e.target.value })
       return
     } else {
       setRegisterData({
         ...registerData,
         [e.target.id]: e.target.value,
       })
-      console.log({ [e.target.id]: e.target.value })
       return
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    //validate login or register form
+    //Login form
     if (isLogin) {
       if (!loginData.userName || !loginData.password) {
         setError(true)
         return
       }
+      //login user
+      loginUser(loginData)
     }
 
+    //Register form
     if (!isLogin) {
       if (
         !registerData.firstName ||
@@ -66,6 +67,8 @@ const SignIn = () => {
         setError(true)
         return
       }
+      //register user
+      createUser(registerData)
     }
 
     setError(false)

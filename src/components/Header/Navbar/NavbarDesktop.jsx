@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   FaHome,
   FaHeart,
@@ -8,7 +8,20 @@ import {
 } from 'react-icons/fa'
 import { BsFillSunFill } from 'react-icons/bs'
 
-const NavBarDesktop = ({ handleTheme, theme, isCardOpen }) => {
+const NavBarDesktop = ({
+  handleTheme,
+  theme,
+  isCardOpen,
+  isAuthenticated,
+  clearToken,
+}) => {
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    clearToken()
+    navigate('/')
+  }
+
   return (
     <nav className="flex w-full justify-between items-center h-auto px-3 py-4 bg-primary">
       <Link to="/" className="flex flex-col justify-start text-slate-100">
@@ -41,13 +54,23 @@ const NavBarDesktop = ({ handleTheme, theme, isCardOpen }) => {
           CART
         </button>
 
-        <Link
-          className="flex flex-row justify-center items-center gap-1"
-          to="/login"
-        >
-          <FaUserCircle className="w-6 h-6" />
-          LOG IN
-        </Link>
+        {!isAuthenticated && (
+          <Link
+            className="flex flex-row justify-center items-center gap-1"
+            to="/login"
+          >
+            <FaUserCircle className="w-6 h-6" />
+            LOG IN
+          </Link>
+        )}
+        {isAuthenticated && (
+          <button
+            className="flex flex-row justify-center items-center gap-1"
+            onClick={handleLogout}
+          >
+            LOG OUT
+          </button>
+        )}
 
         <button
           onClick={handleTheme}
