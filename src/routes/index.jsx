@@ -10,6 +10,7 @@ import EditProduct from '../views/admin/EditProduct'
 import EditCategory from '../views/admin/EditCategory'
 import AddProduct from '../views/admin/AddProduct'
 import OrderDetail from '../views/user/OrderDetail'
+import { Wishlist } from '../views/Wishlist'
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: '/product/:id',
         element: <ProductDetail />,
+      },
+      {
+        path: '/wishlist',
+        element: <Wishlist />,
       },
       {
         path: '/admin/product',

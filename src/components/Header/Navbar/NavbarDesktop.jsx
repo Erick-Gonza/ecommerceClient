@@ -26,10 +26,10 @@ const NavBarDesktop = ({ handleTheme, theme, isCardOpen }) => {
 
         <Link
           className="flex flex-row justify-center items-center gap-1"
-          to="/favorites"
+          to="/wishlist"
         >
           <FaHeart className="w-6 h-6" />
-          FAV
+          WISHLIST
         </Link>
 
         <button

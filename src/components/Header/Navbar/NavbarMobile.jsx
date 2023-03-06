@@ -55,11 +55,11 @@ export const NavBarMobile = ({
 
         <Link
           className="flex flex-row justify-center items-center gap-1 px-2 py-1 text-white font-bold"
-          to="/favorites"
+          to="/wishlist"
           onClick={handleMenu}
         >
           <FaHeart className="w-6 h-6" />
-          <p className="text-white font-bold drop-shadow-md">FAV</p>
+          <p className="text-white font-bold drop-shadow-md">WISHLIST</p>
         </Link>
 
         <button

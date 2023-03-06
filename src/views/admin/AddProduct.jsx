@@ -4,7 +4,7 @@ import { useCreateProductMutation } from '../../store/service/product/productSer
 
 const AddProduct = () => {
   const [createProduct] = useCreateProductMutation()
-  const [fileData, setFiledata] = useState()
+  const [fileData, setFileData] = useState()
   const [product, setProduct] = useState({
     name: '',
     description: '',
@@ -22,7 +22,7 @@ const AddProduct = () => {
   }
 
   const fileChangeHandler = (e) => {
-    setFiledata(e.target.files[0])
+    setFileData(e.target.files[0])
   }
 
   const handleSubmit = (e) => {

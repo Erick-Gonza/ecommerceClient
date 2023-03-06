@@ -46,11 +46,11 @@ export const Wishlist = () => {
   ]
 
   return (
-    <div className=" m-4">
-      <div className="flex flex-row justify-between my-3">
+    <div className="m-4">
+      <div className="flex flex-row justify-center my-3">
         <div className="my-3 font-bold text-2xl">{categ.name}</div>
       </div>
-      <div className="grid sm:grid-cols-1 md:grid-cols-4">
+      <div className="grid sm:grid-cols-1 sm:grid-cols-3 xl:grid-cols-5">
         {products.map((product) => {
           return <ProductCard prodname={product.name} price={product.price} />
         })}
