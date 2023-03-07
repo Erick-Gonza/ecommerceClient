@@ -33,7 +33,7 @@ const Cart = () => {
 
   return (
     <section
-      className={`bg-white min-h-screen w-80 fixed top-0 right-0 z-50 ${
+      className={`dark:text-white-variant dark:bg-black-variant bg-white min-h-screen w-80 fixed top-0 right-0 z-50 ${
         openCard != true ? 'hidden' : 'block'
       }`}
     >
@@ -72,7 +72,7 @@ const Cart = () => {
           <p>{subtotal.toFixed(2)}</p>
         </div>
         <div>
-          <button className="bg-black text-white font-bold p-2 w-full">
+          <button className="dark:text-black dark:bg-primary rounded-md bg-black text-white font-bold p-2 w-full">
             CHECKOUT
           </button>
         </div>
