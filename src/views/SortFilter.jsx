@@ -7,38 +7,39 @@ import { HiX } from 'react-icons/hi'
 const SortFilter = () => {
   const { openCard, openFilter, isCardOpen, isFilterOpen } =
     useContext(modalsContext)
+  console.log({ openCard, isCardOpen })
 
   return (
     <section
       className={`bg-white min-h-screen w-80 fixed top-0 right-0 z-50 ${
-        openFilter != true ? 'hidden' : 'block'
+        openFilter !== true ? 'hidden' : 'block'
       } `}
     >
-      <div className="flex-row m-3 grid grid-cols-6" onClick={isFilterOpen}>
-        <div className="col-span-1 ">
+      <div className='flex-row m-3 grid grid-cols-6' onClick={isFilterOpen}>
+        <div className='col-span-1 '>
           <button>
-            <HiX className="w-6 h-6 hover:scale-105" />
+            <HiX className='w-6 h-6 hover:scale-105' />
           </button>
         </div>
-        <div className="col-span-4 ">
-          <h2 className="text-2xl font-bold text-center ">SORT & FILTER</h2>
+        <div className='col-span-4 '>
+          <h2 className='text-2xl font-bold text-center '>SORT & FILTER</h2>
         </div>
-        <div className="col-span-1"></div>
+        <div className='col-span-1' />
       </div>
-      <div className="m-3">
-        <p className="my-3 font-bold">SORT BY</p>
-        <div className="flex justify-evenly">
-          <Button btntxt="Newest" />
-          <Button btntxt={'Price lowest'} />
-          <Button btntxt={'Price highest'} />
+      <div className='m-3'>
+        <p className='my-3 font-bold'>SORT BY</p>
+        <div className='flex justify-evenly'>
+          <Button btntxt='Newest' />
+          <Button btntxt='Price lowest' />
+          <Button btntxt='Price highest' />
         </div>
       </div>
-      <div className="m-3">
-        <p className="font-bold">FILTER</p>
+      <div className='m-3'>
+        <p className='font-bold'>FILTER</p>
         <Dropdown />
         <Dropdown />
         <Dropdown />
-        <button className="bg-black text-white w-full mt-4">APPLY</button>
+        <button className='bg-black text-white w-full mt-4'>APPLY</button>
       </div>
     </section>
   )

@@ -7,38 +7,38 @@ export const products = createApi({
   endpoints: (builder) => ({
     getAllProducts: builder.query({
       query: () => '/',
-      providesTags: ['Products'],
+      providesTags: ['Products']
     }),
     getProductById: builder.query({
-      query: (id) => `/${id}`,
+      query: (id) => `/${id}`
     }),
     getProductsByCategoryId: builder.query({
-      query: (id) => `/category/${id}`,
+      query: (id) => `/category/${id}`
     }),
     createProduct: builder.mutation({
       query: (body) => ({
         url: '/',
         method: 'POST',
-        body,
+        body
       }),
-      invalidatesTags: ['Products'],
+      invalidatesTags: ['Products']
     }),
     updateProduct: builder.mutation({
       query: (product) => ({
         url: `/${product.id}`,
         method: 'PUT',
-        body: product,
+        body: product
       }),
-      invalidatesTags: ['Products'],
+      invalidatesTags: ['Products']
     }),
     deleteProduct: builder.mutation({
       query: (id) => ({
         url: `/${id}`,
-        method: 'DELETE',
+        method: 'DELETE'
       }),
-      invalidatesTags: ['Products'],
-    }),
-  }),
+      invalidatesTags: ['Products']
+    })
+  })
 })
 
 export const {
@@ -47,5 +47,5 @@ export const {
   useUpdateProductMutation,
   useDeleteProductMutation,
   useGetProductByIdQuery,
-  useGetProductsByCategoryIdQuery,
+  useGetProductsByCategoryIdQuery
 } = products

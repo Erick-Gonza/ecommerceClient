@@ -26,7 +26,7 @@ export const ThemeContext = ({ children }) => {
 
   const themeSession = {
     handleTheme,
-    theme,
+    theme
   }
 
   return <Provider value={themeSession}>{children}</Provider>

@@ -3,7 +3,7 @@ import {
   FaTwitter,
   FaInstagram,
   FaFacebookSquare,
-  FaYoutube,
+  FaYoutube
 } from 'react-icons/fa'
 import { useContext } from 'react'
 import { modalsContext } from '../../context/ModalsContext'
@@ -12,67 +12,67 @@ const Footer = () => {
   const { menuBlur } = useContext(modalsContext)
   return (
     <footer className={`w-full flex flex-col ${menuBlur && 'blur-md'}`}>
-      <Link className="flex justify-center py-2 bg-primary" to="/">
-        <img src="./logo.svg" className="h-16" />
+      <Link className='flex justify-center py-2 bg-primary' to='/'>
+        <img src='./logo.svg' className='h-16' />
       </Link>
 
-      <section className="w-full flex flex-col items-center justify-center bg-black px-2 py-3 font-bold gap-2">
-        <section className="w-full flex flex-row items-center justify-center md:flex-row py-1 md:py-2 text-white gap-4 md:gap-6">
+      <section className='w-full flex flex-col items-center justify-center bg-black px-2 py-3 font-bold gap-2'>
+        <section className='w-full flex flex-row items-center justify-center md:flex-row py-1 md:py-2 text-white gap-4 md:gap-6'>
           <Link
-            className="cursor-pointer p-1 hover:rounded-full opacity-80 hover:opacity-100 hover:bg-primary"
-            to="/"
+            className='cursor-pointer p-1 hover:rounded-full opacity-80 hover:opacity-100 hover:bg-primary'
+            to='/'
           >
-            <FaTwitter className="h-6 md:h-7 w-auto" />
+            <FaTwitter className='h-6 md:h-7 w-auto' />
           </Link>
           <Link
-            className="cursor-pointer p-1 hover:rounded-full opacity-80 hover:opacity-100 hover:bg-primary"
-            to="/"
+            className='cursor-pointer p-1 hover:rounded-full opacity-80 hover:opacity-100 hover:bg-primary'
+            to='/'
           >
-            <FaInstagram className="h-6 md:h-7 w-auto" />
+            <FaInstagram className='h-6 md:h-7 w-auto' />
           </Link>
           <Link
-            className="cursor-pointer p-1 hover:rounded-full opacity-80 hover:opacity-100 hover:bg-primary"
-            to="/"
+            className='cursor-pointer p-1 hover:rounded-full opacity-80 hover:opacity-100 hover:bg-primary'
+            to='/'
           >
-            <FaFacebookSquare className="h-6 md:h-7 w-auto" />
+            <FaFacebookSquare className='h-6 md:h-7 w-auto' />
           </Link>
           <Link
-            className="cursor-pointer p-1 hover:rounded-full opacity-80 hover:opacity-100 hover:bg-primary"
-            to="/"
+            className='cursor-pointer p-1 hover:rounded-full opacity-80 hover:opacity-100 hover:bg-primary'
+            to='/'
           >
-            <FaYoutube className="h-6 md:h-7 w-auto" />
+            <FaYoutube className='h-6 md:h-7 w-auto' />
           </Link>
         </section>
 
-        <section className="w-full flex gap-4 items-center justify-center text-white text-sm lg:text-lg lg:gap-8">
+        <section className='w-full flex gap-4 items-center justify-center text-white text-sm lg:text-lg lg:gap-8'>
           <a
-            href="#"
-            className="text-center py-1 font-bold opacity-80 hover:opacity-100"
+            href='#'
+            className='text-center py-1 font-bold opacity-80 hover:opacity-100'
           >
             About Us
           </a>
           <a
-            href="#"
-            className="text-center py-1 font-bold opacity-80 hover:opacity-100"
+            href='#'
+            className='text-center py-1 font-bold opacity-80 hover:opacity-100'
           >
             Privacy Notice
           </a>
           <a
-            href="#"
-            className="text-center py-1 font-bold opacity-80 hover:opacity-100"
+            href='#'
+            className='text-center py-1 font-bold opacity-80 hover:opacity-100'
           >
             Careers
           </a>
           <a
-            href="#"
-            className="text-center py-1 font-bold opacity-80 hover:opacity-100"
+            href='#'
+            className='text-center py-1 font-bold opacity-80 hover:opacity-100'
           >
             Help Center
           </a>
         </section>
 
-        <section className="w-full flex items-center justify-center text-white">
-          <h2 className="py-1 font-bold text-sm opacity-80 hover:opacity-100">
+        <section className='w-full flex items-center justify-center text-white'>
+          <h2 className='py-1 font-bold text-sm opacity-80 hover:opacity-100'>
             © 2023 Pink Neon Mexico
           </h2>
         </section>

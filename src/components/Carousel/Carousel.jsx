@@ -5,37 +5,36 @@ import { useGetAllProductsQuery } from '../../store/service/product/productServi
 
 const Carousel = () => {
   const { data, isError, isLoading, error } = useGetAllProductsQuery()
-  if (isLoading) return <div>Loading...</div>
-  else if (isError) return <div>Error</div>
   const products = data.data
 
+  console.log({ isError, isLoading, error })
   const slideLeft = () => {
-    var slider = document.getElementById('slider')
+    const slider = document.getElementById('slider')
     slider.scrollLeft = slider.scrollLeft - 300
   }
 
   const slideRight = () => {
-    var slider = document.getElementById('slider')
+    const slider = document.getElementById('slider')
     slider.scrollLeft = slider.scrollLeft + 300
   }
 
   return (
-    <section className="px-3 ">
-      <h2 className="py-3 text-2xl md:text-4xl font-bold text-center">NEW PRODUCTS</h2>
+    <section className='px-3 '>
+      <h2 className='py-3 text-2xl md:text-4xl font-bold text-center'>NEW PRODUCTS</h2>
 
-      <div className="relative flex items-center">
+      <div className='relative flex items-center'>
         <SlArrowLeft
           onClick={slideLeft}
-          className="w-7 h-7 md:w-10 md:h-10 opacity-50 cursor-pointer hover:opacity-100"
+          className='w-7 h-7 md:w-10 md:h-10 opacity-50 cursor-pointer hover:opacity-100'
         />
         <div
-          id="slider"
-          className="w-full h-full scroll whitespace-nowrap scroll-smooth overflow-y-hidden overflow-x-hidden"
+          id='slider'
+          className='w-full h-full scroll whitespace-nowrap scroll-smooth overflow-y-hidden overflow-x-hidden'
         >
           {products.map((product, index) => {
             return (
               <div
-                className="px-3 inline-block cursor-pointer hover:scale-105 ease-in-out "
+                className='px-3 inline-block cursor-pointer hover:scale-105 ease-in-out '
                 key={index}
               >
                 <ProductCard
@@ -49,7 +48,7 @@ const Carousel = () => {
         </div>
         <SlArrowRight
           onClick={slideRight}
-          className="w-7 h-7 md:w-10 md:h-10 opacity-50 cursor-pointer hover:opacity-100"
+          className='w-7 h-7 md:w-10 md:h-10 opacity-50 cursor-pointer hover:opacity-100'
         />
       </div>
     </section>

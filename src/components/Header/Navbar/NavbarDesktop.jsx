@@ -4,7 +4,7 @@ import {
   FaHeart,
   FaShoppingCart,
   FaUserCircle,
-  FaRegMoon,
+  FaRegMoon
 } from 'react-icons/fa'
 import { FiLogOut, FiLogIn } from 'react-icons/fi'
 import { BsFillSunFill } from 'react-icons/bs'
@@ -17,7 +17,7 @@ const NavBarDesktop = ({
   isCardOpen,
   isAuthenticated,
   clearToken,
-  user,
+  user
 }) => {
   const navigate = useNavigate()
 
@@ -40,80 +40,82 @@ const NavBarDesktop = ({
       color: '#fefefe',
       title: 'User has been logged out',
       showConfirmButton: false,
-      timer: 2000,
+      timer: 2000
     })
   }
 
   return (
-    <nav className="flex w-full justify-between items-center h-auto px-3 py-4 bg-primary dark:bg-dark-primary">
-      <Link to="/" className="flex flex-col justify-start text-slate-100">
-        <img src="./logo.svg" className="h-16 w-auto object-contain" />
+    <nav className='flex w-full justify-between items-center h-auto px-3 py-4 bg-primary dark:bg-dark-primary'>
+      <Link to='/' className='flex flex-col justify-start text-slate-100'>
+        <img src='./logo.svg' className='h-16 w-auto object-contain' />
       </Link>
 
-      <section className="flex gap-12 text-slate-100 font-bold">
+      <section className='flex gap-12 text-slate-100 font-bold'>
         <Link
-          className="flex flex-row justify-center items-center gap-1"
-          to="/"
+          className='flex flex-row justify-center items-center gap-1'
+          to='/'
         >
-          <FaHome className="w-6 h-6" />
+          <FaHome className='w-6 h-6' />
           HOME
         </Link>
 
         <Link
-          className="flex flex-row justify-center items-center gap-1"
-          to="/wishlist"
+          className='flex flex-row justify-center items-center gap-1'
+          to='/wishlist'
         >
-          <FaHeart className="w-6 h-6" />
+          <FaHeart className='w-6 h-6' />
           WISHLIST
         </Link>
 
         <button
           onClick={isCardOpen}
-          className="flex flex-row justify-center items-center gap-1"
-          to="/cart"
+          className='flex flex-row justify-center items-center gap-1'
+          to='/cart'
         >
-          <FaShoppingCart className="w-6 h-6" />
+          <FaShoppingCart className='w-6 h-6' />
           CART
         </button>
 
         {!isAuthenticated && (
           <Link
-            className="flex flex-row justify-center items-center gap-1"
-            to="/login"
+            className='flex flex-row justify-center items-center gap-1'
+            to='/login'
           >
-            <FiLogIn className="w-6 h-6" strokeWidth={3} />
+            <FiLogIn className='w-6 h-6' strokeWidth={3} />
             LOG IN
           </Link>
         )}
         {isAuthenticated && (
           <button
-            className="flex flex-row justify-center items-center gap-1"
+            className='flex flex-row justify-center items-center gap-1'
             onClick={handleLogout}
           >
-            <FiLogOut className="w-6 h-6" strokeWidth={3} />
+            <FiLogOut className='w-6 h-6' strokeWidth={3} />
             LOG OUT
           </button>
         )}
       </section>
 
       {isAuthenticated && (
-        <section className="flex text text-slate-100 font-bold">
+        <section className='flex text text-slate-100 font-bold'>
           <button
             onClick={handleTheme}
-            className={`flex flex-row justify-center items-center gap-1 text-white`}
+            className='flex flex-row justify-center items-center gap-1 text-white'
           >
-            {theme === 'dark' ? (
-              <BsFillSunFill className="w-6 h-6" />
-            ) : (
-              <FaRegMoon className="w-6 h-6" />
-            )}
+            {theme === 'dark'
+              ? (
+                <BsFillSunFill className='w-6 h-6' />
+                )
+              : (
+                <FaRegMoon className='w-6 h-6' />
+                )}
             {theme.toUpperCase()}
           </button>
           <Link
-            to="/profile"
-            className="flex justify-center items-center  gap-2 px-4 py-3 rounded-md bg-darkcyan uppercase"
+            to='/profile'
+            className='flex justify-center items-center  gap-2 px-4 py-3 rounded-md bg-darkcyan uppercase'
           >
-            <FaUserCircle className="w-6 h-6" />
+            <FaUserCircle className='w-6 h-6' />
             Profile
           </Link>
         </section>
@@ -122,13 +124,15 @@ const NavBarDesktop = ({
       {!isAuthenticated && (
         <button
           onClick={handleTheme}
-          className={`flex flex-row justify-center items-center gap-1 text-slate-100 font-bold`}
+          className='flex flex-row justify-center items-center gap-1 text-slate-100 font-bold'
         >
-          {theme === 'dark' ? (
-            <BsFillSunFill className="w-6 h-6" />
-          ) : (
-            <FaRegMoon className="w-6 h-6" />
-          )}
+          {theme === 'dark'
+            ? (
+              <BsFillSunFill className='w-6 h-6' />
+              )
+            : (
+              <FaRegMoon className='w-6 h-6' />
+              )}
           {theme.toUpperCase()}
         </button>
       )}

@@ -5,7 +5,7 @@ import ThemeContext from './context/ThemeContext'
 import ModalsContext from './context/ModalsContext'
 import AuthContext from './context/authContext'
 
-function App() {
+function App () {
   return (
     <AuthContext>
       <ThemeContext>

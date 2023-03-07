@@ -5,27 +5,28 @@ const ProductDetail = () => {
   const { id } = useParams()
   const { data, isError, isLoading, error } = useGetProductByIdQuery(id)
   const product = data?.data
+  console.log({ isError, isLoading, error })
 
   return (
-    <section className="flex flex-col justify-center items-center w-full h-full px-3 py-4">
-      <section className="flex flex-col justify-center items-center px-3 py-2 bg-white-variant shadow-md rounded-md lg:w-1/2 lg:flex-row h-full md:h-1/3">
+    <section className='flex flex-col justify-center items-center w-full h-full px-3 py-4'>
+      <section className='flex flex-col justify-center items-center px-3 py-2 bg-white-variant shadow-md rounded-md lg:w-1/2 lg:flex-row h-full md:h-1/3'>
         <img
           src={product?.image}
           alt={product?.name}
-          className="rounded-sm object-cover w-full h-full border border-gray-700"
+          className='rounded-sm object-cover w-full h-full border border-gray-700'
         />
-        <section className="flex flex-col w-full mt-2 lg:ml-2">
-          <h1 className="text-xl font-bold text-white">{product?.name}</h1>
-          <p className="text-lg font-semibold text-white">
+        <section className='flex flex-col w-full mt-2 lg:ml-2'>
+          <h1 className='text-xl font-bold text-white'>{product?.name}</h1>
+          <p className='text-lg font-semibold text-white'>
             {product?.description}
           </p>
-          <p className="text-lg font-semibold text-black">
+          <p className='text-lg font-semibold text-black'>
             Category:{product?.Category?.name}
           </p>
-          <p className="text-lg font-semibold text-black">
+          <p className='text-lg font-semibold text-black'>
             Price: {product?.price}
           </p>
-          <button className="px-3 py-1 bg-black-variant rounded-sm text-white font-semibold mt-2">
+          <button className='px-3 py-1 bg-black-variant rounded-sm text-white font-semibold mt-2'>
             Add to cart
           </button>
         </section>
