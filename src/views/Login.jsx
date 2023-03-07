@@ -5,6 +5,7 @@ import {
 } from '../store/service/user/userService'
 import Form from '../components/Form/Form'
 import { loginInputsFrom, registerInputsForm } from '../utils/formData'
+import Swal from 'sweetalert2'
 
 const SignIn = () => {
   const [error, setError] = useState(false)
@@ -26,6 +27,26 @@ const SignIn = () => {
   })
   const inputsLogin = loginInputsFrom
   const inputsRegister = registerInputsForm
+
+  function refresh() {
+    setTimeout(function () {
+      location.href = '/'
+    }, 1500)
+    Swal.fire({
+      target: 'main',
+      position: 'center',
+      width: '30rem',
+      heightAuto: false,
+      icon: 'success',
+      iconColor: '#fefefe',
+      backdrop: true,
+      background: '#DE76B5',
+      color: '#fefefe',
+      title: 'User has been logged in correctly',
+      showConfirmButton: false,
+      timer: 3000,
+    })
+  }
 
   const handleChange = (e) => {
     if (isLogin) {
@@ -72,8 +93,7 @@ const SignIn = () => {
     }
 
     setError(false)
-
-    isLogin ? console.log(loginData) : console.log(registerData)
+    refresh()
     //TODO validate password, gensalt, hash
     //TODO login user
   }

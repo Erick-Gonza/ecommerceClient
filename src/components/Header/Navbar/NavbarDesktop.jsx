@@ -6,7 +6,10 @@ import {
   FaUserCircle,
   FaRegMoon,
 } from 'react-icons/fa'
+import { FiLogOut, FiLogIn } from 'react-icons/fi'
 import { BsFillSunFill } from 'react-icons/bs'
+import { useEffect } from 'react'
+import Swal from 'sweetalert2'
 
 const NavBarDesktop = ({
   handleTheme,
@@ -14,16 +17,35 @@ const NavBarDesktop = ({
   isCardOpen,
   isAuthenticated,
   clearToken,
+  user,
 }) => {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    console.log(user)
+  }, [user])
 
   const handleLogout = () => {
     clearToken()
     navigate('/')
+    Swal.fire({
+      target: 'main',
+      position: 'center',
+      width: '30rem',
+      heightAuto: false,
+      icon: 'success',
+      iconColor: '#fefefe',
+      backdrop: true,
+      background: '#DE76B5',
+      color: '#fefefe',
+      title: 'User has been logged out',
+      showConfirmButton: false,
+      timer: 2000,
+    })
   }
 
   return (
-    <nav className="flex w-full justify-between items-center h-auto px-3 py-4 bg-primary">
+    <nav className="flex w-full justify-between items-center h-auto px-3 py-4 bg-primary dark:bg-dark-primary">
       <Link to="/" className="flex flex-col justify-start text-slate-100">
         <img src="./logo.svg" className="h-16 w-auto object-contain" />
       </Link>
@@ -59,7 +81,7 @@ const NavBarDesktop = ({
             className="flex flex-row justify-center items-center gap-1"
             to="/login"
           >
-            <FaUserCircle className="w-6 h-6" />
+            <FiLogIn className="w-6 h-6" strokeWidth={3} />
             LOG IN
           </Link>
         )}
@@ -68,13 +90,39 @@ const NavBarDesktop = ({
             className="flex flex-row justify-center items-center gap-1"
             onClick={handleLogout}
           >
+            <FiLogOut className="w-6 h-6" strokeWidth={3} />
             LOG OUT
           </button>
         )}
+      </section>
 
+      {isAuthenticated && (
+        <section className="flex text text-slate-100 font-bold">
+          <button
+            onClick={handleTheme}
+            className={`flex flex-row justify-center items-center gap-1 text-white`}
+          >
+            {theme === 'dark' ? (
+              <BsFillSunFill className="w-6 h-6" />
+            ) : (
+              <FaRegMoon className="w-6 h-6" />
+            )}
+            {theme.toUpperCase()}
+          </button>
+          <Link
+            to="/profile"
+            className="flex justify-center items-center  gap-2 px-4 py-3 rounded-md bg-darkcyan uppercase"
+          >
+            <FaUserCircle className="w-6 h-6" />
+            Profile
+          </Link>
+        </section>
+      )}
+
+      {!isAuthenticated && (
         <button
           onClick={handleTheme}
-          className={`flex flex-row justify-center items-center gap-1 text-white`}
+          className={`flex flex-row justify-center items-center gap-1 text-slate-100 font-bold`}
         >
           {theme === 'dark' ? (
             <BsFillSunFill className="w-6 h-6" />
@@ -83,16 +131,7 @@ const NavBarDesktop = ({
           )}
           {theme.toUpperCase()}
         </button>
-      </section>
-
-      <section className="text font-semibold text-slate-100">
-        <Link
-          to="/profile"
-          className="px-4 py-3 rounded-md font-semibold bg-darkcyan"
-        >
-          My Profile
-        </Link>
-      </section>
+      )}
     </nav>
   )
 }

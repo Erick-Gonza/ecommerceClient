@@ -15,7 +15,7 @@ const User = () => {
       <section className="w-full flex gap-2 px-2 py-2">
         <button
           className={`w-full text-black border-b-2 ${
-            true ? 'border-primary' : 'border-gray-200'
+            screen === 'profile' ? 'border-primary' : 'border-gray-200'
           }`}
           onClick={() => handleScreen('profile')}
         >
@@ -24,7 +24,7 @@ const User = () => {
 
         <button
           className={`w-full text-black border-b-2 ${
-            !true ? 'border-primary' : 'border-gray-200'
+            screen === 'address' ? 'border-primary' : 'border-gray-200'
           }`}
           onClick={() => handleScreen('address')}
         >
@@ -33,7 +33,7 @@ const User = () => {
 
         <button
           className={`w-full text-black border-b-2 ${
-            !true ? 'border-primary' : 'border-gray-200'
+            screen === 'orders' ? 'border-primary' : 'border-gray-200'
           }`}
           onClick={() => handleScreen('orders')}
         >

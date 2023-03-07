@@ -8,8 +8,9 @@ import NavbarMobile from './Navbar/NavbarMobile'
 
 const Header = () => {
   const { handleTheme, theme } = useContext(themeContext)
-  const { isAuthenticated, clearToken } = useContext(authContext)
+  const { isAuthenticated, clearToken, user } = useContext(authContext)
   const { isCardOpen, isSetMenuBlur } = useContext(modalsContext)
+
   return (
     <>
       <header>
@@ -20,6 +21,7 @@ const Header = () => {
             theme={theme}
             isAuthenticated={isAuthenticated}
             clearToken={clearToken}
+            user={user}
           />
         ) : (
           <NavbarMobile
@@ -29,6 +31,7 @@ const Header = () => {
             isSetMenuBlur={isSetMenuBlur}
             isAuthenticated={isAuthenticated}
             clearToken={clearToken}
+            user={user}
           />
         )}
       </header>

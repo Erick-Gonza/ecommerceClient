@@ -5,18 +5,31 @@ export const authContext = createContext()
 const { Provider } = authContext
 
 export const AuthContext = ({ children }) => {
-  const [user, setUser] = useState(Cookies.get('token'))
+  const [user, setUser] = useState(null)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   useEffect(() => {
-    if (user) {
+    const token = getToken()
+    if (token) {
+      setUser(token)
       setIsAuthenticated(true)
-    } else {
+    }
+
+    if (!token || token === null) {
       setUser(null)
       setIsAuthenticated(false)
     }
-  }, [user])
+  }, [user, isAuthenticated])
 
+  //get cookie
+  const getToken = () => {
+    return Cookies.get('token')
+  }
+
+  //set cookie
+  const setToken = () => {
+    setUser(getToken())
+  }
   //clear cookie
   const clearToken = () => {
     Cookies.remove('token')
