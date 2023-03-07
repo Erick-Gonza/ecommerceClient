@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import {
   useLoginUserMutation,
-  useCreateUserMutation,
+  useCreateUserMutation
 } from '../store/service/user/userService'
 import Form from '../components/Form/Form'
 import { loginInputsFrom, registerInputsForm } from '../utils/formData'
@@ -14,7 +14,7 @@ const SignIn = () => {
   const [createUser] = useCreateUserMutation()
   const [loginData, setLoginData] = useState({
     userName: '',
-    password: '',
+    password: ''
   })
   const [registerData, setRegisterData] = useState({
     firstName: '',
@@ -23,14 +23,14 @@ const SignIn = () => {
     email: '',
     password: '',
     roleId: 2,
-    statusId: 1,
+    statusId: 1
   })
   const inputsLogin = loginInputsFrom
   const inputsRegister = registerInputsForm
 
-  function refresh() {
+  function refresh () {
     setTimeout(function () {
-      location.href = '/'
+      window.location.href = '/'
     }, 1500)
     Swal.fire({
       target: 'main',
@@ -44,7 +44,7 @@ const SignIn = () => {
       color: '#fefefe',
       title: 'User has been logged in correctly',
       showConfirmButton: false,
-      timer: 3000,
+      timer: 3000
     })
   }
 
@@ -52,31 +52,29 @@ const SignIn = () => {
     if (isLogin) {
       setLoginData({
         ...loginData,
-        [e.target.id]: e.target.value,
+        [e.target.id]: e.target.value
       })
-      return
     } else {
       setRegisterData({
         ...registerData,
-        [e.target.id]: e.target.value,
+        [e.target.id]: e.target.value
       })
-      return
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    //Login form
+    // Login form
     if (isLogin) {
       if (!loginData.userName || !loginData.password) {
         setError(true)
         return
       }
-      //login user
+      // login user
       loginUser(loginData)
     }
 
-    //Register form
+    // Register form
     if (!isLogin) {
       if (
         !registerData.firstName ||
@@ -88,37 +86,39 @@ const SignIn = () => {
         setError(true)
         return
       }
-      //register user
+      // register user
       createUser(registerData)
     }
 
     setError(false)
     refresh()
-    //TODO validate password, gensalt, hash
-    //TODO login user
+    // TODO validate password, gensalt, hash
+    // TODO login user
   }
 
   return (
-    <section className="flex flex-col items-center justify-center h-full px-3 my-3 mx-2">
-      {isLogin ? (
-        <Form
-          inputs={inputsLogin}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          error={error}
-          setIsLogin={setIsLogin}
-          isLogin={isLogin}
-        />
-      ) : (
-        <Form
-          inputs={inputsRegister}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          error={error}
-          setIsLogin={setIsLogin}
-          isLogin={isLogin}
-        />
-      )}
+    <section className='flex flex-col items-center justify-center h-full px-3 my-3 mx-2'>
+      {isLogin
+        ? (
+          <Form
+            inputs={inputsLogin}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            error={error}
+            setIsLogin={setIsLogin}
+            isLogin={isLogin}
+          />
+          )
+        : (
+          <Form
+            inputs={inputsRegister}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            error={error}
+            setIsLogin={setIsLogin}
+            isLogin={isLogin}
+          />
+          )}
     </section>
   )
 }

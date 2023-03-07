@@ -7,11 +7,11 @@ export const store = configureStore({
   reducer: {
     [categories.reducerPath]: categories.reducer,
     [users.reducerPath]: users.reducer,
-    [products.reducerPath]: products.reducer,
+    [products.reducerPath]: products.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(categories.middleware)
       .concat(users.middleware)
-      .concat(products.middleware),
+      .concat(products.middleware)
 })

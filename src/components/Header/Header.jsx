@@ -14,26 +14,28 @@ const Header = () => {
   return (
     <>
       <header>
-        {!isMobile ? (
-          <NavbarDesktop
-            isCardOpen={isCardOpen}
-            handleTheme={handleTheme}
-            theme={theme}
-            isAuthenticated={isAuthenticated}
-            clearToken={clearToken}
-            user={user}
-          />
-        ) : (
-          <NavbarMobile
-            isCardOpen={isCardOpen}
-            handleTheme={handleTheme}
-            theme={theme}
-            isSetMenuBlur={isSetMenuBlur}
-            isAuthenticated={isAuthenticated}
-            clearToken={clearToken}
-            user={user}
-          />
-        )}
+        {!isMobile
+          ? (
+            <NavbarDesktop
+              isCardOpen={isCardOpen}
+              handleTheme={handleTheme}
+              theme={theme}
+              isAuthenticated={isAuthenticated}
+              clearToken={clearToken}
+              user={user}
+            />
+            )
+          : (
+            <NavbarMobile
+              isCardOpen={isCardOpen}
+              handleTheme={handleTheme}
+              theme={theme}
+              isSetMenuBlur={isSetMenuBlur}
+              isAuthenticated={isAuthenticated}
+              clearToken={clearToken}
+              user={user}
+            />
+            )}
       </header>
     </>
   )

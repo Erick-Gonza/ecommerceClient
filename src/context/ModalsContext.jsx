@@ -26,7 +26,7 @@ export const ModalsContext = ({ children }) => {
     menuBlur,
     isCardOpen,
     isFilterOpen,
-    isSetMenuBlur,
+    isSetMenuBlur
   }
 
   return <Provider value={modals}>{children}</Provider>

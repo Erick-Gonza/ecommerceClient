@@ -21,16 +21,16 @@ export const AuthContext = ({ children }) => {
     }
   }, [user, isAuthenticated])
 
-  //get cookie
+  // get cookie
   const getToken = () => {
     return Cookies.get('token')
   }
 
-  //set cookie
+  // set cookie
   const setToken = () => {
     setUser(getToken())
   }
-  //clear cookie
+  // clear cookie
   const clearToken = () => {
     Cookies.remove('token')
     setIsAuthenticated(false)
@@ -39,8 +39,9 @@ export const AuthContext = ({ children }) => {
 
   const functions = {
     clearToken,
+    setToken,
     user,
-    isAuthenticated,
+    isAuthenticated
   }
 
   return <Provider value={functions}>{children}</Provider>

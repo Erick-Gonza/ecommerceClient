@@ -6,27 +6,27 @@ export const users = createApi({
   tagTypes: ['Users'],
   endpoints: (builder) => ({
     getAllUsers: builder.query({
-      query: () => '/user',
+      query: () => '/user'
     }),
     createUser: builder.mutation({
       query: (body) => ({
         url: '/user',
         method: 'POST',
-        body,
-      }),
+        body
+      })
     }),
     loginUser: builder.mutation({
       query: (body) => ({
         url: '/login',
         method: 'POST',
-        body,
-      }),
-    }),
-  }),
+        body
+      })
+    })
+  })
 })
 
 export const {
   useGetAllUsersQuery,
   useCreateUserMutation,
-  useLoginUserMutation,
+  useLoginUserMutation
 } = users
