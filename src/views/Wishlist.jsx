@@ -1,60 +1,47 @@
 import { ProductCard } from '../components/Product/ProductCard'
+import { useParams } from 'react-router-dom'
+import { useGetWishlistQuery } from '../store/service/wishlist/wishlistService'
 
-import React from 'react'
 
-export const Wishlist = () => {
-  const categ = {
-    id: 1,
-    name: 'Bags',
-  }
-  const products = [
-    {
-      id: 1,
-      name: 'Mochila',
-      description: 'Lorem impsum',
-      price: 23.99,
-      imageUrl: '',
-    },
-    {
-      id: 2,
-      name: 'Bolso1',
-      description: 'Lorem impsum',
-      price: 40.5,
-      imageUrl: '',
-    },
-    {
-      id: 3,
-      name: 'Mochila grande',
-      description: 'Lorem impsum',
-      price: 60.4,
-      imageUrl: '',
-    },
-    {
-      id: 4,
-      name: 'Mochilita',
-      description: 'Lorem impsum',
-      price: 60.4,
-      imageUrl: '',
-    },
-    {
-      id: 5,
-      name: 'Crossbody',
-      description: 'Lorem impsum',
-      price: 60.4,
-      imageUrl: '',
-    },
-  ]
-
+const Wishlist = () => {
+  const { userId } = useParams()
+  const { data, isError, isLoading, error } = useGetWishlistQuery(userId)  
+  const products = data?.data.Products
   return (
     <div className="m-4">
-      <div className="flex flex-row justify-center my-3">
-        <div className="my-3 font-bold text-2xl">{categ.name}</div>
-      </div>
-      <div className="grid sm:grid-cols-1 sm:grid-cols-3 xl:grid-cols-5">
-        {products.map((product) => {
-          return <ProductCard prodname={product.name} price={product.price} />
-        })}
-      </div>
+      {products === null? (
+        <section>
+          <p>No hay productos en esta categoria</p>
+        </section>
+      ) : (
+        <div className="flex flex-row justify-between my-3">
+          <div className="my-3 font-bold text-2xl">My wishlist</div>
+          
+        </div>
+      )}
+      {isLoading && !isError ? (
+        <section>Loading...</section>
+      ) : (
+        <>
+          <div className="grid sm:grid-cols-1 md:grid-cols-4">
+            {products.map((product, index) => {
+              return (
+                <ProductCard
+                  prodName={product.name}
+                  price={product.price}
+                  key={index}
+                />
+              )
+            })}
+          </div>
+        </>
+      )}
+      {isError && (
+        <section>
+          <p>Something went wrong. No products found.</p>
+        </section>
+      )}
     </div>
   )
 }
+export default Wishlist

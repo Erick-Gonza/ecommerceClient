@@ -21,6 +21,7 @@ export const AdminProducts = () => {
   if (isLoading) return <div>Loading...</div>
   else if (isError) return <div>Error</div>
   const products = data?.data
+  console.log(products)
 
   return (
     <section className="py-4 px-6 flex flex-col static items-center ">
@@ -93,11 +94,11 @@ export const AdminProducts = () => {
               >
                 <td>{product.id}</td>
                 <td>{product.name}</td>
-                <td>Category</td>
+                <td>{product.Category.name}</td>
                 <td className="hidden md:block">Description</td>
-                <td>Color</td>
-                <td>Price</td>
-                <td>43</td>
+                <td>{product.color}</td>
+                <td>{product.price}</td>
+                <td>{product.stock}</td>
                 <td className="flex flex-row">
                   <button onClick={()=>{
                     setOpenModal(true) 

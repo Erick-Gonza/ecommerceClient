@@ -1,28 +1,36 @@
 import { useState } from 'react'
 import { BsUpload } from 'react-icons/bs'
+import { useGetAllCategoriesQuery } from '../../store/service/category/categoryService'
 import { useCreateProductMutation } from '../../store/service/product/productService'
 
 const AddProduct = () => {
+
   const [createProduct] = useCreateProductMutation()
+  const {data} = useGetAllCategoriesQuery()
   const [fileData, setFileData] = useState()
   const [product, setProduct] = useState({
     name: '',
     description: '',
     price: null,
     stock: null,
-    categoryId: 1,
+    categoryId: null,
     subcategoryId: null,
   })
+  const [image, setImage] = useState()
+  const categories = data?.data
 
   const handleChange = (e) => {
     setProduct({
       ...product,
       [e.target.id]: e.target.value,
     })
+    
   }
 
+  let url = image
   const fileChangeHandler = (e) => {
     setFileData(e.target.files[0])
+    setImage(URL.createObjectURL(e.target.files[0]))
   }
 
   const handleSubmit = (e) => {
@@ -35,7 +43,7 @@ const AddProduct = () => {
     formData.append('file', fileData)
     formData.append('categoryId', product.categoryId)
     formData.append('subcategoryId', product.subcategoryId)
-
+    console.log(product)
     createProduct(formData)
   }
 
@@ -52,7 +60,7 @@ const AddProduct = () => {
         <div className="flex flex-row ">
           <div className="w-1/3 h-full mx-2 flex flex-col justify-center self-center gap-3">
             <img
-              src="https://picsum.photos/1920/800"
+              src={url}
               alt="Banner"
               className="object-cover w-full h-1/3 md:h-1/2"
             />
@@ -109,11 +117,13 @@ const AddProduct = () => {
             <section className="flex flex-row gap-4">
               <section className="mb-4 w-2/4">
                 <label className="block font-bold mb-4">Category</label>
-                <select className="border rounded w-full h-11">
-                  <option>-Select a category-</option>
-                  <option>Option 1</option>
-                  <option>Option 2</option>
-                  <option>Option 3</option>
+                <select onChange={handleChange} id="categoryId" className="border rounded w-full h-11">
+                  <option disabled>-Select a category-</option>
+                  {categories.map((category, key)=>{
+                    return(
+                      <option key={key} value={category.id}>{category.name}</option>
+                    )
+                  })}
                 </select>
               </section>
               <section className="mb-4 w-2/4">

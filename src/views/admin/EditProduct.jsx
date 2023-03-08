@@ -19,8 +19,6 @@ const EditProduct = ({open, onClose, productId}) => {
       name: data?.data?.name,
       subcategory: data?.data?.subcategory,
     })
-    console.log(productId)
-    console.log(product)
   }, [data])
 
   

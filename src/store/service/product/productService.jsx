@@ -47,5 +47,5 @@ export const {
   useUpdateProductMutation,
   useDeleteProductMutation,
   useGetProductByIdQuery,
-  useGetProductsByCategoryIdQuery,
+  useGetProductsByCategoryIdQuery
 } = products

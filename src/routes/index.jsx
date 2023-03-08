@@ -10,7 +10,7 @@ import EditProduct from '../views/admin/EditProduct'
 import EditCategory from '../views/admin/EditCategory'
 import AddProduct from '../views/admin/AddProduct'
 import OrderDetail from '../views/user/OrderDetail'
-import { Wishlist } from '../views/Wishlist'
+import Wishlist from '../views/Wishlist'
 
 const router = createBrowserRouter([
   {
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
         element: <ProductDetail />,
       },
       {
-        path: '/wishlist',
+        path: '/wishlist/:userId',
         element: <Wishlist />,
       },
       {

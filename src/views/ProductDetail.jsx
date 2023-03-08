@@ -5,7 +5,7 @@ const ProductDetail = () => {
   const { id } = useParams()
   const { data, isError, isLoading, error } = useGetProductByIdQuery(id)
   const product = data?.data
-
+ 
   return (
     <section className="flex flex-col justify-center items-center w-full h-full px-3 py-4">
       <section className="flex flex-col justify-center items-center px-3 py-2 bg-white-variant shadow-md rounded-md lg:w-1/2 lg:flex-row h-full md:h-1/3">

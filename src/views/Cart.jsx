@@ -5,6 +5,7 @@ import { HiX } from 'react-icons/hi'
 
 const Cart = () => {
   const { openCard, isCardOpen } = useContext(modalsContext)
+  
 
   let subtotal = 0
   const products = [
