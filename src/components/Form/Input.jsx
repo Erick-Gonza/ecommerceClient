@@ -33,7 +33,7 @@ const Input = ({ input, index, handleChange, data }) => {
       <section className='mb-4' key={index}>
         <Link
           href={input.href}
-          className='text-black underline underline-offset-2'
+          className='text-black underline underline-offset-2 dark:text-white-variant'
         >
           Forgot my password.
         </Link>

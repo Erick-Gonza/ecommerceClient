@@ -6,7 +6,7 @@ const loginInputsFrom = [
     type: 'text',
     id: 'userName',
     placeholder: 'email or username...',
-    className: 'border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
+    className: 'border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:text-white-variant dark:bg-black-variant'
   },
   {
     index: 1,
@@ -15,7 +15,7 @@ const loginInputsFrom = [
     type: 'text',
     id: 'password',
     placeholder: 'Password...',
-    className: 'border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
+    className: 'border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:bg-black-variant'
   },
   {
     index: 2,
@@ -23,7 +23,7 @@ const loginInputsFrom = [
     type: 'checkbox',
     id: 'remember',
     name: 'remember',
-    className: 'ml-2 text-black'
+    className: 'ml-2 text-black dark:text-white-variant '
   },
   {
     index: 3,
@@ -36,7 +36,7 @@ const loginInputsFrom = [
     index: 4,
     type: 'submit',
     className:
-      'bg-primary text-white font-bold uppercase px-3 py-2 w-3/4 rounded-sm mt-4 mb-4 cursor-pointer shadow-md',
+      'bg-primary dark:text-white-variant text-white font-bold uppercase px-3 py-2 w-3/4 rounded-sm mt-4 mb-4 cursor-pointer shadow-md rounded-xl',
     value: 'Log in'
   }
 ]
@@ -49,7 +49,7 @@ const registerInputsForm = [
     type: 'text',
     id: 'firstName',
     placeholder: 'First Name...',
-    className: 'border-2 w-full rounded-md placeholder-gray shadow-md p-2'
+    className: 'border-2 w-full rounded-md placeholder-gray shadow-md p-2 dark:bg-black-variant'
   },
   {
     index: 1,
@@ -58,7 +58,7 @@ const registerInputsForm = [
     type: 'text',
     id: 'lastName',
     placeholder: 'Last name...',
-    className: 'border-2 w-full rounded-md placeholder-gray shadow-md p-2'
+    className: 'border-2 w-full rounded-md placeholder-gray shadow-md p-2 dark:bg-black-variant'
   },
   {
     index: 2,
@@ -67,7 +67,7 @@ const registerInputsForm = [
     type: 'text',
     id: 'userName',
     placeholder: 'User name...',
-    className: 'border-2 w-full rounded-md placeholder-gray shadow-md p-2'
+    className: 'border-2 w-full rounded-md placeholder-gray shadow-md p-2 dark:bg-black-variant'
   },
   {
     index: 3,
@@ -76,7 +76,7 @@ const registerInputsForm = [
     type: 'text',
     id: 'email',
     placeholder: 'Email...',
-    className: 'border-2 w-full rounded-md placeholder-gray shadow-md p-2'
+    className: 'border-2 w-full rounded-md placeholder-gray shadow-md p-2 dark:bg-black-variant'
   },
   {
     index: 4,
@@ -85,13 +85,13 @@ const registerInputsForm = [
     type: 'text',
     id: 'password',
     placeholder: 'Password...',
-    className: 'border-2 w-full rounded-md placeholder-gray shadow-md p-2'
+    className: 'border-2 w-full rounded-md placeholder-gray shadow-md p-2 dark:bg-black-variant'
   },
   {
     index: 5,
     type: 'submit',
     className:
-      'bg-primary text-white font-bold uppercase px-3 py-2 w-3/4 rounded-sm cursor-pointer shadow-md mt-2 mb-2',
+      'bg-primary dark:text-white-variant text-white font-bold uppercase px-3 py-2 w-3/4 rounded-xl cursor-pointer shadow-md mt-2 mb-2 ',
     value: 'Create New Account'
   }
 ]

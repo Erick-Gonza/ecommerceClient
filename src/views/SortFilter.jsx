@@ -39,7 +39,7 @@ const SortFilter = () => {
         <Dropdown />
         <Dropdown />
         <Dropdown />
-        <button className='dark:bg-primary dark:text-black font-semibold bg-black text-white w-full mt-4 rounded-md hover:scale-105'>APPLY</button>
+        <button className='dark:bg-primary hover:bg-primary dark:text-black font-semibold bg-black text-white w-full mt-4 rounded-md hover:scale-105'>APPLY</button>
       </div>
     </section>
   )

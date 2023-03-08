@@ -32,8 +32,8 @@ const EditCategory = () => {
   }
 
   return (
-    <section className='flex flex-row justify-center my-4'>
-      <section className='flex flex-col h-full px-3 py-4 bg-white md:border-2 rounded-md w-full md:w-1/3 '>
+    <section className='flex flex-row justify-center my-4 '>
+      <section className='flex flex-col h-full px-3 py-4 bg-white md:border-2 rounded-md w-full md:w-1/3 dark:text-white-variant dark:bg-black'>
         <h2 className='font-bold text-center text-2xl mb-4'>
           Admin Categories
         </h2>
@@ -75,15 +75,15 @@ const EditCategory = () => {
 
           <div className='w-full flex flex-col px-3'>
             <form className='mb-4 w-full'>
-              <label className='block font-bold mb-4'>Id</label>
+              <label className='block font-bold mb-4 '>Id</label>
               <input
                 type='text'
                 id='id'
                 placeholder={categoryEdit ? categoryEdit.id : null}
-                className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
+                className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:bg-black-variant'
                 disabled
               />
-              <label className='block font-bold mb-4'>Name</label>
+              <label className='block font-bold mb-4 '>Name</label>
               <input
                 type='text'
                 id='name'
@@ -91,7 +91,7 @@ const EditCategory = () => {
                 value={categoryEdit ? categoryEdit.name : null}
                 onChange={(e) =>
                   setCategoryEdit({ ...categoryEdit, name: e.target.value })}
-                className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
+                className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:bg-black-variant'
               />
               <button onClick={handleSubmit} className='w-full text-center mt-2 py-2 border rounded bg-primary text-white'>
                 Confirm

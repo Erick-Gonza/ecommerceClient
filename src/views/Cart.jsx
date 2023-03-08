@@ -37,10 +37,10 @@ const Cart = () => {
         openCard !== true ? 'hidden' : 'block'
       }`}
     >
-      <div className='flex-row m-3 grid grid-cols-6'>
+      <div className='flex-row m-3 grid grid-cols-6 '>
         <div className='col-span-1 z-10' onClick={isCardOpen}>
           <button>
-            <HiX className='w-6 h-6 hover:scale-105' />
+            <HiX className='w-6 h-6 hover:scale-105 ' />
           </button>
         </div>
         <div className='col-span-4'>
@@ -49,7 +49,7 @@ const Cart = () => {
         <div className='col-span-1' />
       </div>
 
-      <div className='border-b-2 mx-3 py-2'>
+      <div className='mx-3 py-2 space-y-4'>
         {products.map((product, index) => {
           return (
             <CartCard

@@ -65,25 +65,25 @@ const OrderDetail = () => {
                 </section>
               </section>
             ))}
+            <section className='flex flex-row font-bold items-center justify-center md:w-2/3 w-full'>
+              <section className='w-full gap-y-4'>
+                <h2>Total Quantity:</h2>
+                <h2>Total Price: </h2>
+              </section>
+              <section className='w-full gap-y-4'>
+                <h2>{totalQuantity}</h2>
+                <h2>{totalPrice.toFixed(2)}</h2>
+              </section>
+              <Link
+                to='/profile'
+                className='flex w-40  hover:scale-105 drop-shadow-md justify-center bg-primary text-white font-bold px-3 py-2 rounded-lg mt-4 mb-4 cursor-pointer h-10'
+              >
+                <p>Back</p>
+              </Link>
+            </section>
           </section>
         </section>
-      </section>
 
-      <section className='flex flex-row font-bold justify-center'>
-        <section className='w-full gap-y-4'>
-          <h2>Total Quantity:</h2>
-          <h2>Total Price: </h2>
-        </section>
-        <section className='w-full gap-y-4'>
-          <h2>{totalQuantity}</h2>
-          <h2>{totalPrice.toFixed(2)}</h2>
-        </section>
-        <Link
-          to='/profile'
-          className='flex w-40  hover:scale-105 drop-shadow-md justify-center bg-primary text-white font-bold px-3 py-2 rounded-lg mt-4 mb-4 cursor-pointer h-10'
-        >
-          <p>Back</p>
-        </Link>
       </section>
     </>
   )

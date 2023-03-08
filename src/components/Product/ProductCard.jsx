@@ -49,7 +49,7 @@ export const ProductCard = ({ name, price, productId }) => {
                 />
                 )}
           </div>
-          <div className='dark:bg-black-variant bg-primary sm:inline-flex md:absolute w-full sm:h16 md:h-20 bottom-0 opacity-100 md:opacity-0 group-hover:opacity-100 flex flex-cols justify-between px-3 transition-all duration-500 '>
+          <div className='dark:bg-black bg-primary sm:inline-flex md:absolute w-full sm:h16 md:h-20 bottom-0 opacity-100 md:opacity-0 group-hover:opacity-100 flex flex-cols justify-between px-3 transition-all duration-500 '>
             <div className='dark: text-white-variant sm:text-black md:text-white py-2'>
               <p>{name}</p>
               <p className='font-semibold'>{'$' + price}</p>

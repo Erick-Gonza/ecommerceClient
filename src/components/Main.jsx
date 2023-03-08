@@ -9,7 +9,7 @@ const Main = () => {
 
   return (
     <main
-      className={`dark:bg-gray-variant bg-white-variant flex-1 flex flex-col h-auto w-full ${menuBlur && 'blur-md'}`}
+      className={`dark:bg-black-variant bg-white-variant flex-1 flex flex-col h-auto w-full dark:text-white-variant gap-8 ${menuBlur && 'blur-md'}`}
     >
       <Outlet />
       <Cart />

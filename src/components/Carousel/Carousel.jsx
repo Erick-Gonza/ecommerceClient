@@ -29,12 +29,12 @@ const Carousel = () => {
         />
         <div
           id='slider'
-          className='w-full h-full scroll whitespace-nowrap scroll-smooth overflow-y-hidden overflow-x-hidden'
+          className='py-8 w-full h-full scroll whitespace-nowrap scroll-smooth overflow-y-hidden overflow-x-hidden'
         >
           {products?.map((product, index) => {
             return (
               <div
-                className='px-3 inline-block cursor-pointer hover:scale-105 ease-in-out '
+                className='px-3 inline-block cursor-pointer hover:scale-110 ease-in-out '
                 key={index}
               >
                 <ProductCard

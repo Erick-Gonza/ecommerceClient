@@ -10,11 +10,11 @@ const ProductDetail = () => {
   return (
     <section className='flex flex-col justify-center items-center w-full h-full px-3 py-4'>
       <section className='flex flex-col justify-center items-center px-3 py-2 bg-white-variant 
-      dark:bg-black-variant dark:text-white-variant shadow-md rounded-md lg:w-1/2 lg:flex-row h-full md:h-1/3'>
+      dark:bg-black dark:text-white-variant shadow-md rounded-xl lg:w-1/2 lg:flex-row h-full md:h-1/3'>
         <img
           src={product?.image}
           alt={product?.name}
-          className='rounded-sm object-cover w-full h-full border border-gray-700'
+          className='rounded-md object-cover w-full h-full border border-gray-700'
         />
         <section className='flex flex-col w-full mt-2 lg:ml-2'>
           <h1 className='text-xl font-bold text-white '>{product?.name}</h1>
@@ -27,7 +27,7 @@ const ProductDetail = () => {
           <p className='text-lg font-semibold text-black dark:text-white-variant'>
             Price: {product?.price}
           </p>
-          <button className='px-3 py-1 dark:bg-primary dark:text-black-variant bg-black-variant rounded-sm text-white font-semibold mt-2'>
+          <button className='px-3 py-1 dark:bg-primary dark:text-black-variant bg-black-variant rounded-md text-white font-semibold mt-2'>
             Add to cart
           </button>
         </section>
