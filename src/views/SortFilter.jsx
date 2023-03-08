@@ -11,7 +11,7 @@ const SortFilter = () => {
 
   return (
     <section
-      className={`bg-white min-h-screen w-80 fixed top-0 right-0 z-50 ${
+      className={`dark:bg-black-variant dark:text-white-variant bg-white min-h-screen w-80 fixed top-0 right-0 z-50 ${
         openFilter !== true ? 'hidden' : 'block'
       } `}
     >
@@ -39,7 +39,7 @@ const SortFilter = () => {
         <Dropdown />
         <Dropdown />
         <Dropdown />
-        <button className='bg-black text-white w-full mt-4'>APPLY</button>
+        <button className='dark:bg-primary dark:text-black font-semibold bg-black text-white w-full mt-4 rounded-md hover:scale-105'>APPLY</button>
       </div>
     </section>
   )

@@ -26,7 +26,7 @@ const Category = () => {
           <div className='flex flex-row justify-between my-3'>
             <div className='my-3 font-bold text-2xl'>{category?.name}</div>
             <button
-              className='border border-black text-black bg-white hover:bg-black hover:text-white font-bold p-2 h-1/2 w-1/7'
+              className='dark:text-white-variant dark:hover:bg-primary dark:bg-black-variant border border-black text-black bg-white hover:bg-black hover:text-white font-bold p-2 h-1/2 w-1/7 rounded-md'
               onClick={isFilterOpen}
             >
               Sort & Filter

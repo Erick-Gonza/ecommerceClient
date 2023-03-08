@@ -33,7 +33,7 @@ const Cart = () => {
 
   return (
     <section
-      className={`bg-white min-h-screen w-80 fixed top-0 right-0 z-50 ${
+      className={`bg-white dark:bg-black-variant dark:text-white-variant min-h-screen w-80 fixed top-0 right-0 z-50 ${
         openCard !== true ? 'hidden' : 'block'
       }`}
     >
