@@ -10,8 +10,8 @@ const Form = ({
   isLogin
 }) => {
   return (
-    <section className='flex flex-col justify-center items-center shadow-lg px-3 py-4 bg-white border rounded-md w-full md:w-1/2 lg:w-1/3'>
-      <h2 className='font-bold text-center text-2xl mb-4'>
+    <section className='flex flex-col justify-center items-center shadow-lg px-3 py-4 bg-white border rounded-xl w-full md:w-1/2 lg:w-1/3 dark:bg-black dark:text-white-variant'>
+      <h2 className='font-bold text-center text-2xl mb-4 '>
         {isLogin ? 'Login' : 'Register'}
       </h2>
       <section className='w-full flex gap-2'>
@@ -21,7 +21,7 @@ const Form = ({
           }`}
           onClick={() => setIsLogin(true)}
         >
-          <p className='w-full'>Log in</p>
+          <p className='w-full dark:text-white-variant'>Log in</p>
         </button>
         <button
           className={`w-full text-black border-b-2 ${
@@ -29,7 +29,7 @@ const Form = ({
           }`}
           onClick={() => setIsLogin(false)}
         >
-          <p className='w-full'>Create an account</p>
+          <p className='w-full dark:text-white-variant'>Create an account</p>
         </button>
       </section>
 

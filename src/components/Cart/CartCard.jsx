@@ -3,12 +3,12 @@ import { HiOutlineTrash, HiOutlinePlus, HiOutlineMinusSm } from 'react-icons/hi'
 
 export const CartCard = ({ name, description, price }) => {
   return (
-    <div className='container grid grid-cols-6 gap-1 shadow-sm  p-1 cursor-pointer hover:scale-105 '>
-      <section className='h-32  col-span-2 '>
+    <div className='py-6 container grid grid-cols-6 gap-2 border shadow-sm  p-1 cursor-pointer hover:scale-105 bg-white-variant dark:bg-black rounded-xl '>
+      <section className='h-32 col-span-2 '>
         <img
           src='https://picsum.photos/1920/800'
           alt='Banner'
-          className='object-cover w-full h-full'
+          className='object-cover w-full h-full rounded-md'
         />
       </section>
 

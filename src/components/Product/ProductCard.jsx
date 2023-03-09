@@ -49,13 +49,13 @@ export const ProductCard = ({ name, price, productId }) => {
                 />
                 )}
           </div>
-          <div className='sm:bg-transparent bg-primary sm:inline-flex sm:opacity-100 md:absolute w-full sm:h16 md:h-20 bottom-0 md:opacity-0 group-hover:opacity-100 flex flex-cols justify-between px-3 transition-all duration-500 '>
-            <div className='sm:text-black md:text-white py-2'>
+          <div className='dark:bg-black bg-primary sm:inline-flex md:absolute w-full sm:h16 md:h-20 bottom-0 opacity-100 md:opacity-0 group-hover:opacity-100 flex flex-cols justify-between px-3 transition-all duration-500 '>
+            <div className='dark: text-white-variant sm:text-black md:text-white py-2'>
               <p>{name}</p>
               <p className='font-semibold'>{'$' + price}</p>
             </div>
             <div className='py-2 grid grid-rows-2'>
-              <button className='hover:bg-black-variant bg-white-variant hover:text-white rounded px-2 border drop-shadow-lg'>
+              <button className='md:hover:bg-black-variant dark:hover:bg-primary dark:text-black-variant dark:bg-gray-variant bg-white-variant hover:text-white rounded px-2 border drop-shadow-lg font-semibold'>
                 Buy now
               </button>
             </div>

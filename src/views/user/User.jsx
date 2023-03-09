@@ -19,7 +19,7 @@ const User = () => {
           }`}
           onClick={() => handleScreen('profile')}
         >
-          <p className='w-full font-bold text-xl px-1 py-2'> Profile</p>
+          <p className='w-full font-bold text-xl px-1 py-2 dark:text-white-variant'> Profile</p>
         </button>
 
         <button
@@ -28,7 +28,7 @@ const User = () => {
           }`}
           onClick={() => handleScreen('address')}
         >
-          <p className='w-full font-bold text-xl px-1 py-2'>Address</p>
+          <p className='w-full font-bold text-xl px-1 py-2 dark:text-white-variant'>Address</p>
         </button>
 
         <button
@@ -37,7 +37,7 @@ const User = () => {
           }`}
           onClick={() => handleScreen('orders')}
         >
-          <p className='w-full font-bold text-xl px-1 py-2'> Orders</p>
+          <p className='w-full font-bold text-xl px-1 py-2 dark:text-white-variant'> Orders</p>
         </button>
       </section>
 

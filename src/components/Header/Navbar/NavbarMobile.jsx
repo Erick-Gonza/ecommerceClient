@@ -63,13 +63,13 @@ export const NavBarMobile = ({
   }
 
   return (
-    <nav className='flex w-full justify-between items-center h-auto px-3 py-4 bg-primary'>
+    <nav className='flex w-full justify-between items-center h-auto px-3 py-4 bg-primary dark:bg-dark-primary'>
       <section className='flex flex-col justify-start text-slate-100'>
         <img src='./logo.svg' className='h-14 w-auto object-contain' />
       </section>
 
       <section
-        className={`bg-[#C66BA1] ${
+        className={`bg-primary dark:bg-black ${
           isOpen === true ? 'fixed' : 'hidden'
         } -left-0 lg:left-0 top-0 w-72 h-full p-8 flex flex-col justify-center gap-16 overflow-y-scroll z-50 border-r border-black-variant `}
       >

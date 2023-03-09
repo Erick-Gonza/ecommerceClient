@@ -16,7 +16,7 @@ const Profile = () => {
   }
 
   return (
-    <section className='w-full flex flex-col justify-center items-center px-4 py-2 '>
+    <section className='w-full flex flex-col justify-center items-center px-4 py-2'>
       <section className='w-full'>
         <h2 className='text-center text-2xl font-bold'>My Account</h2>
       </section>
