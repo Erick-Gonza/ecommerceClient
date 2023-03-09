@@ -20,6 +20,7 @@ export const AdminProducts = () => {
   const { data, isError, isLoading, error } = useGetAllProductsQuery()
   console.log({ data, isError, isLoading, error })
   const products = data?.data
+  console.log(products)
 
   return (
     <section className='py-4 px-6 flex flex-col static items-center '>
@@ -91,13 +92,13 @@ export const AdminProducts = () => {
                   key={key}
                   className='text-center border-b-2 hover:bg-neutral-200 text-xs md:text-xl'
                 >
-                  <td>{product.id}</td>
-                  <td>{product.name}</td>
-                  <td>Category</td>
-                  <td className='hidden md:block'>Description</td>
-                  <td>Color</td>
-                  <td>Price</td>
-                  <td>43</td>
+                  <td>{product?.id}</td>
+                  <td>{product?.name}</td>
+                  <td>{product?.Category.name}</td>
+                  <td className='hidden md:block'>{product?.description}</td>
+                  <td>{product?.color}</td>
+                  <td>{product?.price}</td>
+                  <td>{product?.stock}</td>
                   <td className='flex flex-row'>
                     <button onClick={() => {
                       setOpenModal(true)

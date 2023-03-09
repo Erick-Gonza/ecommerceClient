@@ -1,14 +1,25 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Button } from '../Filter/Button'
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi'
 import Swal from 'sweetalert2'
+import { useCreateWishlistMutation } from '../../store/service/wishlist/wishlistService'
 
 export const ProductCard = ({ name, price, productId }) => {
   const [isFav, setIsFav] = useState(false)
+  const [createWishlist] = useCreateWishlistMutation()
+
+  const newWishlistItem = {
+    productId,
+    userId: 1
+  }
 
   const handleFavoriteClick = () => {
-    setIsFav(!isFav)
+    createWishlist(newWishlistItem).then((res) => {
+      console.log(res)
+    })
 
+    setIsFav(!isFav)
     if (!isFav) {
       Swal.fire({
         position: 'center',
