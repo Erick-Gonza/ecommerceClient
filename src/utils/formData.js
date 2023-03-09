@@ -1,4 +1,4 @@
-const loginInputsFrom = [
+const loginInputsForm = [
   {
     index: 0,
     label: 'Email or Username',
@@ -96,4 +96,4 @@ const registerInputsForm = [
   }
 ]
 
-export { loginInputsFrom, registerInputsForm }
+export { loginInputsForm, registerInputsForm }

@@ -9,8 +9,9 @@ const ProductDetail = () => {
 
   return (
     <section className='flex flex-col justify-center items-center w-full h-full px-3 py-4'>
-      <section className='flex flex-col justify-center items-center px-3 py-2 bg-white-variant 
-      dark:bg-black dark:text-white-variant shadow-md rounded-xl lg:w-1/2 lg:flex-row h-full md:h-1/3'>
+      <section className='flex flex-col justify-center items-center px-3 py-2 bg-white-variant
+      dark:bg-black dark:text-white-variant shadow-md rounded-xl lg:w-1/2 lg:flex-row h-full md:h-1/3'
+      >
         <img
           src={product?.image}
           alt={product?.name}

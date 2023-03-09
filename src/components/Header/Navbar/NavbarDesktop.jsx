@@ -22,7 +22,7 @@ const NavBarDesktop = ({
   const navigate = useNavigate()
 
   useEffect(() => {
-    console.log(user)
+    console.log({ token: user })
   }, [user])
 
   const handleLogout = () => {

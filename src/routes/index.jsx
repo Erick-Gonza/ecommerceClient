@@ -6,7 +6,7 @@ import User from '../views/user/User'
 import Login from '../views/Login'
 import ProductDetail from '../views/ProductDetail'
 import AdminProducts from '../views/admin/AdminProducts'
-import EditProduct from '../views/admin/EditProduct'
+// import EditProduct from '../views/admin/EditProduct'
 import EditCategory from '../views/admin/EditCategory'
 import AddProduct from '../views/admin/AddProduct'
 import OrderDetail from '../views/user/OrderDetail'
@@ -19,50 +19,50 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />,
+        element: <Home />
       },
       {
         path: '/login',
-        element: <Login />,
+        element: <Login />
       },
       {
         path: '/profile/:id',
-        element: <User />,
+        element: <User />
       },
       {
         path: '/order/:id',
-        element: <OrderDetail />,
+        element: <OrderDetail />
       },
       {
         path: '/category/:id',
-        element: <Categories />,
+        element: <Categories />
       },
       {
         path: '/product/:id',
-        element: <ProductDetail />,
+        element: <ProductDetail />
       },
       {
         path: '/wishlist',
-        element: <Wishlist />,
+        element: <Wishlist />
       },
       {
         path: '/admin/product',
-        element: <AdminProducts />,
+        element: <AdminProducts />
       },
       {
         path: '/admin/editcategory',
-        element: <EditCategory />,
+        element: <EditCategory />
       },
-      {
-        path: '/admin/editproduct/:id',
-        element: <EditProduct />,
-      },
+      // {
+      //   path: '/admin/editproduct/:id',
+      //   element: <EditProduct />
+      // },
       {
         path: '/admin/addproduct/',
-        element: <AddProduct />,
-      },
-    ],
-  },
+        element: <AddProduct />
+      }
+    ]
+  }
 ])
 
 export default router

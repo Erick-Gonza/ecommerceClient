@@ -4,13 +4,13 @@ import {
   useCreateUserMutation
 } from '../store/service/user/userService'
 import Form from '../components/Form/Form'
-import { loginInputsFrom, registerInputsForm } from '../utils/formData'
+import { loginInputsForm, registerInputsForm } from '../utils/formData'
 import Swal from 'sweetalert2'
 
 const SignIn = () => {
   const [error, setError] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
-  const [loginUser] = useLoginUserMutation()
+  const [loginUser, result] = useLoginUserMutation()
   const [createUser] = useCreateUserMutation()
   const [loginData, setLoginData] = useState({
     userName: '',
@@ -25,7 +25,7 @@ const SignIn = () => {
     roleId: 2,
     statusId: 1
   })
-  const inputsLogin = loginInputsFrom
+  const inputsLogin = loginInputsForm
   const inputsRegister = registerInputsForm
 
   function refresh () {
@@ -91,9 +91,26 @@ const SignIn = () => {
     }
 
     setError(false)
-    refresh()
-    // TODO validate password, gensalt, hash
-    // TODO login user
+    console.log(result?.status)
+    // validar cuando el usuario no existe
+    // if (result?.status === 'uninitialized') {
+    //   Swal.fire({
+    //     target: 'main',
+    //     position: 'center',
+    //     width: '30rem',
+    //     heightAuto: false,
+    //     icon: 'success',
+    //     iconColor: '#DE76B5',
+    //     backdrop: true,
+    //     background: '#ebebeb',
+    //     color: '#DE76B5',
+    //     title: 'User credentials are incorrect',
+    //     showConfirmButton: false,
+    //     timer: 3000
+    //   })
+    // } else {
+    //   refresh()
+    // }
   }
 
   return (

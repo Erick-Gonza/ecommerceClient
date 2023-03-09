@@ -78,7 +78,7 @@ export const AdminProducts = () => {
               <th>Stock</th>
               <th />
             </tr>
-            {products.filter((product) => {
+            {products?.filter((product) => {
               if (searchString === '') {
                 return product
               } else if (product.name.toLowerCase().includes(searchString.toLowerCase())) {

@@ -8,7 +8,7 @@ const EditProduct = ({ open, onClose, productId }) => {
     name: '',
     subcategory: null
   })
-  const { data, isLoading, isSuccess } = useGetProductByIdQuery(productId)
+  const { data } = useGetProductByIdQuery(productId)
   const [updateProduct] = useUpdateProductMutation()
 
   useEffect(() => {
@@ -17,10 +17,6 @@ const EditProduct = ({ open, onClose, productId }) => {
       name: data?.data?.name,
       subcategory: data?.data?.subcategory
     })
-    console.log(productId)
-    console.log(product)
-    console.log(isLoading)
-    console.log(isSuccess)
   }, [data])
 
   if (!open) return null

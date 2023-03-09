@@ -29,7 +29,7 @@ const Home = () => {
             <h2 className='py-3 text-2xl md:text-4xl font-bold text-center'>CATEGORIES</h2>
 
             <section className='lg:grid lg:grid-cols-3 px-4 py-2 h-auto w-full flex flex-col gap-6  rounded-2xl'>
-              {categories.map((category, index) => {
+              {categories?.map((category, index) => {
                 return (
                   <Card
                     key={index}
