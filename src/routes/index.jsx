@@ -1,14 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom'
 import App from '../App'
 import Categories from '../views/Category'
-import EditProfile from '../views/EditProfile'
 import Home from '../views/Home'
-import Profile from '../views/Profile'
-import SignIn from '../views/SignIn'
-import SignUp from '../views/SignUp'
-import Category from '../views/Category'
-import SortFilter from '../views/SortFilter'
+import User from '../views/user/User'
+import Login from '../views/Login'
 import ProductDetail from '../views/ProductDetail'
+import AdminProducts from '../views/admin/AdminProducts'
+// import EditProduct from '../views/admin/EditProduct'
+import EditCategory from '../views/admin/EditCategory'
+import AddProduct from '../views/admin/AddProduct'
+import OrderDetail from '../views/user/OrderDetail'
+import Wishlist from '../views/Wishlist'
 
 const router = createBrowserRouter([
   {
@@ -17,39 +19,50 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />,
+        element: <Home />
       },
       {
-        path: '/signin',
-        element: <SignIn />,
+        path: '/login',
+        element: <Login />
       },
       {
-        path: '/signup',
-        element: <SignUp />,
+        path: '/profile/:id',
+        element: <User />
       },
       {
-        path: '/profile',
-        element: <Profile />,
+        path: '/order/:id',
+        element: <OrderDetail />
       },
       {
-        path: '/editprofile',
-        element: <EditProfile />,
-      },
-      {
-        path: '/categories',
-        element: <Categories />,
+        path: '/category/:id',
+        element: <Categories />
       },
       {
         path: '/product/:id',
-        element: <ProductDetail />,
+        element: <ProductDetail />
       },
-    ],
-  },
-
-  {
-    path: '/admin',
-    element: 'Admin Page',
-  },
+      {
+        path: '/wishlist/:userId',
+        element: <Wishlist />
+      },
+      {
+        path: '/admin/product',
+        element: <AdminProducts />
+      },
+      {
+        path: '/admin/editcategory',
+        element: <EditCategory />
+      },
+      // {
+      //   path: '/admin/editproduct/:id',
+      //   element: <EditProduct />
+      // },
+      {
+        path: '/admin/addproduct/',
+        element: <AddProduct />
+      }
+    ]
+  }
 ])
 
 export default router

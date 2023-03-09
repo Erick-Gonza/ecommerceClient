@@ -1,15 +1,20 @@
-const Card = ({ imgUrl, title }) => {
+import { Link } from 'react-router-dom'
+
+const Card = ({ categoryId, imgUrl, title }) => {
   return (
-    <div className="relative h-64 hover:scale-105 shadow-md ">
+    <Link
+      to={'/category/' + categoryId}
+      className='relative h-64 hover:scale-110 shadow-md cursor-pointer'
+    >
       <img
         src={imgUrl}
         alt={title}
-        className="object-cover h-full w-full rounded-md blur-[1px]"
+        className='object-cover h-full w-full rounded-md blur-[1px] shadow-2xl'
       />
-      <button className="absolute top-1/2 w-full text-center z-10 bg-gray-variant bg-opacity-50 font-bold hover:text-scale-110">
+      <div className='h-auto text-2xl absolute top-1/2 w-full dark:text-white-variant text-center z-10 dark:bg-black bg-gray-variant dark:bg-opacity-50 bg-opacity-50 font-bold hover:text-scale-110'>
         {title}
-      </button>
-    </div>
+      </div>
+    </Link>
   )
 }
 

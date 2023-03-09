@@ -20,13 +20,13 @@ export const ThemeContext = ({ children }) => {
     }
   }
 
-  const handleClick = () => {
+  const handleTheme = () => {
     changeTheme()
   }
 
   const themeSession = {
-    handleClick,
-    theme,
+    handleTheme,
+    theme
   }
 
   return <Provider value={themeSession}>{children}</Provider>

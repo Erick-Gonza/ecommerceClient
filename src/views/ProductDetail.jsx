@@ -1,32 +1,34 @@
+import { useParams } from 'react-router-dom'
+import { useGetProductByIdQuery } from '../store/service/product/productService'
+
 const ProductDetail = () => {
-  const productInfo = {
-    id: 1,
-    name: 'Product 1',
-    price: 100,
-    description: 'Product 1 description',
-    image: 'https://picsum.photos/200/300',
-    category: 'Category 1',
-  }
+  const { id } = useParams()
+  const { data, isError, isLoading, error } = useGetProductByIdQuery(id)
+  const product = data?.data
+  console.log({ isError, isLoading, error })
+
   return (
-    <section className="flex flex-col justify-center items-center w-full h-full px-3 py-4">
-      <section className="flex flex-col justify-center items-center px-3 py-2 bg-primary shadow-md rounded-md lg:w-1/2 lg:flex-row">
+    <section className='flex flex-col justify-center items-center w-full h-full px-3 py-4'>
+      <section className='flex flex-col justify-center items-center px-3 py-2 bg-white-variant
+      dark:bg-black dark:text-white-variant shadow-md rounded-xl lg:w-1/2 lg:flex-row h-full md:h-1/3'
+      >
         <img
-          src={productInfo.image}
-          alt={productInfo.name}
-          className="rounded-sm object-cover w-full h-80 border border-gray-700"
+          src={product?.image}
+          alt={product?.name}
+          className='rounded-md object-cover w-full h-full border border-gray-700'
         />
-        <section className="flex flex-col w-full mt-2 lg:ml-2">
-          <h1 className="text-xl font-bold text-white">{productInfo.name}</h1>
-          <p className="text-lg font-semibold text-white">
-            {productInfo.description}
+        <section className='flex flex-col w-full mt-2 lg:ml-2'>
+          <h1 className='text-xl font-bold text-white '>{product?.name}</h1>
+          <p className=' text-lg font-semibold text-white'>
+            {product?.description}
           </p>
-          <p className="text-lg font-semibold text-white">
-            Category: {productInfo.category}
+          <p className='text-lg font-semibold text-black dark:text-white-variant'>
+            Category:{product?.Category?.name}
           </p>
-          <p className="text-lg font-semibold text-white">
-            Price: {productInfo.price}
+          <p className='text-lg font-semibold text-black dark:text-white-variant'>
+            Price: {product?.price}
           </p>
-          <button className="px-3 py-1 bg-black rounded-sm text-white font-semibold mt-2">
+          <button className='px-3 py-1 dark:bg-primary dark:text-black-variant bg-black-variant rounded-md text-white font-semibold mt-2'>
             Add to cart
           </button>
         </section>
