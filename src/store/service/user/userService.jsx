@@ -2,31 +2,55 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const users = createApi({
   reducerPath: 'users',
-  baseQuery: fetchBaseQuery({ baseUrl: '/api/v1' }),
+  baseQuery: fetchBaseQuery({ baseUrl: '/api/v1/user' }),
   tagTypes: ['Users'],
   endpoints: (builder) => ({
     getAllUsers: builder.query({
-      query: () => '/user'
+      query: () => '/',
+      providesTags: ['Users'],
+    }),
+    getUserById: builder.query({
+      query: (id) => `/${id}`,
+      providesTags: ['Users'],
     }),
     createUser: builder.mutation({
-      query: (body) => ({
-        url: '/user',
+      query: (newUser) => ({
+        url: '/',
         method: 'POST',
-        body
-      })
+        body: newUser,
+      }),
+      invalidatesTags: ['Users'],
+    }),
+    updateUser: builder.mutation({
+      query: (userEdit) => ({
+        url: `/${userEdit.id}`,
+        method: 'PUT',
+        body: userEdit,
+      }),
+      invalidatesTags: ['Users'],
+    }),
+    deleteUser: builder.mutation({
+      query: (id) => ({
+        url: `/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Users'],
     }),
     loginUser: builder.mutation({
       query: (body) => ({
         url: '/login',
         method: 'POST',
-        body
-      })
-    })
-  })
+        body,
+      }),
+    }),
+  }),
 })
 
 export const {
   useGetAllUsersQuery,
+  useGetUserByIdQuery,
   useCreateUserMutation,
-  useLoginUserMutation
+  useUpdateUserMutation,
+  useDeleteUserMutation,
+  useLoginUserMutation,
 } = users
