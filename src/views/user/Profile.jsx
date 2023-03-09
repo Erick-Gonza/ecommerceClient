@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetUserByIdQuery } from '../../store/service/user/userService'
-import { users } from '../../store/service/user/userservice.jsx'
 
 const Profile = () => {
   const { id } = useParams()
   const { data, isError, isLoading, error } = useGetUserByIdQuery(id)
   const users = data?.data
-  console.log({ isError, isLoading, error })
+  console.log(error)
 
   const [isEditMode, setIsEditMode] = useState(false)
 
@@ -24,8 +23,8 @@ const Profile = () => {
       <section className="flex w-full flex-col justify-center items-center md:items-end md:flex-row mt-2 relative ">
         <section className="flex md:w-1/2 gap-4 px-1 py-5">
           <section className="flex flex-col gap-y-2 w-1/2 text-right ">
-            <h2 className="p-1">First Name</h2>
-            <h2 className="p-1">Last Name</h2>
+            <h2 className="p-1">FirstName</h2>
+            <h2 className="p-1">LastName</h2>
             <h2 className="p-1">UserName</h2>
             <h2 className="p-1">Email</h2>
             <h2 className="p-1">Address</h2>
@@ -43,17 +42,17 @@ const Profile = () => {
               <input
                 className="md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant"
                 type="text"
-                placeholder="Name"
+                placeholder="FirstName"
               />
               <input
                 className="md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant"
                 type="text"
-                placeholder="Lastname"
+                placeholder="LastName"
               />
               <input
                 className="md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant"
                 type="text"
-                placeholder="Username"
+                placeholder="UserName"
               />
               <input
                 className="md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant"
