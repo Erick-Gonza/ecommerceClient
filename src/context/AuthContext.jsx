@@ -1,12 +1,16 @@
 import Cookies from 'js-cookie'
 import { createContext, useEffect, useState } from 'react'
+import { useValidateUserMutation } from '../store/service/user/userService'
 
 export const authContext = createContext()
 const { Provider } = authContext
 
 export const AuthContext = ({ children }) => {
-  const [user, setUser] = useState(null)
+  const [validateUser] = useValidateUserMutation()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [user, setUser] = useState(null)
+  const [id, setId] = useState(null)
+  const [role, setRoleId] = useState(null)
 
   useEffect(() => {
     const token = getToken()
@@ -19,6 +23,11 @@ export const AuthContext = ({ children }) => {
       setUser(null)
       setIsAuthenticated(false)
     }
+
+    setTimeout(async () => {
+      const data = await validateUser()
+      setId(data?.data?.user)
+    }, 1000)
   }, [user, isAuthenticated])
 
   // get cookie
@@ -30,6 +39,7 @@ export const AuthContext = ({ children }) => {
   const setToken = () => {
     setUser(getToken())
   }
+
   // clear cookie
   const clearToken = () => {
     Cookies.remove('token')
@@ -41,7 +51,9 @@ export const AuthContext = ({ children }) => {
     clearToken,
     setToken,
     user,
-    isAuthenticated
+    isAuthenticated,
+    id,
+    role
   }
 
   return <Provider value={functions}>{children}</Provider>

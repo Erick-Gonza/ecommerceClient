@@ -19,7 +19,8 @@ export const NavBarMobile = ({
   isSetMenuBlur,
   isAuthenticated,
   clearToken,
-  id
+  id,
+  role
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()
@@ -85,7 +86,7 @@ export const NavBarMobile = ({
 
         <Link
           className='flex flex-row justify-center items-center gap-1 px-2 py-1 text-white font-bold'
-          to='/wishlist'
+          to={`/wishlist/${id}`}
           onClick={handleMenu}
         >
           <FaHeart className='w-6 h-6' />

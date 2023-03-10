@@ -4,8 +4,8 @@ import { useGetWishlistQuery } from '../store/service/wishlist/wishlistService'
 
 const Wishlist = () => {
   const { userId } = useParams()
-  const { data, isError, isLoading, error } = useGetWishlistQuery(userId)
-  const products = data?.data.Products
+  const { data, isError, isLoading } = useGetWishlistQuery(userId)
+  const products = data?.data
   return (
     <div className='m-4'>
       {products?.length === 0
@@ -30,8 +30,8 @@ const Wishlist = () => {
               {products?.map((product, index) => {
                 return (
                   <ProductCard
-                    prodName={product.name}
-                    price={product.price}
+                    prodName={product?.productName}
+                    price={product?.ProductPrice}
                     key={index}
                   />
                 )

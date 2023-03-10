@@ -18,9 +18,11 @@ const NavBarDesktop = ({
   isAuthenticated,
   clearToken,
   user,
-  id
+  id,
+  role
 }) => {
   const navigate = useNavigate()
+  console.log(role)
 
   useEffect(() => {
     console.log({ token: user })
@@ -62,7 +64,7 @@ const NavBarDesktop = ({
 
         <Link
           className='flex flex-row justify-center items-center gap-1'
-          to='/wishlist'
+          to={`/wishlist/${id}`}
         >
           <FaHeart className='w-6 h-6' />
           WISHLIST
