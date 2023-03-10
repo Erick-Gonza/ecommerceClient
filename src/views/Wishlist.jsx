@@ -8,17 +8,17 @@ const Wishlist = () => {
   const products = data?.data.Products
   return (
     <div className='m-4'>
-      {products === null
+      {products?.length === 0
         ? (
           <section>
-     <p>No hay productos en esta categoria</p>
-   </section>
+            <p>No hay productos en esta categoria</p>
+          </section>
           )
         : (
           <div className='flex flex-row justify-between my-3'>
-    <div className='my-3 font-bold text-2xl'>My wishlist</div>
+            <div className='my-3 font-bold text-2xl'>My wishlist</div>
 
-  </div>
+          </div>
           )}
       {isLoading && !isError
         ? (
@@ -26,18 +26,18 @@ const Wishlist = () => {
           )
         : (
           <>
-              <div className='grid sm:grid-cols-1 md:grid-cols-4'>
-            {products.map((product, index) => {
-              return (
-                <ProductCard
-                  prodName={product.name}
-                  price={product.price}
-                  key={index}
-                />
-              )
-            })}
-          </div>
-            </>
+            <div className='grid sm:grid-cols-1 md:grid-cols-4'>
+              {products?.map((product, index) => {
+                return (
+                  <ProductCard
+                    prodName={product.name}
+                    price={product.price}
+                    key={index}
+                  />
+                )
+              })}
+            </div>
+          </>
           )}
       {isError && (
         <section>

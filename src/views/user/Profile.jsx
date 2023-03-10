@@ -4,8 +4,8 @@ import { useGetUserByIdQuery } from '../../store/service/user/userService'
 
 const Profile = () => {
   const { id } = useParams()
-  const { data, isError, isLoading, error } = useGetUserByIdQuery(id)
-  const users = data?.data
+  const { data: user, isError, isLoading, error } = useGetUserByIdQuery(id)
+  const users = user?.data
   console.log(error, isError, isLoading)
 
   const [isEditMode, setIsEditMode] = useState(false)
@@ -27,7 +27,6 @@ const Profile = () => {
             <h2 className='p-1'>LastName</h2>
             <h2 className='p-1'>UserName</h2>
             <h2 className='p-1'>Email</h2>
-            <h2 className='p-1'>Address</h2>
           </section>
           {!isEditMode
             ? (
@@ -36,7 +35,6 @@ const Profile = () => {
                 <h2 className='p-1'>{users?.lastName}</h2>
                 <h2 className='p-1'>{users?.userName}</h2>
                 <h2 className='p-1'>{users?.email}</h2>
-                <h2 className='p-1'>{users?.address}</h2>
               </section>
               )
             : (
@@ -60,11 +58,6 @@ const Profile = () => {
                   className='md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant'
                   type='text'
                   placeholder='Email'
-                />
-                <input
-                  className='md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant'
-                  type='text'
-                  placeholder='Address'
                 />
               </form>
               )}

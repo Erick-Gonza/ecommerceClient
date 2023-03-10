@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import Cookies from 'js-cookie'
 
 export const users = createApi({
   reducerPath: 'users',
@@ -42,6 +43,13 @@ export const users = createApi({
         method: 'POST',
         body
       })
+    }),
+    validateUser: builder.mutation({
+      query: (body) => ({
+        url: '/validate',
+        method: 'POST',
+        body: { token: Cookies.get('token') }
+      })
     })
   })
 })
@@ -52,5 +60,6 @@ export const {
   useCreateUserMutation,
   useUpdateUserMutation,
   useDeleteUserMutation,
-  useLoginUserMutation
+  useLoginUserMutation,
+  useValidateUserMutation
 } = users

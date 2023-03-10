@@ -18,7 +18,8 @@ export const NavBarMobile = ({
   isCardOpen,
   isSetMenuBlur,
   isAuthenticated,
-  clearToken
+  clearToken,
+  id
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()
@@ -137,7 +138,7 @@ export const NavBarMobile = ({
 
         {isAuthenticated && (
           <Link
-            to='/profile'
+            to={`/profile/${id}`}
             className='flex flex-row justify-center items-center gap-1 px-2 py-1 text-white font-bold uppercase'
           >
             <FaUserCircle className='w-6 h-6' />

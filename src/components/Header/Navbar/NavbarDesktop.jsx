@@ -17,7 +17,8 @@ const NavBarDesktop = ({
   isCardOpen,
   isAuthenticated,
   clearToken,
-  user
+  user,
+  id
 }) => {
   const navigate = useNavigate()
 
@@ -112,7 +113,7 @@ const NavBarDesktop = ({
             {theme.toUpperCase()}
           </button>
           <Link
-            to='/profile'
+            to={`/profile/${id}`}
             className='flex justify-center items-center  gap-2 px-4 py-3 rounded-md bg-darkcyan uppercase'
           >
             <FaUserCircle className='w-6 h-6' />
