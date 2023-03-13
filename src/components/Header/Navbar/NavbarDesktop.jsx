@@ -8,7 +8,6 @@ import {
 } from 'react-icons/fa'
 import { FiLogOut, FiLogIn } from 'react-icons/fi'
 import { BsFillSunFill } from 'react-icons/bs'
-import { useEffect } from 'react'
 import Swal from 'sweetalert2'
 
 const NavBarDesktop = ({
@@ -22,11 +21,6 @@ const NavBarDesktop = ({
   role
 }) => {
   const navigate = useNavigate()
-  console.log(role)
-
-  useEffect(() => {
-    console.log({ token: user })
-  }, [user])
 
   const handleLogout = () => {
     clearToken()
@@ -121,6 +115,17 @@ const NavBarDesktop = ({
             <FaUserCircle className='w-6 h-6' />
             Profile
           </Link>
+          {
+            role === 'admin' && (
+              <Link
+                to='/admin/product'
+                className='flex justify-center items-center  gap-2 px-4 py-3 rounded-md bg-darkcyan uppercase'
+              >
+                <FaUserCircle className='w-6 h-6' />
+                Admin Panel
+              </Link>)
+          }
+
         </section>
       )}
 

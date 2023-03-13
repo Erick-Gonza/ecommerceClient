@@ -10,7 +10,7 @@ export const AuthContext = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
   const [id, setId] = useState(null)
-  const [role, setRoleId] = useState(null)
+  const [role, setRole] = useState(null)
 
   useEffect(() => {
     const token = getToken()
@@ -27,7 +27,8 @@ export const AuthContext = ({ children }) => {
     setTimeout(async () => {
       const data = await validateUser()
       setId(data?.data?.user)
-    }, 1000)
+      setRole(data?.data?.role)
+    }, 500)
   }, [user, isAuthenticated])
 
   // get cookie

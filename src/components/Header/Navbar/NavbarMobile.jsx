@@ -146,6 +146,17 @@ export const NavBarMobile = ({
             Profile
           </Link>
         )}
+
+        {
+          role === 'admin' &&
+            <Link
+              to={`/profile/${id}`}
+              className='flex flex-row justify-center items-center gap-1 px-2 py-1 text-white font-bold uppercase'
+            >
+              <FaUserCircle className='w-6 h-6' />
+              Profile
+            </Link>
+        }
       </section>
 
       <button onClick={handleMenu}>

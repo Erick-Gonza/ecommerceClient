@@ -10,9 +10,9 @@ module.exports = {
         'red-variant': '#5A0000',
         'white-variant': '#EEEEEE',
         'gray-variant': '#A0A0A0',
-        'black-variant': '#1E1F24',
-      },
-    },
+        'black-variant': '#1E1F24'
+      }
+    }
   },
-  plugins: [],
+  plugins: []
 }
