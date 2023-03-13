@@ -150,7 +150,7 @@ export const NavBarMobile = ({
         {
           role === 'admin' &&
             <Link
-              to={`/profile/${id}`}
+              to='/admin'
               className='flex flex-row justify-center items-center gap-1 px-2 py-1 text-white font-bold uppercase'
             >
               <FaUserCircle className='w-6 h-6' />

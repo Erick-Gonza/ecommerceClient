@@ -118,7 +118,7 @@ const NavBarDesktop = ({
           {
             role === 'admin' && (
               <Link
-                to='/admin/product'
+                to='/admin'
                 className='flex justify-center items-center  gap-2 px-4 py-3 rounded-md bg-darkcyan uppercase'
               >
                 <FaUserCircle className='w-6 h-6' />

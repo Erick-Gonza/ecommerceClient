@@ -17,10 +17,8 @@ export const AdminProducts = () => {
   const [deleteProduct] = useDeleteProductMutation()
   const [openModal, setOpenModal] = useState(false)
   const [id, setId] = useState(null)
-  const { data, isError, isLoading, error } = useGetAllProductsQuery()
-  console.log({ data, isError, isLoading, error })
+  const { data } = useGetAllProductsQuery()
   const products = data?.data
-  console.log(products)
 
   return (
     <section className='py-4 px-6 flex flex-col static items-center '>

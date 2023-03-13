@@ -11,6 +11,7 @@ import EditCategory from '../views/admin/EditCategory'
 import AddProduct from '../views/admin/AddProduct'
 import OrderDetail from '../views/user/OrderDetail'
 import Wishlist from '../views/Wishlist'
+import AdminUsers from '../views/admin/AdminUsers'
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: '/wishlist/:userId',
         element: <Wishlist />
+      },
+      {
+        path: '/admin',
+        element: <AdminUsers />
       },
       {
         path: '/admin/product',
