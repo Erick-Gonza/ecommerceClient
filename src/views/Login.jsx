@@ -91,26 +91,24 @@ const SignIn = () => {
     }
 
     setError(false)
-    console.log(result?.status)
-    // validar cuando el usuario no existe
-    // if (result?.status === 'uninitialized') {
-    //   Swal.fire({
-    //     target: 'main',
-    //     position: 'center',
-    //     width: '30rem',
-    //     heightAuto: false,
-    //     icon: 'success',
-    //     iconColor: '#DE76B5',
-    //     backdrop: true,
-    //     background: '#ebebeb',
-    //     color: '#DE76B5',
-    //     title: 'User credentials are incorrect',
-    //     showConfirmButton: false,
-    //     timer: 3000
-    //   })
-    // } else {
-    //   refresh()
-    // }
+    if (result?.isSuccess === false) {
+      Swal.fire({
+        target: 'main',
+        position: 'center',
+        width: '30rem',
+        heightAuto: false,
+        icon: 'success',
+        iconColor: '#DE76B5',
+        backdrop: true,
+        background: '#ebebeb',
+        color: '#DE76B5',
+        title: 'User credentials are incorrect',
+        showConfirmButton: false,
+        timer: 3000
+      })
+    } else {
+      refresh()
+    }
   }
 
   return (
