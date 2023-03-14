@@ -140,6 +140,7 @@ export const NavBarMobile = ({
         {isAuthenticated && (
           <Link
             to={`/profile/${id}`}
+            onClick={handleMenuTheme}
             className='flex flex-row justify-center items-center gap-1 px-2 py-1 text-white font-bold uppercase'
           >
             <FaUserCircle className='w-6 h-6' />
@@ -151,10 +152,11 @@ export const NavBarMobile = ({
           role === 'admin' &&
             <Link
               to='/admin'
+              onClick={handleMenuTheme}
               className='flex flex-row justify-center items-center gap-1 px-2 py-1 text-white font-bold uppercase'
             >
               <FaUserCircle className='w-6 h-6' />
-              Profile
+              Admin Panel
             </Link>
         }
       </section>

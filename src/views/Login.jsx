@@ -91,7 +91,29 @@ const SignIn = () => {
     }
 
     setError(false)
-    if (result?.isSuccess === false) {
+    if (isLogin) {
+      setTimeout(() => {
+        if (result?.isError === true) {
+          Swal.fire({
+            target: 'main',
+            position: 'center',
+            width: '30rem',
+            heightAuto: false,
+            icon: 'success',
+            iconColor: '#DE76B5',
+            backdrop: true,
+            background: '#ebebeb',
+            color: '#DE76B5',
+            title: 'User credentials are incorrect',
+            showConfirmButton: false,
+            timer: 3000
+          })
+        } else {
+          refresh()
+        }
+      }, 1000)
+    }
+    if (!isLogin) {
       Swal.fire({
         target: 'main',
         position: 'center',
@@ -102,12 +124,10 @@ const SignIn = () => {
         backdrop: true,
         background: '#ebebeb',
         color: '#DE76B5',
-        title: 'User credentials are incorrect',
+        title: 'User has been registered correctly',
         showConfirmButton: false,
         timer: 3000
       })
-    } else {
-      refresh()
     }
   }
 
