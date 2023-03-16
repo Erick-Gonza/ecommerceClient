@@ -11,7 +11,6 @@ export const ProductCard = ({ product }) => {
   const { id: userId } = useContext(authContext)
   const { addToCart } = useContext(CartContext)
   const { id: productId, name, description, price, stock, imageUrl, color, category } = product
-  console.log({ product })
   const [isFav, setIsFav] = useState(false)
   const [createWishlist] = useCreateWishlistMutation()
 
@@ -51,7 +50,7 @@ export const ProductCard = ({ product }) => {
 
           <div className='w-[200px] mx-auto flex justify-center items-center'>
             <img
-              src='https://picsum.photos/1920/800'
+              src={`http://localhost:5173/api/v1/product/public/${imageUrl}`}
               className='max-h-[160px] group-hover:scale-110 transition duration-200'
             />
           </div>
