@@ -30,8 +30,7 @@ const Wishlist = () => {
               {products?.map((product, index) => {
                 return (
                   <ProductCard
-                    prodName={product?.productName}
-                    price={product?.ProductPrice}
+                    product={product}
                     key={index}
                   />
                 )

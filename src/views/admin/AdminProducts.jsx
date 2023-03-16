@@ -12,7 +12,7 @@ import {
   useGetAllProductsQuery
 } from '../../store/service/product/productService'
 
-export const AdminProducts = () => {
+export const AdminProducts = ({ handleScreen }) => {
   const [searchString, setSearchString] = useState('')
   const [deleteProduct] = useDeleteProductMutation()
   const [openModal, setOpenModal] = useState(false)
@@ -49,13 +49,13 @@ export const AdminProducts = () => {
               <HiFilter className='mx-1 w-5 h-5' />
               Filter
             </button>
-            <Link
-              to='/admin/editcategory'
+            <button
+              onClick={() => handleScreen('categories')}
               className='flex mt-2  drop-shadow  items-center p-2 border border-primary hover:scale-105 hover:opacity-80 text-primary text-xs md:text-lg'
             >
               <HiOutlinePlusCircle className='mx-1 w-5 h-5 ' />
               Add category
-            </Link>
+            </button>
             <Link
               to='/admin/addproduct'
               className='flex mt-2  drop-shadow  items-center p-2 bg-primary hover:scale-105 hover:opacity-80 text-white text-xs md:text-lg'

@@ -45,7 +45,7 @@ const NavBarDesktop = () => {
   return (
     <nav className='flex w-full justify-between items-center h-auto px-3 py-4 bg-primary dark:bg-dark-primary'>
       <Link to='/' className='flex flex-col justify-start text-slate-100'>
-        <img src= {logo} className='h-16 w-auto object-contain' />
+        <img src={logo} className='h-16 w-auto object-contain' />
       </Link>
 
       <section className='flex gap-12 text-slate-100 font-bold'>

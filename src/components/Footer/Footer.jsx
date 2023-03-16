@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <footer className={`w-full flex flex-col ${menuBlur && 'blur-md'}`}>
       <Link className='flex justify-center py-2 dark:bg-gray-700 bg-primary' to='/'>
-        <img src= {logo} className='h-16' />
+        <img src={logo} className='h-16' />
       </Link>
 
       <section className='w-full flex flex-col items-center justify-center bg-black px-2 py-3 font-bold gap-2'>
