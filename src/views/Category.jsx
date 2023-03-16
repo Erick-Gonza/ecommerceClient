@@ -15,49 +15,51 @@ const Category = () => {
   console.log(error)
 
   return (
-    <div className='m-4'>
-      {data?.data?.products.length === 0
-        ? (
-          <section>
-            <p>No hay productos en esta categoria</p>
-          </section>
-          )
-        : (
-          <div className='flex flex-row justify-between my-3'>
-            <div className='my-3 font-bold text-2xl'>{category?.name}</div>
-            <button
-              className='dark:text-white-variant dark:hover:bg-primary dark:bg-black-variant border border-black text-black bg-white hover:bg-black hover:text-white font-bold p-2 h-1/2 w-1/7 rounded-md'
-              onClick={isFilterOpen}
-            >
-              Sort & Filter
-            </button>
-          </div>
+    <section>
+      <div className='py-8 px-6'>
+        <div className='container mx-auto'>
+          {data?.data?.products.length === 0
+            ? (
+              <section>
+                <p>No hay productos en esta categoria</p>
+              </section>
+              )
+            : (
+              <div className='flex flex-row justify-between my-3'>
+                <div className='my-3 font-bold text-2xl'>{category?.name}</div>
+                <button
+                  className='dark:text-white-variant dark:hover:bg-primary dark:bg-black-variant border border-black text-black bg-white hover:bg-black hover:text-white font-bold p-2 h-1/2 w-1/7 rounded-md'
+                  onClick={isFilterOpen}
+                >
+                  Sort & Filter
+                </button>
+              </div>
+              )}
+          {isLoading && !isError
+            ? (
+              <section>Loading...</section>
+              )
+            : (
+              <>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8 max-w-sm mx-auto md:max-w-none md:mx-0'>
+                  {products?.map((product, index) => {
+                    return (
+                      <ProductCard product={product} key={product?.id} />
+                    )
+                  })}
+                </div>
+              </>
+              )}
+          {isError && (
+            <section>
+              <p>Something went wrong. No products found.</p>
+            </section>
           )}
-      {isLoading && !isError
-        ? (
-          <section>Loading...</section>
-          )
-        : (
-          <>
-            <div className='grid sm:grid-cols-1 md:grid-cols-4'>
-              {products?.map((product, index) => {
-                return (
-                  <ProductCard
-                    prodName={product.name}
-                    price={product.price}
-                    key={index}
-                  />
-                )
-              })}
-            </div>
-          </>
-          )}
-      {isError && (
-        <section>
-          <p>Something went wrong. No products found.</p>
-        </section>
-      )}
-    </div>
+        </div>
+
+      </div>
+
+    </section>
   )
 }
 

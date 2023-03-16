@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FiMenu, FiX, FiLogOut, FiLogIn } from 'react-icons/fi'
 import {
@@ -9,35 +9,33 @@ import {
   FaRegMoon
 } from 'react-icons/fa'
 import { BsFillSunFill } from 'react-icons/bs'
-
+import { SidebarContext } from '../../../context/SidebarContext'
+import { themeContext } from '../../../context/ThemeContext'
+import { authContext } from '../../../context/authContext'
+import { modalsContext } from '../../../context/ModalsContext'
 import Swal from 'sweetalert2'
 
-export const NavBarMobile = ({
-  handleTheme,
-  theme,
-  isCardOpen,
-  isSetMenuBlur,
-  isAuthenticated,
-  clearToken,
-  id,
-  role
-}) => {
+export const NavBarMobile = () => {
   const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()
+  const { handleTheme, theme } = useContext(themeContext)
+  const { isAuthenticated, clearToken, id, role } = useContext(authContext)
+  const { isSetMenuBlur } = useContext(modalsContext)
+  const { toggleSidebar } = useContext(SidebarContext)
 
   const handleMenu = () => {
     setIsOpen(!isOpen)
     isSetMenuBlur()
   }
 
-  const handleMenuCart = () => {
-    handleMenu()
-    isCardOpen()
-  }
-
   const handleMenuTheme = () => {
     handleMenu()
     handleTheme()
+  }
+
+  const handleMenuCart = () => {
+    handleMenu()
+    toggleSidebar()
   }
 
   const handleLogout = () => {
@@ -67,7 +65,7 @@ export const NavBarMobile = ({
   return (
     <nav className='flex w-full justify-between items-center h-auto px-3 py-4 bg-primary dark:bg-dark-primary'>
       <section className='flex flex-col justify-start text-slate-100'>
-        <img src='./logo.svg' className='h-14 w-auto object-contain' />
+        <img src='../../../assets/logo.svg' className='h-14 w-auto object-contain' />
       </section>
 
       <section

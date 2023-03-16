@@ -9,18 +9,18 @@ import {
 import { FiLogOut, FiLogIn } from 'react-icons/fi'
 import { BsFillSunFill } from 'react-icons/bs'
 import Swal from 'sweetalert2'
+import { SidebarContext } from '../../../context/SidebarContext'
+import { useContext } from 'react'
+import { themeContext } from '../../../context/ThemeContext'
+import { authContext } from '../../../context/authContext'
+import { CartContext } from '../../../context/CartContext'
 
-const NavBarDesktop = ({
-  handleTheme,
-  theme,
-  isCardOpen,
-  isAuthenticated,
-  clearToken,
-  user,
-  id,
-  role
-}) => {
+const NavBarDesktop = () => {
   const navigate = useNavigate()
+  const { handleTheme, theme } = useContext(themeContext)
+  const { isAuthenticated, clearToken, id, role } = useContext(authContext)
+  const { toggleSidebar } = useContext(SidebarContext)
+  const { itemAmount } = useContext(CartContext)
 
   const handleLogout = () => {
     clearToken()
@@ -44,7 +44,7 @@ const NavBarDesktop = ({
   return (
     <nav className='flex w-full justify-between items-center h-auto px-3 py-4 bg-primary dark:bg-dark-primary'>
       <Link to='/' className='flex flex-col justify-start text-slate-100'>
-        <img src='./logo.svg' className='h-16 w-auto object-contain' />
+        <img src='../../../assets/logo.svg' className='h-16 w-auto object-contain' />
       </Link>
 
       <section className='flex gap-12 text-slate-100 font-bold'>
@@ -65,12 +65,13 @@ const NavBarDesktop = ({
         </Link>
 
         <button
-          onClick={isCardOpen}
-          className='flex flex-row justify-center items-center gap-1'
+          onClick={toggleSidebar}
+          className='flex flex-row justify-center items-center gap-1 relative'
           to='/cart'
         >
           <FaShoppingCart className='w-6 h-6' />
           CART
+          <div className='bg-red-500 absolute -right-4 -top-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center'>{itemAmount}</div>
         </button>
 
         {!isAuthenticated && (
