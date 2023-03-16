@@ -14,6 +14,8 @@ import { themeContext } from '../../../context/ThemeContext'
 import { authContext } from '../../../context/authContext'
 import { modalsContext } from '../../../context/ModalsContext'
 import Swal from 'sweetalert2'
+import logo from '../../../assets/img/logo.png'
+
 
 export const NavBarMobile = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -65,7 +67,7 @@ export const NavBarMobile = () => {
   return (
     <nav className='flex w-full justify-between items-center h-auto px-3 py-4 bg-primary dark:bg-dark-primary'>
       <section className='flex flex-col justify-start text-slate-100'>
-        <img src='../../../assets/logo.svg' className='h-14 w-auto object-contain' />
+        <img src= {logo} className='h-14 w-auto object-contain' />
       </section>
 
       <section
