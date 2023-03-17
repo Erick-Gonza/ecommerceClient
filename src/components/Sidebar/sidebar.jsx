@@ -17,7 +17,7 @@ const Sidebar = () => {
   const { cart, clearCart, total } = useContext(CartContext)
 
   return (
-    <div className={`${isSidebarOpen ? 'right-0' : '-right-full'} w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] xl:max-w-[30vw] transition-all duration-200 z-20 px-4 lg:px-[35px] overflow-y-scroll`}>
+    <div className={`${isSidebarOpen ? 'right-0' : '-right-full'} w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] xl:max-w-[30vw] transition-all duration-200 z-20 px-4 lg:px-[35px] overflow-y-scroll dark:bg-black dark:text-white`}>
       <div className='flex items-center justify-between py-6 border-b'>
         {/* Quantity */}
         <div className='uppercase text-sm font-semibold'>Shopping Bag (0)</div>
@@ -37,7 +37,7 @@ const Sidebar = () => {
         <div className='flex w-full justify-between items-center'>
           {/* total */}
           <div className='uppercase font-semibold'>
-            <h2 className='mr-2'><span>Total: </span>$ {parseFloat(total).toFixed(2)}</h2>
+            <h2 className='mr-2 font-bold'><span>Total: </span>$ {parseFloat(total).toFixed(2)}</h2>
           </div>
           {/* clear cart icon */}
           <div className='cursor-pointer py-4 bg-red-500 text-white w-12 h-12 flex justify-center items-center text-xl' onClick={clearCart}>
@@ -45,7 +45,7 @@ const Sidebar = () => {
           </div>
         </div>
 
-        <Link to='/' className='bg-gray-200 flex p-4 justify-center items-center text-primary w-full font-medium rounded-sm'>
+        <Link to='/' className='bg-gray-200 flex p-4 justify-center items-center text-primary w-full font-medium rounded-sm dark:bg-black-variant'>
           View Cart
         </Link>
 
