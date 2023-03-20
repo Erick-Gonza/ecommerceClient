@@ -5,10 +5,10 @@ import { CartContext } from '../../context/CartContext'
 import { BsPlus, BsEyeFill } from 'react-icons/bs'
 import Swal from 'sweetalert2'
 import { useCreateWishlistMutation } from '../../store/service/wishlist/wishlistService'
-import { authContext } from '../../context/authContext'
+import { AuthContext } from '../../context/AuthContext'
 
 export const ProductCard = ({ product }) => {
-  const { id: userId } = useContext(authContext)
+  const { id: userId } = useContext(AuthContext)
   const { addToCart } = useContext(CartContext)
   const { id: productId, name, description, price, stock, imageUrl, color, category } = product
   const [isFav, setIsFav] = useState(false)

@@ -1,5 +1,5 @@
 import React from 'react'
-import AuthContext from '../context/authContext'
+import AuthContext from '../context/AuthContext'
 import CartContext from '../context/CartContext'
 import ModalsContext from '../context/ModalsContext'
 import ProductContext from '../context/ProductContext'

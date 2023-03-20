@@ -12,14 +12,14 @@ import Swal from 'sweetalert2'
 import { SidebarContext } from '../../../context/SidebarContext'
 import { useContext } from 'react'
 import { themeContext } from '../../../context/ThemeContext'
-import { authContext } from '../../../context/authContext'
+import { AuthContext } from '../../../context/AuthContext'
 import { CartContext } from '../../../context/CartContext'
 import logo from '../../../assets/img/logo.png'
 
 const NavBarDesktop = () => {
   const navigate = useNavigate()
   const { handleTheme, theme } = useContext(themeContext)
-  const { isAuthenticated, clearToken, id, role } = useContext(authContext)
+  const { isAuthenticated, clearToken, id, role } = useContext(AuthContext)
   const { toggleSidebar } = useContext(SidebarContext)
   const { itemAmount } = useContext(CartContext)
 

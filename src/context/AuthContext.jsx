@@ -2,10 +2,9 @@ import Cookies from 'js-cookie'
 import { createContext, useEffect, useState } from 'react'
 import { useValidateUserMutation } from '../store/service/user/userService'
 
-export const authContext = createContext()
-const { Provider } = authContext
+export const AuthContext = createContext()
 
-export const AuthContext = ({ children }) => {
+export const AuthProvider = ({ children }) => {
   const [validateUser] = useValidateUserMutation()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
@@ -37,8 +36,8 @@ export const AuthContext = ({ children }) => {
   }
 
   // set cookie
-  const setToken = () => {
-    setUser(getToken())
+  const setToken = (token) => {
+    setUser(token)
   }
 
   // clear cookie
@@ -57,7 +56,7 @@ export const AuthContext = ({ children }) => {
     role
   }
 
-  return <Provider value={functions}>{children}</Provider>
+  return <AuthContext.Provider value={functions}>{children}</AuthContext.Provider>
 }
 
-export default AuthContext
+export default AuthProvider

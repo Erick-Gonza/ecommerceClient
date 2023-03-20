@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import {
   useLoginUserMutation,
   useCreateUserMutation
@@ -6,10 +6,13 @@ import {
 import Form from '../components/Form/Form'
 import { loginInputsForm, registerInputsForm } from '../utils/formData'
 import Swal from 'sweetalert2'
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from 'react-router-dom'
 
 const SignIn = () => {
   const [error, setError] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
+  const navigate = useNavigate()
   const [loginUser, result] = useLoginUserMutation()
   const [createUser] = useCreateUserMutation()
   const [loginData, setLoginData] = useState({
@@ -27,10 +30,11 @@ const SignIn = () => {
   })
   const inputsLogin = loginInputsForm
   const inputsRegister = registerInputsForm
+  const { setToken } = useContext(AuthContext)
 
   function refresh () {
     setTimeout(function () {
-      window.location.href = '/'
+      navigate("/")
     }, 1500)
     Swal.fire({
       target: 'main',
@@ -65,13 +69,19 @@ const SignIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     // Login form
+    var loginSucceeded = false;
     if (isLogin) {
       if (!loginData.userName || !loginData.password) {
         setError(true)
         return
       }
       // login user
-      loginUser(loginData)
+      loginUser(loginData).then((response) => {
+        if(response.data?.token){
+          setToken(response.data?.token)
+          refresh()
+        }
+      })
     }
 
     // Register form
@@ -108,8 +118,6 @@ const SignIn = () => {
             showConfirmButton: false,
             timer: 3000
           })
-        } else {
-          refresh()
         }
       }, 1000)
     }

@@ -1,18 +1,29 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useGetUserByIdQuery } from '../../store/service/user/userService'
+import { AuthContext } from '../../context/AuthContext'
+import { useGetUserByIdQuery, useUpdateUserMutation } from '../../store/service/user/userService'
 
 const Profile = () => {
-  const { id } = useParams()
+ const {id} = useContext(AuthContext)
   const { data: user, isError, isLoading, error } = useGetUserByIdQuery(id)
   const users = user?.data
-  console.log(error, isError, isLoading)
-
   const [isEditMode, setIsEditMode] = useState(false)
+  const [updateUser] = useUpdateUserMutation()
+  const [userEdit, setUserEdit] = useState({...users})
 
-  const toggleEditMode = () => {
+  const toggleEditMode = (e) => {
+    e.preventDefault()
     setIsEditMode(!isEditMode)
   }
+  useEffect(() => {
+    setUserEdit({
+      firstName: users?.firstName,
+      lastName: users?.lastName,
+      userName: users?.userName,
+      email: users?.email
+    })
+  }, [users])
+  
 
   return (
     <section className='w-full flex flex-col justify-center items-center px-4 py-2'>
@@ -42,32 +53,52 @@ const Profile = () => {
                 <input
                   className='md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant'
                   type='text'
-                  placeholder='FirstName'
+                  id='name'
+                  placeholder={userEdit.firstName}
+                  onChange={(e)=>
+                  setUserEdit({ ...userEdit, firstName: e.target.value}) }
                 />
                 <input
                   className='md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant'
                   type='text'
-                  placeholder='LastName'
+                  id='lastName'
+                  placeholder={userEdit.lastName}
+                  onChange={(e)=>
+                  setUserEdit({ ...userEdit, lastName: e.target.value}) }
                 />
                 <input
                   className='md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant'
                   type='text'
-                  placeholder='UserName'
+                  id='username'
+                  placeholder={userEdit.userName}
+                  onChange={(e)=>
+                  setUserEdit({ ...userEdit, userName: e.target.value}) }
                 />
                 <input
                   className='md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant'
                   type='text'
-                  placeholder='Email'
+                  id='email'
+                  placeholder={userEdit.email}
+                  onChange={(e)=>
+                  setUserEdit({ ...userEdit, email: e.target.value}) }
                 />
               </form>
               )}
         </section>
-        <button
+        {!isEditMode 
+        ?(<button
           onClick={toggleEditMode}
           className='flex w-40  hover:scale-105 drop-shadow-md justify-center bg-primary text-white font-bold px-3 py-2 rounded-lg mt-4 mb-4 cursor-pointer h-10'
         >
-          {isEditMode ? 'Save' : 'Edit Info'}
-        </button>
+          Edit Info
+        </button>) 
+        : (<button
+          onClick={()=>updateUser({...userEdit})}
+          className='flex w-40  hover:scale-105 drop-shadow-md justify-center bg-primary text-white font-bold px-3 py-2 rounded-lg mt-4 mb-4 cursor-pointer h-10'
+        >
+          Save
+        </button>) }
+        
       </section>
     </section>
   )

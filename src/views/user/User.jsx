@@ -1,18 +1,26 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Address from './Address'
 import Profile from './Profile'
 import Orders from './Orders'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { useDeleteUserMutation, useGetUserByIdQuery } from '../../store/service/user/userService'
+import { AuthContext } from '../../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const User = () => {
+  const {id, clearToken} = useContext(AuthContext)
+  const { data: user, isError, isLoading, error } = useGetUserByIdQuery(id)
+  const users = user?.data.id
   const [screen, setScreen] = useState('profile')
   const MySwal = withReactContent(Swal)
-
+  const [deleteUser] = useDeleteUserMutation()
+  const navigate = useNavigate()
   const handleScreen = (screen) => {
     setScreen(screen)
   }
 
+  
   const handleDelete = () => {
     MySwal.fire({
       target: 'main',
@@ -32,11 +40,14 @@ const User = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
+        deleteUser(users.id)
         MySwal.fire(
           'Deleted!',
           'Your account has been deleted.',
           'success'
         )
+        clearToken()
+        navigate('/')
       }
     })
   }

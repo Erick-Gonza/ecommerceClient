@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { address } from './service/address/addressService'
 import { categories } from './service/category/categoryService'
 import { products } from './service/product/productService'
 import { users } from './service/user/userService'
@@ -9,7 +10,8 @@ export const store = configureStore({
     [categories.reducerPath]: categories.reducer,
     [users.reducerPath]: users.reducer,
     [products.reducerPath]: products.reducer,
-    [wishlist.reducerPath]: wishlist.reducer
+    [wishlist.reducerPath]: wishlist.reducer,
+    [address.reducerPath]: address.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
@@ -17,4 +19,5 @@ export const store = configureStore({
       .concat(users.middleware)
       .concat(products.middleware)
       .concat(wishlist.middleware)
+      .concat(address.middleware)
 })
