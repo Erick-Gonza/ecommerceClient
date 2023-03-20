@@ -11,7 +11,7 @@ import {
 import { BsFillSunFill } from 'react-icons/bs'
 import { SidebarContext } from '../../../context/SidebarContext'
 import { themeContext } from '../../../context/ThemeContext'
-import { authContext } from '../../../context/authContext'
+import { AuthContext } from '../../../context/AuthContext'
 import { modalsContext } from '../../../context/ModalsContext'
 import Swal from 'sweetalert2'
 import logo from '../../../assets/img/logo.png'
@@ -20,7 +20,7 @@ export const NavBarMobile = () => {
   const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()
   const { handleTheme, theme } = useContext(themeContext)
-  const { isAuthenticated, clearToken, id, role } = useContext(authContext)
+  const { isAuthenticated, clearToken, id, role } = useContext(AuthContext)
   const { isSetMenuBlur } = useContext(modalsContext)
   const { toggleSidebar } = useContext(SidebarContext)
 
