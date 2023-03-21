@@ -50,7 +50,7 @@ const AddProduct = () => {
       <form
         encType='multipart/form-data'
         onSubmit={handleSubmit}
-        className='flex flex-col h-full px-3 py-4 bg-white md:border-2 rounded-md w-full md:w-1/3'
+        className='flex flex-col h-full px-3 py-4 bg-white md:border-2 rounded-md w-full md:w-1/3 dark:bg-black'
       >
         <h2 className='font-bold text-center text-2xl mb-4'>
           Edit/Create product
@@ -85,7 +85,7 @@ const AddProduct = () => {
                   id='id'
                   placeholder='
                   #'
-                  className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
+                  className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:bg-black-variant'
                   disabled
                 />
               </section>
@@ -95,7 +95,7 @@ const AddProduct = () => {
                   type='text'
                   id='name'
                   placeholder='Product name'
-                  className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
+                  className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:bg-black-variant'
                   onChange={handleChange}
                 />
               </section>
@@ -107,7 +107,7 @@ const AddProduct = () => {
                 type='text'
                 id='description'
                 placeholder='Add a product description'
-                className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
+                className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:bg-black-variant'
                 onChange={handleChange}
               />
             </section>
@@ -115,9 +115,9 @@ const AddProduct = () => {
             <section className='flex flex-row gap-4'>
               <section className='mb-4 w-2/4'>
                 <label className='block font-bold mb-4'>Category</label>
-                <select onChange={handleChange} id='categoryId' className='border rounded w-full h-11'>
+                <select onChange={handleChange} id='categoryId' className='border rounded w-full h-11 dark:bg-black-variant'>
                   <option disabled>-Select a category-</option>
-                  {categories.map((category, key) => {
+                  {categories?.map((category, key) => {
                     return (
                       <option key={key} value={category?.id}>{category?.name}</option>
                     )
@@ -130,7 +130,7 @@ const AddProduct = () => {
                   type='number'
                   id='subcategoryId'
                   placeholder='subcategory'
-                  className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
+                  className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:bg-black-variant'
                   onChange={handleChange}
                 />
               </section>
@@ -145,7 +145,7 @@ const AddProduct = () => {
               type='text'
               id='color'
               placeholder=''
-              className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
+              className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:bg-black-variant'
             />
           </section>
           <section className='mb-4 w-1/4'>
@@ -154,7 +154,7 @@ const AddProduct = () => {
               type='text'
               id='stock'
               placeholder=''
-              className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
+              className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:bg-black-variant'
               onChange={handleChange}
             />
           </section>
@@ -164,7 +164,7 @@ const AddProduct = () => {
               type='text'
               id='price'
               placeholder=''
-              className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
+              className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:bg-black-variant'
               onChange={handleChange}
             />
           </section>
@@ -174,7 +174,7 @@ const AddProduct = () => {
               type='text'
               id='discount'
               placeholder=''
-              className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
+              className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:bg-black-variant'
             />
           </section>
         </section>

@@ -21,25 +21,25 @@ const Footer = () => {
         <section className='w-full flex flex-row items-center justify-center md:flex-row py-1 md:py-2 text-white gap-4 md:gap-6'>
           <Link
             className='cursor-pointer p-1 hover:rounded-full opacity-80 hover:opacity-100 hover:bg-primary hover:scale-110 dark:hover:bg-black-variant'
-            to='/'
+            to='https://twitter.com/PinkNeonMexico' target="_blank"
           >
             <FaTwitter className='drop-shadow-2xl h-6 md:h-7 w-auto' />
           </Link>
           <Link
             className='cursor-pointer p-1 hover:rounded-full opacity-80 hover:opacity-100 hover:bg-primary hover:scale-110 dark:hover:bg-black-variant '
-            to='/'
+            to='https://www.instagram.com/PinkNeon2023' target="_blank"
           >
             <FaInstagram className='h-6 md:h-7 w-auto' />
           </Link>
           <Link
             className='cursor-pointer p-1 hover:rounded-full opacity-80 hover:opacity-100 hover:bg-primary hover:scale-110 dark:hover:bg-black-variant'
-            to='/'
+            to='https://www.facebook.com/PinkNeon2023' target="_blank"
           >
             <FaFacebookSquare className='h-6 md:h-7 w-auto' />
           </Link>
           <Link
             className='cursor-pointer p-1 hover:rounded-full opacity-80 hover:opacity-100 hover:bg-primary hover:scale-110 dark:hover:bg-black-variant'
-            to='/'
+            to='https://www.youtube.com/@jeannypinkneon/featured' target="_blank"
           >
             <FaYoutube className='h-6 md:h-7 w-auto' />
           </Link>

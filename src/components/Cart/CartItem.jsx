@@ -49,7 +49,7 @@ const CartItem = ({ item }) => {
               </div>
             </div>
             {/* price */}
-            <h2 className='flex-1 flex items-center justify-around'>$ {price}</h2>
+            <h2 className='flex-1 flex items-center justify-around dark:text-white-variant font-semibold'>$ {price}</h2>
             {/* total */}
             <h2 className='flex-1 flex justify-end items-center text-primary font-medium'>{`$ ${parseFloat(price * amount).toFixed(2)}`}</h2>
           </div>
