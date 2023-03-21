@@ -12,8 +12,7 @@ const AddProduct = () => {
     description: '',
     price: null,
     stock: null,
-    categoryId: null,
-    subcategoryId: null
+    categoryId: null
   })
   const [image, setImage] = useState()
   const categories = data?.data
@@ -40,7 +39,6 @@ const AddProduct = () => {
     formData.append('stock', product.stock)
     formData.append('file', fileData)
     formData.append('categoryId', product.categoryId)
-    formData.append('subcategoryId', product.subcategoryId)
     console.log(product)
     createProduct(formData)
   }
@@ -123,16 +121,6 @@ const AddProduct = () => {
                     )
                   })}
                 </select>
-              </section>
-              <section className='mb-4 w-2/4'>
-                <label className='block font-bold mb-4'>Subcategory</label>
-                <input
-                  type='number'
-                  id='subcategoryId'
-                  placeholder='subcategory'
-                  className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:bg-black-variant'
-                  onChange={handleChange}
-                />
               </section>
             </section>
           </section>

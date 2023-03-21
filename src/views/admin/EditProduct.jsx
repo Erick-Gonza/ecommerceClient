@@ -5,8 +5,7 @@ import { useGetProductByIdQuery, useUpdateProductMutation } from '../../store/se
 const EditProduct = ({ open, onClose, productId }) => {
   const [product, setProduct] = useState({
     id: productId,
-    name: '',
-    subcategory: null
+    name: ''
   })
   const { data } = useGetProductByIdQuery(productId)
   const [updateProduct] = useUpdateProductMutation()
@@ -14,8 +13,7 @@ const EditProduct = ({ open, onClose, productId }) => {
   useEffect(() => {
     setProduct({
       id: productId,
-      name: data?.data?.name,
-      subcategory: data?.data?.subcategory
+      name: data?.data?.name
     })
   }, [data])
 
@@ -82,15 +80,6 @@ const EditProduct = ({ open, onClose, productId }) => {
                     <option>Option 2</option>
                     <option>Option 3</option>
                   </select>
-                </section>
-                <section className='mb-4 w-2/4'>
-                  <label className='block font-bold mb-4'>Subcategory</label>
-                  <input
-                    type='text'
-                    id='subcategory'
-                    placeholder='Subcategory'
-                    className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
-                  />
                 </section>
               </section>
             </section>
