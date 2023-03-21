@@ -9,6 +9,7 @@ const Profile = () => {
   const [isEditMode, setIsEditMode] = useState(false)
   const [updateUser] = useUpdateUserMutation()
   const [userEdit, setUserEdit] = useState({ ...users })
+  console.log(user)
 
   const toggleEditMode = (e) => {
     e.preventDefault()
@@ -16,6 +17,7 @@ const Profile = () => {
   }
   useEffect(() => {
     setUserEdit({
+      id: users?.id,
       firstName: users?.firstName,
       lastName: users?.lastName,
       userName: users?.userName,
@@ -53,7 +55,7 @@ const Profile = () => {
                   className='md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant'
                   type='text'
                   id='name'
-                  placeholder={userEdit.firstName}
+                  value={userEdit.firstName}
                   onChange={(e) =>
                     setUserEdit({ ...userEdit, firstName: e.target.value })}
                 />
@@ -61,7 +63,7 @@ const Profile = () => {
                   className='md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant'
                   type='text'
                   id='lastName'
-                  placeholder={userEdit.lastName}
+                  value={userEdit.lastName}
                   onChange={(e) =>
                     setUserEdit({ ...userEdit, lastName: e.target.value })}
                 />
@@ -69,7 +71,7 @@ const Profile = () => {
                   className='md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant'
                   type='text'
                   id='username'
-                  placeholder={userEdit.userName}
+                  value={userEdit.userName}
                   onChange={(e) =>
                     setUserEdit({ ...userEdit, userName: e.target.value })}
                 />
@@ -77,7 +79,7 @@ const Profile = () => {
                   className='md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant'
                   type='text'
                   id='email'
-                  placeholder={userEdit.email}
+                  value={userEdit.email}
                   onChange={(e) =>
                     setUserEdit({ ...userEdit, email: e.target.value })}
                 />
