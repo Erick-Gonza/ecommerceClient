@@ -27,13 +27,13 @@ export const address = createApi({
             query: (id) => `/address/${id}`
         }),
         getAllCities: builder.query({
-            query: () => '/cities/',
+            query: (stateId) => `/cities/${stateId}`,
         }),
         getAllCountries: builder.query({
             query: () => '/countries/',
         }),
         getAllStates: builder.query({
-            query: () => '/states/',
+            query: (countryId) => `/states/${countryId}`,
         })
     })
 })

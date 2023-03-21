@@ -7,16 +7,22 @@ import { useGetAddressesByUserIdQuery, useGetAllCitiesQuery, useGetAllCountriesQ
 const Address = () => {
   const {id} = useContext(AuthContext)
   const [isEditMode, setIsEditMode] = useState(false)
+  const [countryId, setCountryId] = useState(2)
+  const [stateId, setStateId] = useState(2)
   const {data} = useGetAddressesByUserIdQuery(id)
   const addressData = data?.data
   const [updateAddress] = useUpdateAddressMutation()
   const [addressEdit, setAddressEdit] = useState({...addressData})
-  const {data: citiesData} = useGetAllCitiesQuery()
+  const {data: citiesData} = useGetAllCitiesQuery(stateId)
   const {data: countriesData} = useGetAllCountriesQuery()
-  const {data: statesData} = useGetAllStatesQuery()
+  const {data: statesData} = useGetAllStatesQuery(countryId)
   const cities = citiesData?.cities
   const countries = countriesData?.countries
   const states = statesData?.states
+  
+  console.log(states)
+  console.log(cities)
+  
 
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode)
@@ -47,6 +53,7 @@ const Address = () => {
       ...addressEdit,
       stateId: value ,
     })
+    setStateId(value)
   }
 
   const handleChangeCountry = (e) => {
@@ -54,7 +61,9 @@ const Address = () => {
     setAddressEdit({
       ...addressEdit,
       countryId: value,
+      
     })
+    setCountryId(value)
   }
   const handleSubmitEdit = () => {
     updateAddress({...addressEdit})
@@ -69,25 +78,61 @@ const Address = () => {
       <section className='flex w-full flex-col justify-center items-right md:items-end md:flex-row mt-2 relative'>
         <section className='flex md:w-1/2 gap-4 px-1 py-5'>
           <section className='flex flex-col gap-y-2 w-1/2 text-right'>
-            <h2 className='p-1'>Street</h2>
-            <h2 className='p-1'>City</h2>
-            <h2 className='p-1'>State</h2>
-            <h2 className='p-1'>ZipCode</h2>
             <h2 className='p-1'>Country</h2>
+            <h2 className='p-1'>State/Province</h2>
+            <h2 className='p-1'>City</h2>
+            <h2 className='p-1'>Street</h2>
+            <h2 className='p-1'>ZipCode</h2>
+            
           </section>
 
           {!isEditMode
             ? (
               <section className='flex flex-col md:w-1/2 gap-y-2'>
-                <h2 className='p-1'>{addressData?.street}</h2>
-                <h2 className='p-1'>{addressData?.City.name}</h2>
-                <h2 className='p-1'>{addressData?.State.name}</h2>
-                <h2 className='p-1'>{addressData?.zipCode}</h2>
                 <h2 className='p-1'>{addressData?.Country.name}</h2>
+                <h2 className='p-1'>{addressData?.State.name}</h2>
+                <h2 className='p-1'>{addressData?.City.name}</h2>
+                <h2 className='p-1'>{addressData?.street}</h2>
+                <h2 className='p-1'>{addressData?.zipCode}</h2>
+                
               </section>
               )
             : (
               <form className='flex flex-col gap-2 md:w-1/2 w-1/2 px-5'>
+                <select onChange={handleChangeCountry} id='countryId' className='border rounded w-full h-11'>
+                      <option disabled>-Select a country-</option>
+                      {countries.filter((country)=>{
+                        if(country.id>1){
+                          return country
+                        }}).map((country, key) => {
+                        return(
+                          <option key={key} value={country.id}>{country.name}</option>
+                        )
+                      })}
+                </select>
+                <select onChange={handleChangeState} id='stateId' className='border rounded w-full h-11'>
+                      <option disabled>-Select a state-</option>
+                      {states.filter((state)=>{
+                        if(state.id>1){
+                          return state
+                        }}).map((state, key) => {
+                        return(
+                          <option key={key} value={state.id}>{state.name}</option>
+                        )
+                      })}
+                </select>
+                <select type='#' onChange={handleChange} id='cityId' className='border rounded w-full h-11'>
+                      <option disabled>-Select a city-</option>
+                      {cities.filter((city)=>{
+                        if(city.id>1){
+                          return city
+                        }}).map((city, key) => {
+                        return(
+                          <option key={key} value={city.id} >{city.name}</option>
+                        )
+                      })}
+                </select> 
+
                 <input
                   className='md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant'
                   type='text'
@@ -96,22 +141,8 @@ const Address = () => {
                   onChange={(e)=>
                   setAddressEdit({...addressEdit, street: e.target.value})}
                   />
-                    <select type='#' onChange={handleChange} id='cityId' className='border rounded w-full h-11'>
-                      <option disabled>-Select a city-</option>
-                      {cities.map((city, key) => {
-                        return(
-                          <option key={key} value={city.id} >{city.name}</option>
-                        )
-                      })}
-                    </select>
-                    <select onChange={handleChangeState} id='stateId' className='border rounded w-full h-11'>
-                      <option disabled>-Select a state-</option>
-                      {states.map((state, key) => {
-                        return(
-                          <option key={key} value={state.id}>{state.name}</option>
-                        )
-                      })}
-                    </select>
+                    
+                    
                 <input
                   className='md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant'
                   type='#'
@@ -120,14 +151,7 @@ const Address = () => {
                   onChange={(e)=>
                     setAddressEdit({...addressEdit, zipCode: e.target.value})}
                 />
-                    <select onChange={handleChangeCountry} id='countryId' className='border rounded w-full h-11'>
-                      <option disabled>-Select a country-</option>
-                      {countries.map((country, key) => {
-                        return(
-                          <option key={key} value={country.name}>{country.name}</option>
-                        )
-                      })}
-                    </select>
+                    
               </form>
               )}
         </section>
