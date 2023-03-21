@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../../context/AuthContext'
-import { useGetAddressesByUserIdQuery, useUpdateAddressMutation } from '../../store/service/address/addressService'
+import { useGetAddressesByUserIdQuery, useGetAllCitiesQuery, useGetAllCountriesQuery, useGetAllStatesQuery, useUpdateAddressMutation } from '../../store/service/address/addressService'
 
 // import Form from '../components/Form/Form'
 
@@ -11,14 +11,20 @@ const Address = () => {
   const addressData = data?.data
   const [updateAddress] = useUpdateAddressMutation()
   const [addressEdit, setAddressEdit] = useState({...addressData})
-  
+  const {data: citiesData} = useGetAllCitiesQuery()
+  const {data: countriesData} = useGetAllCountriesQuery()
+  const {data: statesData} = useGetAllStatesQuery()
+  const cities = citiesData?.cities
+  const countries = countriesData?.countries
+  const states = statesData?.states
+
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode)
   }
 
   useEffect(() => {
     setAddressEdit({
-      userId: id,
+      id: addressData?.id,
       street: addressData?.street,
       city: addressData?.City.name,
       state: addressData?.State.name,
@@ -27,6 +33,32 @@ const Address = () => {
     })
   }, [addressData])
   
+  const handleChange = (e) => {
+    const value = parseInt(e.target.value)
+    setAddressEdit({
+      ...addressEdit,
+      cityId: value,
+    })
+  }
+
+  const handleChangeState = (e) => {
+    const value = parseInt(e.target.value)
+    setAddressEdit({
+      ...addressEdit,
+      stateId: value ,
+    })
+  }
+
+  const handleChangeCountry = (e) => {
+    const value = parseInt(e.target.value)
+    setAddressEdit({
+      ...addressEdit,
+      countryId: value,
+    })
+  }
+  const handleSubmitEdit = () => {
+    updateAddress({...addressEdit})
+  }
 
   return (
     <section className='w-full flex flex-col justify-center items-center px-4 py-7'>
@@ -60,26 +92,41 @@ const Address = () => {
                   className='md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant'
                   type='text'
                   id='street'
-                  placeholder={addressEdit?.street}
+                  value={addressEdit?.street}
                   onChange={(e)=>
                   setAddressEdit({...addressEdit, street: e.target.value})}
                   />
-                    <select id='cityId' className='border rounded w-full h-11'>
+                    <select type='#' onChange={handleChange} id='cityId' className='border rounded w-full h-11'>
                       <option disabled>-Select a city-</option>
-                      <option>Citi1</option>
+                      {cities.map((city, key) => {
+                        return(
+                          <option key={key} value={city.id} >{city.name}</option>
+                        )
+                      })}
                     </select>
-                    <select id='cityId' className='border rounded w-full h-11'>
+                    <select onChange={handleChangeState} id='stateId' className='border rounded w-full h-11'>
                       <option disabled>-Select a state-</option>
-                      <option>State</option>
+                      {states.map((state, key) => {
+                        return(
+                          <option key={key} value={state.id}>{state.name}</option>
+                        )
+                      })}
                     </select>
                 <input
                   className='md:w-full py-1 px-1 h-8 border rounded shadow-md hover:scale-105 bg-white-variant'
                   type='#'
-                  placeholder='ZipCode'
+                  id='zipCode'
+                  value={addressEdit?.zipCode}
+                  onChange={(e)=>
+                    setAddressEdit({...addressEdit, zipCode: e.target.value})}
                 />
-                    <select id='cityId' className='border rounded w-full h-11'>
+                    <select onChange={handleChangeCountry} id='countryId' className='border rounded w-full h-11'>
                       <option disabled>-Select a country-</option>
-                      <option>Country1</option>
+                      {countries.map((country, key) => {
+                        return(
+                          <option key={key} value={country.name}>{country.name}</option>
+                        )
+                      })}
                     </select>
               </form>
               )}
@@ -92,7 +139,7 @@ const Address = () => {
           Edit Info
         </button>) 
         : (<button
-          onClick={()=>updateAddress({...addressEdit})}
+          onClick={handleSubmitEdit}
           className='flex w-40  hover:scale-105 drop-shadow-md justify-center bg-primary text-white font-bold px-3 py-2 rounded-lg mt-4 mb-4 cursor-pointer h-10'
         >
           Save
