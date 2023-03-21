@@ -70,7 +70,6 @@ const EditCategory = () => {
                 )
               })}
             </tbody>
-            {console.log(categoryEdit)}
           </table>
 
           <div className='w-full flex flex-col px-3'>

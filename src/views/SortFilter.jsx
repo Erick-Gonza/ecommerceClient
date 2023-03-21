@@ -7,7 +7,6 @@ import { HiX } from 'react-icons/hi'
 const SortFilter = () => {
   const { openCard, openFilter, isCardOpen, isFilterOpen } =
     useContext(modalsContext)
-  console.log({ openCard, isCardOpen })
 
   return (
     <section

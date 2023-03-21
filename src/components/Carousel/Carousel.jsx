@@ -7,7 +7,6 @@ const Carousel = () => {
   const { data, isError, isLoading, error } = useGetAllProductsQuery()
   const products = data?.data
 
-  console.log({ isError, isLoading, error })
   const slideLeft = () => {
     const slider = document.getElementById('slider')
     slider.scrollLeft = slider.scrollLeft - 300

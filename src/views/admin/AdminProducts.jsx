@@ -78,12 +78,7 @@ export const AdminProducts = ({ handleScreen }) => {
               <th />
             </tr>
             {products?.filter((product) => {
-              if (searchString === '') {
-                return product
-              } else if (product.name.toLowerCase().includes(searchString.toLowerCase())) {
-                return product
-              }
-              return product
+              return product?.name.toLowerCase().includes(searchString.toLocaleLowerCase()) ? product : null
             }).map((product, key) => {
               return (
                 <tr

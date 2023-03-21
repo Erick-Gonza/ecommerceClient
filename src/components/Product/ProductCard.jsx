@@ -19,9 +19,7 @@ export const ProductCard = ({ product }) => {
     userId
   }
   const handleFavoriteClick = () => {
-    createWishlist(newWishlistItem).then((res) => {
-      console.log(res)
-    })
+    createWishlist(newWishlistItem)
 
     setIsFav(!isFav)
     if (!isFav) {

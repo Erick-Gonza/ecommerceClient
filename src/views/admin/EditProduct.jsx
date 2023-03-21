@@ -138,7 +138,6 @@ const EditProduct = ({ open, onClose, productId }) => {
           Cancel
         </button>
       </div>
-      {console.log(product)}
 
     </section>
   )

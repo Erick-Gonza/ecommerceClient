@@ -12,7 +12,6 @@ const Category = () => {
     useGetProductsByCategoryIdQuery(id)
   const products = data?.data?.products
   const category = data?.data?.category
-  console.log(error)
 
   return (
     <section>

@@ -39,7 +39,6 @@ const AddProduct = () => {
     formData.append('stock', product.stock)
     formData.append('file', fileData)
     formData.append('categoryId', product.categoryId)
-    console.log(product)
     createProduct(formData)
   }
 

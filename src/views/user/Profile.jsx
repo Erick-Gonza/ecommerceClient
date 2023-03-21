@@ -9,7 +9,6 @@ const Profile = () => {
   const [isEditMode, setIsEditMode] = useState(false)
   const [updateUser] = useUpdateUserMutation()
   const [userEdit, setUserEdit] = useState({ ...users })
-  console.log(user)
 
   const toggleEditMode = (e) => {
     e.preventDefault()
@@ -21,8 +20,7 @@ const Profile = () => {
       firstName: users?.firstName,
       lastName: users?.lastName,
       userName: users?.userName,
-      email: users?.email,
-      id
+      email: users?.email
     })
   }, [users])
 
