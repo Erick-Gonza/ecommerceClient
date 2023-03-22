@@ -15,7 +15,8 @@ const ProductDetail = () => {
         <div className='flex flex-col lg:flex-row items-center'>
           {/* image */}
           <div className='flex flex-1 justify-center items-center mb-8 lg:mb-0'>
-            <img className='max-w-[200px] lg:max-w-sm' src={`http://localhost:5173/api/v1/product/public/${product?.imageUrl}`} alt={product?.name} />
+            <img className='max-w-[200px] lg:max-w-sm' src={`${product?.imageUrl}`} alt={product?.name} />
+            {/* <img className='max-w-[200px] lg:max-w-sm' src={`http://localhost:5173/api/v1/product/public/${product?.imageUrl}`} alt={product?.name} /> */}
           </div>
 
           {/* title */}

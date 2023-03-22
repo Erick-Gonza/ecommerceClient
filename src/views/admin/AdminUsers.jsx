@@ -62,7 +62,7 @@ const AdminUsers = () => {
                 <th>{`${user?.firstName} ${user?.lastName}`}</th>
                 <th>{user?.email}</th>
                 <th>{user?.userName}</th>
-                <th>{user?.role.name}</th>
+                <th>{user?.role?.name}</th>
                 <th>{user?.statusId === 1 ? 'active' : 'inactive'}</th>
                 <th />
               </tr>

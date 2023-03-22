@@ -3,7 +3,6 @@ import EditProduct from './EditProduct'
 import {
   HiOutlineTrash,
   HiOutlinePencil,
-  HiFilter,
   HiOutlinePlusCircle
 } from 'react-icons/hi'
 import { Link } from 'react-router-dom'
@@ -45,10 +44,6 @@ export const AdminProducts = ({ handleScreen }) => {
             </div>
           </section>
           <div className='flex flex-row justify-between gap-3'>
-            <button className='flex mt-2 border border-black  items-center p-2 hover:scale-105  '>
-              <HiFilter className='mx-1 w-5 h-5' />
-              Filter
-            </button>
             <button
               onClick={() => handleScreen('categories')}
               className='flex mt-2  drop-shadow  items-center p-2 border border-primary hover:scale-105 hover:opacity-80 text-primary text-xs md:text-lg'
@@ -87,7 +82,7 @@ export const AdminProducts = ({ handleScreen }) => {
                 >
                   <td>{product?.id}</td>
                   <td>{product?.name}</td>
-                  <td>{product?.Category.name}</td>
+                  <td>{product?.Category?.name}</td>
                   <td className='hidden md:block'>{product?.description}</td>
                   <td>{product?.color}</td>
                   <td>{product?.price}</td>
@@ -108,11 +103,6 @@ export const AdminProducts = ({ handleScreen }) => {
               )
             })}
           </table>
-        </div>
-        <div className='flex justify-end'>
-          <button className='flex mt-2 drop-shadow items-center px-4 py-2 bg-gray-variant hover:scale-105 hover:opacity-90 text-white text-xs md:text-lg'>
-            Exit
-          </button>
         </div>
       </div>
       <EditProduct open={openModal} onClose={() => setOpenModal(false)} productId={id} />

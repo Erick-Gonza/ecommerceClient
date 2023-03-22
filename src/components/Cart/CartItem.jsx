@@ -8,7 +8,7 @@ import { CartContext } from '../../context/CartContext'
 
 const CartItem = ({ item }) => {
   // destructure item
-  const { id, title, price, image, amount } = item
+  const { id, title, price, imageUrl, amount } = item
   // use context
   const { removeFromCart, decreaseAmount, increaseAmount } = useContext(CartContext)
 
@@ -18,7 +18,7 @@ const CartItem = ({ item }) => {
         {/* image */}
         <Link to={`/product/${id}`}>
           <div>
-            <img className='max-w-[80px]' src={image} alt={title} />
+            <img className='max-w-[80px]' src={imageUrl} alt={title} />
           </div>
         </Link>
         <div className='w-full flex flex-col'>

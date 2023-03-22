@@ -27,11 +27,11 @@ const Wishlist = () => {
         : (
           <>
             <div className='grid sm:grid-cols-1 md:grid-cols-4'>
-              {products?.map((product, index) => {
+              {products?.map((product) => {
                 return (
                   <ProductCard
                     product={product}
-                    key={index}
+                    key={product.id}
                   />
                 )
               })}
