@@ -46,23 +46,23 @@ const AddProduct = () => {
   }
 
   return (
-    <section className='flex flex-row justify-center my-4'>
+    <section className='flex flex-row justify-center my-4 text-xs md:text-lg'>
       <form
         encType='multipart/form-data'
         onSubmit={handleSubmit}
-        className='flex flex-col h-full px-3 py-4 bg-white md:border-2 rounded-md w-full md:w-1/3 dark:bg-black'
+        className='flex flex-col h-full px-3 py-4 bg-white rounded-md w-full lg:w-1/3 dark:bg-black shadow-xl'
       >
         <h2 className='font-bold text-center text-2xl mb-4'>
           Edit/Create product
         </h2>
         <div className='flex flex-row '>
-          <div className='w-1/3 h-full mx-2 flex flex-col justify-center self-center gap-3'>
+          <div className='object-cover aspect-square drop-shadow-lg rounded-md h-64 w-1/3 dark:bg-black-variant mx-2 flex flex-col justify-center self-center gap-3 border-2 rounded-md'>
             <img
               src={url}
               alt='Banner'
-              className='object-cover w-full h-1/3 md:h-1/2'
+              className='flex object-cover w-full h-1/3 md:h-1/2 '
             />
-            <label className='flex justify-center border bg-gray-variant rounded text-white p-1 hover:bg-primary'>
+            <label className='flex justify-center border bg-gray-variant rounded text-white p-1 hover:bg-primary '>
               <BsUpload className='h-5 w-5 mx-1' />
               <input
                 multiple
