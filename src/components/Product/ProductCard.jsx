@@ -48,7 +48,8 @@ export const ProductCard = ({ product }) => {
 
           <div className='w-[200px] mx-auto flex justify-center items-center'>
             <img
-              src={`http://localhost:5173/api/v1/product/public/${imageUrl}`}
+              // src={`http://localhost:5173/api/v1/product/public/${imageUrl}`}
+              src={`${imageUrl}`}
               className='max-h-[160px] group-hover:scale-110 transition duration-200'
             />
           </div>
