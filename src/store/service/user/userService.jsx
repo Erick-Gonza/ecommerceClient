@@ -4,11 +4,15 @@ import Cookies from 'js-cookie'
 export const users = createApi({
   reducerPath: 'users',
   baseQuery: fetchBaseQuery({ baseUrl: '/api/v1/' }),
-  tagTypes: ['Users'],
+  tagTypes: ['Users', 'Cart'],
   endpoints: (builder) => ({
     getAllUsers: builder.query({
       query: () => '/user',
       providesTags: ['Users']
+    }),
+    getUserCart: builder.query({
+      query: (id) => `/cart/${id}`,
+      providesTags: ['Cart']
     }),
     getUserById: builder.query({
       query: (id) => `/user/${id}`,
@@ -50,16 +54,25 @@ export const users = createApi({
         method: 'POST',
         body: { token: Cookies.get('token') }
       })
+    }),
+    updateCartItem: builder.mutation({
+      query: (body) => ({
+        url: '/cart/',
+        method: 'PUT',
+        body
+      })
     })
   })
 })
 
 export const {
   useGetAllUsersQuery,
+  useGetUserCartQuery,
   useGetUserByIdQuery,
   useCreateUserMutation,
   useUpdateUserMutation,
   useDeleteUserMutation,
   useLoginUserMutation,
-  useValidateUserMutation
+  useValidateUserMutation,
+  useUpdateCartItemMutation
 } = users

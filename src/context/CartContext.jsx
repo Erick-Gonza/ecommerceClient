@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from 'react'
-
+import { createContext, useContext, useEffect, useState } from 'react'
+import { useUpdateCartItemMutation, useGetUserCartQuery } from '../store/service/user/userService'
+import { AuthContext } from './AuthContext'
 // create context
 export const CartContext = createContext()
 
@@ -10,6 +11,12 @@ const CartProvider = ({ children }) => {
   const [itemAmount, setItemAmount] = useState(0)
   // total price state
   const [total, setTotal] = useState(0)
+  // use redux toolkit endpoint
+  const [updateCartItem] = useUpdateCartItemMutation()
+  const { id: userId } = useContext(AuthContext)
+  const { data: cartData, isSuccess } =
+  useGetUserCartQuery(userId)
+  console.log({ data: cartData?.data?.Products, isSuccess })
 
   // update total price
   useEffect(() => {
@@ -29,7 +36,28 @@ const CartProvider = ({ children }) => {
       }, 0)
       setItemAmount(amount)
     }
+    console.log(cart)
   }, [cart])
+
+  useEffect(() => {
+    if (cart) {
+      cart.forEach((item) => {
+        const body = { productId: item.id, userId, quantity: item.amount }
+        updateCartItem(body)
+      })
+    }
+  }, [cart])
+
+  useEffect(() => {
+    if (isSuccess) {
+      cartData?.data?.Products.map((item) => {
+        // return console.log(item?.CartItem)
+        // id, title, price, imageUrl, amount
+        const newItem = { ...item, amount: item?.CartItem?.quantity }
+        return setCart((prev) => [...prev, newItem])
+      })
+    }
+  }, [isSuccess])
 
   // add item to cart
   const addToCart = (item, id) => {
