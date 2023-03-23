@@ -24,7 +24,9 @@ export const address = createApi({
             invalidatesTags: ['Address']
         }),
         getAddressesByUserId: builder.query({
-            query: (id) => `/address/${id}`
+            query: (id) => `/address/${id}`,
+            providesTags: ['Address'],
+            invalidatesTags: ['Address']
         }),
         getAllCities: builder.query({
             query: (stateId) => `/cities/${stateId}`,
@@ -34,6 +36,12 @@ export const address = createApi({
         }),
         getAllStates: builder.query({
             query: (countryId) => `/states/${countryId}`,
+        }),
+        getStateById: builder.query({
+            query:(stateId) => `/states/state/${stateId}`
+        }),
+        getCityById: builder.query({
+            query:(cityId) => `/cities/city/${cityId}`
         })
     })
 })
@@ -44,5 +52,7 @@ useGetAddressIdQuery,
 useUpdateAddressMutation,
 useGetAllCitiesQuery,
 useGetAllStatesQuery,
-useGetAllCountriesQuery
+useGetAllCountriesQuery,
+useGetStateByIdQuery,
+useGetCityByIdQuery
 } = address

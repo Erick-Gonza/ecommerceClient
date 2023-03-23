@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../../context/AuthContext'
-import { useGetAddressesByUserIdQuery, useGetAllCitiesQuery, useGetAllCountriesQuery, useGetAllStatesQuery, useUpdateAddressMutation } from '../../store/service/address/addressService'
+import { useGetAddressesByUserIdQuery, useGetAllCitiesQuery, useGetAllCountriesQuery, useGetAllStatesQuery, useGetCityByIdQuery, useGetStateByIdQuery, useUpdateAddressMutation } from '../../store/service/address/addressService'
 
 // import Form from '../components/Form/Form'
 
@@ -9,22 +9,30 @@ const Address = () => {
   const [isEditMode, setIsEditMode] = useState(false)
   const [countryId, setCountryId] = useState(2)
   const [stateId, setStateId] = useState(2)
-  const { data } = useGetAddressesByUserIdQuery(id)
-  const addressData = data?.data
+  const [cityId, setCityId] = useState(2)
+  const { data: address } = useGetAddressesByUserIdQuery(id)
+  const addressData = address?.data
+  
   const [updateAddress] = useUpdateAddressMutation()
   const [addressEdit, setAddressEdit] = useState({ ...addressData })
   const { data: citiesData } = useGetAllCitiesQuery(stateId)
   const { data: countriesData } = useGetAllCountriesQuery()
   const { data: statesData } = useGetAllStatesQuery(countryId)
+  const { data: state} = useGetStateByIdQuery(stateId)
+  const {data: city} = useGetCityByIdQuery(cityId)
   const cities = citiesData?.cities
   const countries = countriesData?.countries
   const states = statesData?.states
-
+  const country = countries[countryId-1]?.name
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode)
   }
-
+  
   useEffect(() => {
+    setCountryId(addressData?.countryId)
+    setStateId(addressData?.stateId)
+    setCityId(addressData?.cityId)
+    
     setAddressEdit({
       id: addressData?.id,
       street: addressData?.street,
@@ -32,7 +40,7 @@ const Address = () => {
       state: addressData?.State?.name,
       zipCode: addressData?.zipCode,
       county: addressData?.Country?.name
-    })
+    }) 
   }, [addressData])
 
   const handleChange = (e) => {
@@ -85,9 +93,9 @@ const Address = () => {
           {!isEditMode
             ? (
               <section className='flex flex-col md:w-1/2 gap-y-2'>
-                <h2 className='p-1'>{addressData?.Country?.name}</h2>
-                <h2 className='p-1'>{addressData?.State?.name}</h2>
-                <h2 className='p-1'>{addressData?.City?.name}</h2>
+                <h2 className='p-1'>{country}</h2>
+                <h2 className='p-1'>{state?.data?.name}</h2>
+                <h2 className='p-1'>{city?.data?.name}</h2>
                 <h2 className='p-1'>{addressData?.street}</h2>
                 <h2 className='p-1'>{addressData?.zipCode}</h2>
 
@@ -109,7 +117,7 @@ const Address = () => {
                 </select>
                 <select onChange={handleChangeState} id='stateId' className='border rounded w-full h-11'>
                   <option disabled>-Select a state-</option>
-                  {states.filter((state) => {
+                  {states?.filter((state) => {
                     if (state?.id > 1) {
                       return state
                     }
@@ -121,8 +129,8 @@ const Address = () => {
                 </select>
                 <select type='#' onChange={handleChange} id='cityId' className='border rounded w-full h-11'>
                   <option disabled>-Select a city-</option>
-                  {cities.filter((city) => {
-                    if (city.id > 1) {
+                  {cities?.filter((city) => {
+                    if (city?.id > 1) {
                       return city
                     }
                   }).map((city, key) => {
