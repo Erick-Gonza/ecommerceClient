@@ -18,7 +18,6 @@ const CartProvider = ({ children }) => {
   const { id: userId } = useContext(AuthContext)
   const { data: cartData, isSuccess } =
   useGetUserCartQuery(userId)
-  console.log({ data: cartData?.data?.Products, isSuccess })
 
   // update total price
   useEffect(() => {
@@ -38,7 +37,6 @@ const CartProvider = ({ children }) => {
       }, 0)
       setItemAmount(amount)
     }
-    console.log(cart)
   }, [cart])
 
   useEffect(() => {
@@ -137,6 +135,7 @@ const CartProvider = ({ children }) => {
   // data to be passed to the provider
   const data = {
     cart,
+    setCart,
     addToCart,
     removeFromCart,
     decreaseAmount,

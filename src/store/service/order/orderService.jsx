@@ -18,11 +18,21 @@ export const order = createApi({
         method: 'POST',
         body
       })
+    }),
+    getOrderList: builder.mutation({
+      query: (id) => ({
+        url: `/order/${id}`
+      })
+    }),
+    getOrderDetailList: builder.query({
+      query: (orderId) => `/orderDetail/${orderId}`
     })
   })
 })
 
 export const {
   useCreateOrderMutation,
-  useCreateOrderDetailMutation
+  useCreateOrderDetailMutation,
+  useGetOrderListMutation,
+  useGetOrderDetailListQuery
 } = order

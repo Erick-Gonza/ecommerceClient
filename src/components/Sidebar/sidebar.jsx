@@ -16,7 +16,7 @@ import { AuthContext } from '../../context/AuthContext'
 const Sidebar = () => {
   // use both contexts
   const { isSidebarOpen, toggleSidebar } = useContext(SidebarContext)
-  const { cart, clearCart, total } = useContext(CartContext)
+  const { cart, setCart, clearCart, total } = useContext(CartContext)
   const { id } = useContext(AuthContext)
   const [createOrder] = useCreateOrderMutation()
   const [createOrderDetail] = useCreateOrderDetailMutation()
@@ -25,9 +25,9 @@ const Sidebar = () => {
     const res = await createOrder({ userId: id })
     // create orderDetails for each product on store
     cart.forEach(async (item) => {
-      console.log(item)
       await createOrderDetail({ orderId: res?.data?.data?.id, productId: item?.id, quantity: item?.amount })
     })
+    setCart([])
   }
 
   return (

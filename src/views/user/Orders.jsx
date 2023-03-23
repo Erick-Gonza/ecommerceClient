@@ -1,43 +1,44 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../context/AuthContext'
+import { useGetOrderListMutation } from '../../store/service/order/orderService'
 
 const Order = () => {
+  const { id } = useContext(AuthContext)
+  const [getOrderList, { data, isSuccess }] = useGetOrderListMutation()
+
+  useEffect(() => {
+    getOrderList(id)
+  }, [])
+
   return (
-    <section className='w-full flex flex-col justify-center items-center px-4 py-2 gap-y-2'>
+    <section className='w-full flex flex-col justify-center items-center px-4 py-2 gap-y-2 min-h-[40vh]'>
       <section className='w-full'>
         <h2 className='text-center text-2xl font-bold '>Orders</h2>
       </section>
 
       <section className='w-full md:w-1/2 flex flex-col gap-4 px-3 py-4 bg-white rounded-lg dark:bg-gray-variant'>
-        <Link className='w-full p-2 rounded-md shadow-md dark:bg-black' to='/order/1'>
-          <h2 className='text-center text-xl font-bold'>Order 1</h2>
+        {
+          isSuccess && data?.data.map((order) => (
+            <Link
+              key={order?.id}
+              className='w-full p-2 rounded-md shadow-md dark:bg-black'
+              to={`/order/${order?.id}`}
+            >
+              <h2 className='text-center text-xl font-bold'>Order {order?.id}</h2>
 
-          <div className='w-full text-center'>
-            <h2>Products: Product 1, Product 2</h2>
-            <h2>Total products: 3</h2>
-            <h2>Total cost: 2,500</h2>
-          </div>
-        </Link>
+              <div className='w-full text-center'>
+                {order?.OrderDetails.map((item) => (
+                  <div key={item?.id} className='flex w-full h-full justify-center items-center gap-2'>
+                    <h2>Product Id: {item?.productId}</h2>
+                    <h2>Quantity: {item?.quantity}</h2>
+                  </div>
+                ))}
+              </div>
+            </Link>
+          ))
+        }
 
-        <Link className='w-full p-2 rounded-md shadow-md dark:bg-black' to='/order/2'>
-          <h2 className='text-center text-xl font-bold'>Order 2</h2>
-
-          <div className='w-full text-center'>
-            <h2>Products: Product 1, Product 2</h2>
-            <h2>Total products: 3</h2>
-            <h2>Total cost: 2,500</h2>
-          </div>
-        </Link>
-
-        <Link className='w-full p-2 rounded-md shadow-md dark:bg-black' to='/order/3'>
-          <h2 className='text-center text-xl font-bold'>Order 3</h2>
-
-          <div className='w-full text-center'>
-            <h2>Products: Product 1, Product 2</h2>
-            <h2>Total products: 3</h2>
-            <h2>Total cost: 2,500</h2>
-          </div>
-        </Link>
       </section>
     </section>
   )
