@@ -10,11 +10,25 @@ import { SidebarContext } from '../../context/SidebarContext'
 import { CartContext } from '../../context/CartContext'
 import { FiTrash2 } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
+import { useCreateOrderMutation, useCreateOrderDetailMutation } from '../../store/service/order/orderService'
+import { AuthContext } from '../../context/AuthContext'
 
 const Sidebar = () => {
   // use both contexts
   const { isSidebarOpen, toggleSidebar } = useContext(SidebarContext)
   const { cart, clearCart, total } = useContext(CartContext)
+  const { id } = useContext(AuthContext)
+  const [createOrder] = useCreateOrderMutation()
+  const [createOrderDetail] = useCreateOrderDetailMutation()
+
+  const handleCreateOrder = async () => {
+    const res = await createOrder({ userId: id })
+    // create orderDetails for each product on store
+    cart.forEach(async (item) => {
+      console.log(item)
+      await createOrderDetail({ orderId: res?.data?.data?.id, productId: item?.id, quantity: item?.amount })
+    })
+  }
 
   return (
     <div className={`${isSidebarOpen ? 'right-0' : '-right-full'} w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] xl:max-w-[30vw] transition-all duration-200 z-20 px-4 lg:px-[35px] overflow-y-scroll dark:bg-black dark:text-white`}>
@@ -45,12 +59,8 @@ const Sidebar = () => {
           </div>
         </div>
 
-        <Link to='/' className='bg-gray-200 flex p-4 justify-center items-center text-primary w-full font-medium rounded-sm dark:bg-black-variant'>
-          View Cart
-        </Link>
-
-        <Link to='/' className='bg-primary flex p-4 justify-center items-center text-white w-full font-medium rounded-sm'>
-          Checkout
+        <Link onClick={handleCreateOrder} to='/' className='bg-primary flex mt-4 p-4 justify-center items-center text-white w-full font-medium rounded-sm'>
+          Create Order
         </Link>
 
       </div>
