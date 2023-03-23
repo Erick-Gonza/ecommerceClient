@@ -24,7 +24,7 @@ const EditCategory = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (categoryEdit.id == null) {
+    if (categoryEdit?.id == null) {
       const newCategory = { ...categoryEdit }
       createCategory({ ...newCategory })
     } else {
@@ -71,7 +71,7 @@ const EditCategory = () => {
                           width: '30rem',
                           heightAuto: false,
                           icon: 'success',
-                          iconColor: '#fefefe',
+                          iconColor: '#green',
                           backdrop: true,
                           background: '#DE76B5',
                           color: '#fefefe',
@@ -120,13 +120,13 @@ const EditCategory = () => {
                       width: '30rem',
                       heightAuto: false,
                       icon: 'success',
-                      iconColor: '#fefefe',
+                      iconColor: 'green',
                       backdrop: true,
                       background: '#DE76B5',
                       color: '#fefefe',
-                      title: 'Category has been created',
+                      title: 'Data successfully updated',
                       showConfirmButton: false,
-                      timer: 1200
+                      timer: 1500
                     })
                   }}
                   className='w-full text-center mt-2 py-2 border rounded-md bg-primary text-white shadow-md dark:bg-gray-variant dark:hover:bg-primary hover:scale-105'

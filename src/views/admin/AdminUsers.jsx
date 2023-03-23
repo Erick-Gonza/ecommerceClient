@@ -40,33 +40,61 @@ const AdminUsers = () => {
       </section>
 
       {screen === 'users' && (
-        <div className='flex w-full flex-col justify-center items-right md:items-end md:flex-row mt-2 relative text-xs lg:text-xl px-4 font-semibold py-4'>
-          <section className='flex md:w-1/3 gap-2 py-4 dark:bg-black bg-white shadow-xl rounded-md'>
-            <section className='flex flex-col gap-y-2 w-1/4 text-right '>
-              <h2 className='px-2 border border-transparent'>Id:</h2>
-              <h2 className='px-2 border border-transparent'>Name:</h2>
-              <h2 className='px-2 border border-transparent'>Email:</h2>
-              <h2 className='px-2 border border-transparent'>UserName:</h2>
-              <h2 className='px-2 border border-transparent'>Role:</h2>
-              <h2 className='px-2 border border-transparent'>Status:</h2>
+        <section className='flex justify-center py-4 px-4'>
+          <section className='justify-items-center w-full md:w-1/2 text-center rounded-md border shadow-xl bg-white dark:bg-black py-4'>
+            <section className='w-full inline-flex font-bold'>
+              <div className='w-full md:w-1/6'>
+                <span className='hidden md:inline-block '>Id:</span>
+              </div>
+              <div className='w-full md:w-1/4'>
+                <span className='hidden md:inline-block '>Name:</span>
+              </div>
+              <div className='w-full md:w-1/4 '>
+                <span className='hidden md:inline-block '>Email:</span>
+              </div>
+              <div className='w-full md:w-1/4 '>
+                <span className='hidden md:inline-block '>UserName:</span>
+              </div>
+              <div className='w-full md:w-1/6 '>
+                <span className='hidden md:inline-block '>Role:</span>
+              </div>
+              <div className='w-full md:w-1/6 '>
+                <span className='hidden md:inline-block '>Status:</span>
+              </div>
             </section>
 
-            {
-              users?.data.map((user, key) => {
-                return (
-                  <section className='flex flex-col w-2/3 gap-y-2' key={key}>
-                    <h2 className='shadow-md border dark:bg-black-variant rounded px-2 gap-2'>{user?.id}</h2>
-                    <h2 className='shadow-md border dark:bg-black-variant rounded px-2 gap-2'>{`${user?.firstName} ${user?.lastName}`}</h2>
-                    <h2 className='shadow-md border dark:bg-black-variant rounded px-2 gap-2'>{user?.email}</h2>
-                    <h2 className='shadow-md border dark:bg-black-variant rounded px-2 gap-2'>{user?.userName}</h2>
-                    <h2 className='shadow-md border dark:bg-black-variant rounded px-2 gap-2'>{user?.role?.name}</h2>
-                    <h2 className='shadow-md border dark:bg-black-variant rounded px-2 gap-2'>{user?.statusId === 1 ? 'active' : 'inactive'}</h2>
-                  </section>
-                )
-              })
-            }
+            <ul className='w-full text-center rounded-md px-2'>
+              {users?.data.map((user, key) => (
+                <li key={key} className='flex flex-col md:flex-row py-4 md:py-2 px-2 border'>
+                  <div className='w-full md:w-1/6 font-semibold'>
+                    <span className='inline-block md:hidden mr-2 font-bold'>ID:</span>
+                    {user?.id}
+                  </div>
+                  <div className='w-full md:w-1/4 font-semibold'>
+                    <span className='inline-block md:hidden mr-2 font-bold'>Name:</span>
+                    {`${user?.firstName} ${user?.lastName}`}
+                  </div>
+                  <div className='w-full md:w-1/4 font-semibold'>
+                    <span className='inline-block md:hidden mr-2 font-bold'>Email:</span>
+                    {user?.email}
+                  </div>
+                  <div className='w-full md:w-1/4 font-semibold'>
+                    <span className='inline-block md:hidden mr-2 font-bold'>User:</span>
+                    {user?.userName}
+                  </div>
+                  <div className='w-full md:w-1/6 font-semibold'>
+                    <span className='inline-block md:hidden mr-2 font-bold'>Role:</span>
+                    {user?.role?.name}
+                  </div>
+                  <div className='w-full md:w-1/6 font-semibold'>
+                    <span className='inline-block md:hidden mr-2 font-bold'>Status:</span>
+                    {user?.statusId === 1 ? 'active' : 'inactive'}
+                  </div>
+                </li>
+              ))}
+            </ul>
           </section>
-        </div>
+        </section>
       )}
 
       {screen === 'categories' && <EditCategory />}

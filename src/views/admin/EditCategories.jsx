@@ -45,11 +45,11 @@ const EditCategories = ({ handleSubmit }) => {
                   width: '30rem',
                   heightAuto: false,
                   icon: 'success',
-                  iconColor: '#fefefe',
+                  iconColor: '#green',
                   backdrop: true,
                   background: '#DE76B5',
                   color: '#fefefe',
-                  title: 'Product has been added to Cart',
+                  title: 'Category has been created',
                   showConfirmButton: false,
                   timer: 1200
                 });

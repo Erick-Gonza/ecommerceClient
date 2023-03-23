@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { BsUpload } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import { useGetAllCategoriesQuery } from '../../store/service/category/categoryService'
 import { useCreateProductMutation } from '../../store/service/product/productService'
 
@@ -41,19 +43,20 @@ const AddProduct = () => {
     formData.append('categoryId', product.categoryId)
     createProduct(formData)
   }
+  
 
   return (
     <section className='flex flex-row justify-center my-4 text-xs md:text-lg'>
       <form
         encType='multipart/form-data'
         onSubmit={handleSubmit}
-        className='flex flex-col h-full px-3 py-4 bg-white rounded-md w-full lg:w-1/3 dark:bg-black shadow-xl'
+        className='flex flex-col h-full px-3 py-4 bg-white rounded-md w-full lg:w-1/2 dark:bg-black shadow-xl items-center'
       >
-        <h2 className='font-bold text-center text-2xl mb-4'>
-          Edit/Create product
+        <h2 className='font-bold text-center text-xl mb-4'>
+          Create product
         </h2>
-        <div className='flex flex-row '>
-          <div className='object-cover aspect-square drop-shadow-lg rounded-md h-64 w-1/3 dark:bg-black-variant mx-2 flex flex-col justify-center self-center gap-3 border-2 rounded-md'>
+        <div className='flex flex-row'>
+          <div className='px-2 h-full w-1/3 dark:bg-black-variant mx-2 flex flex-col justify-center self-center gap-3 border-2 rounded-md'>
             <img
               src={url}
               alt='Banner'
@@ -63,7 +66,7 @@ const AddProduct = () => {
               <BsUpload className='h-5 w-5 mx-1' />
               <input
                 multiple
-                className='hidden w-1'
+                className='hidden w-1 object-cover aspect-square drop-shadow-lg rounded-md '
                 type='file'
                 name='file'
                 id='file'
@@ -125,7 +128,7 @@ const AddProduct = () => {
           </section>
         </div>
 
-        <section className='flex flex-row gap-4'>
+        <section className='flex flex-row gap-4 m-4 text-center'>
           <section className='mb-4 w-1/4'>
             <label className='block font-bold mb-4'>Color</label>
             <input
@@ -165,15 +168,41 @@ const AddProduct = () => {
             />
           </section>
         </section>
-
-        <div className='flex flex-row justify-between '>
-          <p>Created</p>
-          <div className='flex flex-row justify-end gap-3'>
-            <button className='bg-primary rounded p-2 hover:opacity-70 text-white'>
-              Save
-            </button>
+        
+        <section className='w-full object-center'>
+          <div className='flex flex-row justify-evenly px-2 w-full'>
+            <Link to='/admin' >
+              <button
+                className='bg-gray-variant hover:bg-primary shadow-md rounded-md p-2 text-white w-24'>
+                Cancel
+              </button>
+            </Link>
+            <div className='flex flex-row justify-end gap-3'>
+              <button
+              type='button'
+              className='bg-gray-variant hover:bg-primary shadow-md rounded-md p-2 text-white w-24'
+              onClick={() =>{
+                Swal.fire({
+                  target: 'main',
+                  position: 'center',
+                  width: '30rem',
+                  heightAuto: false,
+                  icon: 'success',
+                  iconColor: '#green',
+                  backdrop: true,
+                  background: '#DE76B5',
+                  color: '#fefefe',
+                  title: 'Product has been created',
+                  showConfirmButton: false,
+                  timer: 1200
+                });
+              }}
+                >
+                Save
+              </button>
+            </div>
           </div>
-        </div>
+        </section>
       </form>
     </section>
   )

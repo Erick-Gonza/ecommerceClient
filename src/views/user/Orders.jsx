@@ -13,9 +13,10 @@ const Order = () => {
 
   return (
     <section className='w-full flex flex-col justify-center items-center px-4 py-2 gap-y-2 min-h-[40vh]'>
-      <section className='w-full'>
-        <h2 className='text-center text-2xl font-bold '>Orders</h2>
-      </section>
+      <section className='w-full md:w-1/3 flex flex-col gap-4 px-3 py-4 bg-white rounded-lg dark:bg-black shadow-lg'>
+        <section className='w-full'>
+          <h2 className='text-center text-2xl font-bold '>My Orders</h2>
+        </section>
 
       <section className='w-full md:w-1/2 flex flex-col gap-4 px-3 py-4 bg-white rounded-lg dark:bg-gray-variant'>
         {

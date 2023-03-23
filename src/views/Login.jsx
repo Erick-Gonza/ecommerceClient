@@ -42,10 +42,10 @@ const SignIn = () => {
       width: '30rem',
       heightAuto: false,
       icon: 'success',
-      iconColor: '#fefefe',
+      iconColor: '#green',
       backdrop: true,
       background: '#DE76B5',
-      color: '#fefefe',
+      color: '#efefef',
       title: 'User has been logged in correctly',
       showConfirmButton: false,
       timer: 3000
@@ -109,14 +109,14 @@ const SignIn = () => {
             position: 'center',
             width: '30rem',
             heightAuto: false,
-            icon: 'success',
-            iconColor: '#DE76B5',
+            icon: 'error',
+            iconColor: 'red',
             backdrop: true,
-            background: '#ebebeb',
-            color: '#DE76B5',
+            background: '#DE76B5',
+            color: '#efefef',
             title: 'User credentials are incorrect',
             showConfirmButton: false,
-            timer: 3000
+            timer: 1500
           })
         }
       }, 1000)
@@ -128,13 +128,13 @@ const SignIn = () => {
         width: '30rem',
         heightAuto: false,
         icon: 'success',
-        iconColor: '#DE76B5',
+        iconColor: 'green',
         backdrop: true,
-        background: '#ebebeb',
-        color: '#DE76B5',
+        background: '#DE76B5',
+        color: '#efefef',
         title: 'User has been registered correctly',
         showConfirmButton: false,
-        timer: 3000
+        timer: 1500
       })
     }
   }
