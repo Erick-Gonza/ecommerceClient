@@ -1,19 +1,36 @@
 import { useEffect, useState } from 'react'
 import { BsUpload } from 'react-icons/bs'
+import { useGetAllCategoriesQuery } from '../../store/service/category/categoryService'
 import { useGetProductByIdQuery, useUpdateProductMutation } from '../../store/service/product/productService'
 
 const EditProduct = ({ open, onClose, productId }) => {
+  
+  const { data } = useGetProductByIdQuery(productId)
   const [product, setProduct] = useState({
     id: productId,
-    name: ''
+    name: '',
+    description: '',
+    color:''
   })
-  const { data } = useGetProductByIdQuery(productId)
   const [updateProduct] = useUpdateProductMutation()
+  const { data: categoriesData } =useGetAllCategoriesQuery()
+  const categories = categoriesData?.data
+
+  const handleUpdateProduct = (e) => {
+    e.preventDefault()
+    updateProduct({ ...product })
+    onClose()
+  }
 
   useEffect(() => {
     setProduct({
       id: productId,
-      name: data?.data?.name
+      name: data?.data?.name,
+      description: data?.data?.description,
+      color: data?.data?.color,
+      price: data?.data?.price,
+      categoryId: data?.data?.categoryId,
+      stock: data?.data?.stock
     })
   }, [data])
 
@@ -68,17 +85,24 @@ const EditProduct = ({ open, onClose, productId }) => {
                   type='text'
                   id='productDescription'
                   placeholder='Add a product description'
+                  value={product.description}
                   className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
+                  onChange={(e) =>
+                    setProduct({ ...product, description: e.target.value })}
                 />
               </section>
 
               <section className='flex flex-row gap-4'>
                 <section className='mb-4 w-2/4'>
                   <label className='block font-bold mb-4'>Category</label>
-                  <select className='border rounded w-full h-11'>
+                  <select onChange={(e) =>
+                    setProduct({ ...product, categoryId: e.target.value })} id='categoryId' className='border rounded w-full h-11'>
                     <option>-Select a category-</option>
-                    <option>Option 2</option>
-                    <option>Option 3</option>
+                    {categories?.map((category, key) => {
+                    return (
+                      <option key={key} value={category?.id}>{category?.name}</option>
+                    )
+                  })}
                   </select>
                 </section>
               </section>
@@ -90,45 +114,45 @@ const EditProduct = ({ open, onClose, productId }) => {
               <label className='block font-bold mb-4'>Color</label>
               <input
                 type='text'
-                id='productDescription'
+                id='color'
                 placeholder=''
+                value={product.color}
                 className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
+                onChange={(e) =>
+                  setProduct({ ...product, color: e.target.value })}
               />
             </section>
             <section className='mb-4 w-1/4'>
               <label className='block font-bold mb-4'>Stock</label>
               <input
                 type='text'
-                id='productDescription'
+                id='stock'
                 placeholder=''
+                value={product.stock}
                 className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
+                onChange={(e) =>
+                  setProduct({ ...product, stock: e.target.value })}
               />
             </section>
             <section className='mb-4 w-1/4'>
               <label className='block font-bold mb-4'>Price</label>
               <input
                 type='text'
-                id='productDescription'
+                id='price'
                 placeholder=''
+                value={product.price}
                 className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
+                onChange={(e) =>
+                  setProduct({ ...product, price: e.target.value })}
               />
             </section>
-            <section className='mb-4 w-1/4'>
-              <label className='block font-bold mb-4'>Discount</label>
-              <input
-                type='text'
-                id='productDescription'
-                placeholder=''
-                className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md'
-              />
-            </section>
+            
           </section>
 
           <div className='flex flex-row justify-between '>
             <p>Created</p>
             <div className='flex flex-row justify-end gap-3'>
-
-              <button onClick={() => updateProduct({ ...product })} className='bg-primary rounded p-2 hover:opacity-70 text-white'>
+              <button onClick={handleUpdateProduct} className='bg-primary rounded p-2 hover:opacity-70 text-white'>
                 Save
               </button>
             </div>

@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import { AuthContext } from '../../context/AuthContext'
-import { useGetAddressesByUserIdQuery, useGetAllCitiesQuery, useGetAllCountriesQuery, useGetAllStatesQuery, useUpdateAddressMutation } from '../../store/service/address/addressService'
+import { useGetAddressesByUserIdQuery, useGetAllCitiesQuery, useGetAllCountriesQuery, useGetAllStatesQuery, useGetCityByIdQuery, useGetStateByIdQuery, useUpdateAddressMutation } from '../../store/service/address/addressService'
 
 // import Form from '../components/Form/Form'
 
@@ -10,13 +10,17 @@ const Address = () => {
   const [isEditMode, setIsEditMode] = useState(false)
   const [countryId, setCountryId] = useState(2)
   const [stateId, setStateId] = useState(2)
-  const { data } = useGetAddressesByUserIdQuery(id)
-  const addressData = data?.data
+  const [cityId, setCityId] = useState(2)
+  const { data: address } = useGetAddressesByUserIdQuery(id)
+  const addressData = address?.data
+  const [countryName, setCountryName] = useState('second')
   const [updateAddress] = useUpdateAddressMutation()
   const [addressEdit, setAddressEdit] = useState({ ...addressData })
   const { data: citiesData } = useGetAllCitiesQuery(stateId)
   const { data: countriesData } = useGetAllCountriesQuery()
   const { data: statesData } = useGetAllStatesQuery(countryId)
+  const { data: state } = useGetStateByIdQuery(stateId)
+  const { data: city } = useGetCityByIdQuery(cityId)
   const cities = citiesData?.cities
   const countries = countriesData?.countries
   const states = statesData?.states
@@ -26,6 +30,12 @@ const Address = () => {
   }
 
   useEffect(() => {
+    setCountryId(addressData?.countryId)
+    setStateId(addressData?.stateId)
+    setCityId(addressData?.cityId)
+    const country = countries?.filter(country => country?.id === addressData?.countryId)
+    setCountryName(country[0].name)
+
     setAddressEdit({
       id: addressData?.id,
       street: addressData?.street,
@@ -58,7 +68,6 @@ const Address = () => {
     setAddressEdit({
       ...addressEdit,
       countryId: value
-
     })
     setCountryId(value)
   }
@@ -77,7 +86,7 @@ const Address = () => {
       title: 'Data Saved',
       showConfirmButton: false,
       timer: 1500
-    });
+    })
   }
 
   return (
@@ -100,18 +109,19 @@ const Address = () => {
 
             {!isEditMode
               ? (
-                <section className='flex flex-col w-2/3 gap-y-2'>
-                  <h2 className='p-1 border-2 dark:bg-black-variant border-transparent h-8 rounded shadow'>{addressData?.Country?.name}</h2>
-                  <h2 className='p-1 border-2 dark:bg-black-variant border-transparent h-8 rounded shadow'>{addressData?.State?.name}</h2>
-                  <h2 className='p-1 border-2 dark:bg-black-variant border-transparent h-8 rounded shadow'>{addressData?.City?.name}</h2>
-                  <h2 className='p-1 border-2 dark:bg-black-variant border-transparent h-8 rounded shadow'>{addressData?.street}</h2>
-                  <h2 className='p-1 border-2 dark:bg-black-variant border-transparent h-8 rounded shadow'>{addressData?.zipCode}</h2>
-black             </section>
-              )
+                <section className='flex flex-col md:w-1/2 gap-y-2'>
+                  <h2 className='p-1'>{countryName}</h2>
+                  <h2 className='p-1'>{state?.data?.name}</h2>
+                  <h2 className='p-1'>{city?.data?.name}</h2>
+                  <h2 className='p-1'>{addressData?.street}</h2>
+                  <h2 className='p-1'>{addressData?.zipCode}</h2>
+
+                </section>
+                )
               : (
                 <form className='flex flex-col gap-2 md:w-1/2 w-1/2 px-5'>
-                  <select onChange={handleChangeCountry} id='countryId' className='border rounded w-full h-8 dark:bg-black-variant'>
-                    <option disabled>-Select a country-</option>
+                  <select onChange={handleChangeCountry} id='countryId' className='border rounded w-full h-11'>
+                    <option value='none'>-Select a country-</option>
                     {countries.filter((country) => {
                       if (country.id > 1) {
                         return country
@@ -122,9 +132,9 @@ black             </section>
                       )
                     })}
                   </select>
-                  <select onChange={handleChangeState} id='stateId' className='border rounded w-full h-8 dark:bg-black-variant'>
-                    <option disabled>-Select a state-</option>
-                    {states.filter((state) => {
+                  <select onChange={handleChangeState} id='stateId' className='border rounded w-full h-11'>
+                    <option value='none'>-Select a state-</option>
+                    {states?.filter((state) => {
                       if (state?.id > 1) {
                         return state
                       }
@@ -134,10 +144,10 @@ black             </section>
                       )
                     })}
                   </select>
-                  <select type='#' onChange={handleChange} id='cityId' className='border rounded w-full h-8 dark:bg-black-variant'>
-                    <option disabled>-Select a city-</option>
-                    {cities.filter((city) => {
-                      if (city.id > 1) {
+                  <select onChange={handleChange} type='#' id='cityId' className='border rounded w-full h-11'>
+                    <option value='none'>-Select a city-</option>
+                    {cities?.filter((city) => {
+                      if (city?.id > 1) {
                         return city
                       }
                     }).map((city, key) => {
@@ -166,20 +176,22 @@ black             </section>
                   />
 
                 </form>
-              )}
-        </section>
+                )}
           </section>
-          {!isEditMode
-            ? (<button
+        </section>
+        {!isEditMode
+          ? (
+            <button
               onClick={toggleEditMode}
               className='flex w-40  hover:scale-105 drop-shadow-md justify-center bg-primary text-white font-bold px-3 py-2 rounded-lg mt-4 mb-4 cursor-pointer h-10'
             >
               Edit Info
             </button>)
-            : (<button
+          : (
+            <button
               onClick={() => {
-                toggleEditMode();
-                handleSubmitEdit();
+                toggleEditMode()
+                handleSubmitEdit()
               }}
               className='flex w-40  hover:scale-105 drop-shadow-md justify-center bg-primary text-white font-bold px-3 py-2 rounded-lg mt-4 mb-4 cursor-pointer h-10'
             >

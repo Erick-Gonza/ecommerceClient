@@ -10,7 +10,8 @@ export const wishlist = createApi({
         url: '/',
         method: 'POST',
         body
-      })
+      }),
+      invalidatesTags:['Wishlist']
     }),
     getWishlist: builder.query({
       query: (userId) => `/${userId}`

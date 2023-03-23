@@ -14,7 +14,8 @@ const AddProduct = () => {
     description: '',
     price: null,
     stock: null,
-    categoryId: null
+    categoryId: null,
+    color: ''
   })
   const [image, setImage] = useState()
   const categories = data?.data
@@ -41,6 +42,7 @@ const AddProduct = () => {
     formData.append('stock', product.stock)
     formData.append('file', fileData)
     formData.append('categoryId', product.categoryId)
+    formData.append('color', product.color)
     createProduct(formData)
   }
   
@@ -136,6 +138,7 @@ const AddProduct = () => {
               id='color'
               placeholder=''
               className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:bg-black-variant'
+              onChange={handleChange}
             />
           </section>
           <section className='mb-4 w-1/4'>
