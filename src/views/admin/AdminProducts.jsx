@@ -44,10 +44,6 @@ export const AdminProducts = ({ handleScreen }) => {
             </div>
           </section>
           <div className='flex flex-row justify-between gap-3'>
-            <button className='flex mt-2 border border-black  items-center p-2 hover:scale-105 rounded-md dark:bg-black-variant'>
-              <HiFilter className='mx-1 w-5 h-5 ' />
-              Filter
-            </button>
             <button
               onClick={() => handleScreen('categories')}
               className='flex mt-2  drop-shadow  items-center p-2 border border-primary hover:scale-105 hover:opacity-80 text-primary text-xs md:text-lg rounded-md'
@@ -107,11 +103,6 @@ export const AdminProducts = ({ handleScreen }) => {
               )
             })}
           </table>
-        </div>
-        <div className='flex justify-end px-4'>
-          <button className='flex mt-2 drop-shadow items-center px-4 py-2 bg-gray-variant hover:scale-105 hover:opacity-90 text-white text-xs md:text-lg rounded-md hover:bg-primary'>
-            Exit
-          </button>
         </div>
       </div>
       <EditProduct open={openModal} onClose={() => setOpenModal(false)} productId={id} />
