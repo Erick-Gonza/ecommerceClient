@@ -16,8 +16,10 @@ const EditProduct = ({ open, onClose, productId }) => {
   const { data: categoriesData } =useGetAllCategoriesQuery()
   const categories = categoriesData?.data
 
-  const handleUpdateProduct = () => {
+  const handleUpdateProduct = (e) => {
+    e.preventDefault()
     updateProduct({ ...product })
+    onClose()
   }
 
   useEffect(() => {

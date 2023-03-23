@@ -12,7 +12,7 @@ const Address = () => {
   const [cityId, setCityId] = useState(2)
   const { data: address } = useGetAddressesByUserIdQuery(id)
   const addressData = address?.data
-  
+  const [countryName, setCountryName] = useState('second')
   const [updateAddress] = useUpdateAddressMutation()
   const [addressEdit, setAddressEdit] = useState({ ...addressData })
   const { data: citiesData } = useGetAllCitiesQuery(stateId)
@@ -23,15 +23,18 @@ const Address = () => {
   const cities = citiesData?.cities
   const countries = countriesData?.countries
   const states = statesData?.states
-  const country = countries[countryId-1]?.name
+
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode)
   }
   
+
   useEffect(() => {
     setCountryId(addressData?.countryId)
     setStateId(addressData?.stateId)
     setCityId(addressData?.cityId)
+    const country = countries?.filter(country => country?.id === addressData?.countryId)
+    setCountryName(country[0].name)
     
     setAddressEdit({
       id: addressData?.id,
@@ -65,7 +68,6 @@ const Address = () => {
     setAddressEdit({
       ...addressEdit,
       countryId: value
-
     })
     setCountryId(value)
   }
@@ -93,7 +95,7 @@ const Address = () => {
           {!isEditMode
             ? (
               <section className='flex flex-col md:w-1/2 gap-y-2'>
-                <h2 className='p-1'>{country}</h2>
+                <h2 className='p-1'>{countryName}</h2> 
                 <h2 className='p-1'>{state?.data?.name}</h2>
                 <h2 className='p-1'>{city?.data?.name}</h2>
                 <h2 className='p-1'>{addressData?.street}</h2>
@@ -104,7 +106,7 @@ const Address = () => {
             : (
               <form className='flex flex-col gap-2 md:w-1/2 w-1/2 px-5'>
                 <select onChange={handleChangeCountry} id='countryId' className='border rounded w-full h-11'>
-                  <option disabled>-Select a country-</option>
+                  <option value='none'>-Select a country-</option>
                   {countries.filter((country) => {
                     if (country.id > 1) {
                       return country
@@ -116,7 +118,7 @@ const Address = () => {
                   })}
                 </select>
                 <select onChange={handleChangeState} id='stateId' className='border rounded w-full h-11'>
-                  <option disabled>-Select a state-</option>
+                  <option value='none' >-Select a state-</option>
                   {states?.filter((state) => {
                     if (state?.id > 1) {
                       return state
@@ -127,8 +129,8 @@ const Address = () => {
                     )
                   })}
                 </select>
-                <select type='#' onChange={handleChange} id='cityId' className='border rounded w-full h-11'>
-                  <option disabled>-Select a city-</option>
+                <select onChange={handleChange} type='#'  id='cityId' className='border rounded w-full h-11'>
+                  <option value='none' >-Select a city-</option>
                   {cities?.filter((city) => {
                     if (city?.id > 1) {
                       return city
