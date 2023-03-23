@@ -20,10 +20,10 @@ export const AdminProducts = ({ handleScreen }) => {
   const products = data?.data
 
   return (
-    <section className='py-4 px-6 flex flex-col static items-center '>
-      <div className='w-full'>
-        <div className='flex flex-col md:flex-row justify-between'>
-          <section className='w=1/3 flex relative border-2 rounded-md items-center  '>
+    <section className='py-4 px-4 flex flex-col static items-center '>
+      <div className='w-full xl:w-1/2 dark:bg-black bg-white rounded-md px-2 py-4 drop-shadow-xl'>
+        <div className='flex flex-col md:flex-row justify-evenly '>
+          <section className='w=1/3 flex relative rounded-md items-center'>
             <div className='absolute top-5 left-1'>
               <img
                 src='https://img.icons8.com/ios/256/search.png'
@@ -33,27 +33,31 @@ export const AdminProducts = ({ handleScreen }) => {
             </div>
             <input
               type='text'
-              className='h-10 w-full pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none'
+              className='h-10 w-full pl-10 pr-20 rounded-md z-0 focus:shadow focus:outline-none dark:bg-black-variant shadow-md dark:text-white'
               placeholder='Search by product name...'
               onChange={(e) => { setSearchString(e.target.value) }}
             />
             <div className='absolute right-2'>
-              <button className='h-10 rounded-lg bg-gray-400 text-white px-1'>
+              <button className='h-9 rounded-lg bg-gray-400 text-white px-1 dark:bg-gray-variant hover:bg-primary'>
                 Search
               </button>
             </div>
           </section>
           <div className='flex flex-row justify-between gap-3'>
+            <button className='flex mt-2 border border-black  items-center p-2 hover:scale-105 rounded-md dark:bg-black-variant'>
+              <HiFilter className='mx-1 w-5 h-5 ' />
+              Filter
+            </button>
             <button
               onClick={() => handleScreen('categories')}
-              className='flex mt-2  drop-shadow  items-center p-2 border border-primary hover:scale-105 hover:opacity-80 text-primary text-xs md:text-lg'
+              className='flex mt-2  drop-shadow  items-center p-2 border border-primary hover:scale-105 hover:opacity-80 text-primary text-xs md:text-lg rounded-md'
             >
               <HiOutlinePlusCircle className='mx-1 w-5 h-5 ' />
               Add category
             </button>
             <Link
               to='/admin/addproduct'
-              className='flex mt-2  drop-shadow  items-center p-2 bg-primary hover:scale-105 hover:opacity-80 text-white text-xs md:text-lg'
+              className='flex mt-2  drop-shadow  items-center p-2 bg-primary hover:scale-105 hover:opacity-80 text-white text-xs md:text-lg rounded-md'
             >
               <HiOutlinePlusCircle className='mx-1 w-5 h-5 ' />
               Add product
@@ -78,7 +82,7 @@ export const AdminProducts = ({ handleScreen }) => {
               return (
                 <tr
                   key={key}
-                  className='text-center border-b-2 hover:bg-neutral-200 text-xs md:text-xl'
+                  className='text-center border-b-2 hover:bg-neutral-400 text-xs md:text-xl'
                 >
                   <td>{product?.id}</td>
                   <td>{product?.name}</td>
@@ -103,6 +107,11 @@ export const AdminProducts = ({ handleScreen }) => {
               )
             })}
           </table>
+        </div>
+        <div className='flex justify-end px-4'>
+          <button className='flex mt-2 drop-shadow items-center px-4 py-2 bg-gray-variant hover:scale-105 hover:opacity-90 text-white text-xs md:text-lg rounded-md hover:bg-primary'>
+            Exit
+          </button>
         </div>
       </div>
       <EditProduct open={openModal} onClose={() => setOpenModal(false)} productId={id} />

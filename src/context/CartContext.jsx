@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { useUpdateCartItemMutation, useGetUserCartQuery } from '../store/service/user/userService'
 import { AuthContext } from './AuthContext'
+import Swal from 'sweetalert2'
+
 // create context
 export const CartContext = createContext()
 
@@ -115,6 +117,20 @@ const CartProvider = ({ children }) => {
 
   // clear cart
   const clearCart = () => {
+    Swal.fire({
+      target: 'main',
+      position: 'center',
+      width: '30rem',
+      heightAuto: false,
+      icon: 'success',
+      iconColor: '#fefefe',
+      backdrop: true,
+      background: '#DE76B5',
+      color: '#fefefe',
+      title: 'Cart has been cleaned',
+      showConfirmButton: false,
+      timer: 1200
+    })
     setCart([])
   }
 

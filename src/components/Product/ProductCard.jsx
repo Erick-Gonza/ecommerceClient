@@ -74,7 +74,24 @@ export const ProductCard = ({ product }) => {
                 />
                 )}
           </div>
-          <button onClick={() => addToCart(product, productId)}>
+          <button onClick={() =>{
+            addToCart(product, productId),
+            Swal.fire({
+                target: 'main',
+                position: 'center',
+                width: '30rem',
+                heightAuto: false,
+                icon: 'success',
+                iconColor: '#fefefe',
+                backdrop: true,
+                background: '#DE76B5',
+                color: '#fefefe',
+                title: 'Product has been added to Cart',
+                showConfirmButton: false,
+                timer: 1200
+              })
+          }
+          }>
             <div className='flex justify-center items-center text-white w-12 h-12 bg-red-500'>
               <BsPlus className='text-3xl' />
             </div>
