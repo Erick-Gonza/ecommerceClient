@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useGetOrderDetailListQuery } from '../../store/service/order/orderService'
 
@@ -7,42 +6,35 @@ const OrderDetail = () => {
   const { data } = useGetOrderDetailListQuery(id)
   const dataProducts = data?.data
 
-  useEffect(() => {
-    console.log({ orderId: id, data })
-  }, [data])
-
-  // const totalQuantity = dataProducts.reduce(
-  //   (total, product) => total + product.quantity,
-  //   0
-  // )
-  // const totalPrice = dataProducts.reduce(
-  //   (total, product) => total + parseFloat(product.price),
-  //   0
-  // )
+  const totalQuantity = dataProducts?.reduce(
+    (total, product) => total + product?.ProductQuantity,
+    0
+  )
+  const totalPrice = dataProducts?.reduce(
+    (total, product) => total + parseInt(product?.ProductPrice),
+    0
+  )
   return (
     <>
       <section className='flex w-full flex-col justify-center items-center md:flex-row mt-2 relative py-8'>
         <section className='flex md:w-1/2 w-full gap-2 px-1 py-5 dark:bg-black bg-white shadow-xl rounded-lg'>
           <section className='flex flex-col w-full gap-y-12 drop-shadow-lg items-center'>
             <h2 className='text-xl font-bold'>Order Id: {id}</h2>
-            {dataProducts?.map((product) => (
+            {dataProducts?.map((product, index) => (
               <section
-                key={product.id}
+                key={product.index}
                 className='flex md:flex-row flex-col items-center bg-white-variant drop-shadow-md rounded-md dark:bg-black-variant md:w-2/3 px-4 py-4 gap-4'
               >
                 <section className='md:w-full'>
-                  <h2 className='w-full p-1'>Name: {product.name}</h2>
-                  <h2 className='w-full p-1'>
-                    Description: {product.description}
-                  </h2>
-                  <h2 className='w-full p-1'>Price: {product.price}</h2>
-                  <h2 className='w-full p-1'>Quantity: {product.quantity} </h2>
+                  <h2 className='w-full p-1'>Name: {product?.ProductName}</h2>
+                  <h2 className='w-full p-1'>Price: {product?.ProductPrice}</h2>
+                  <h2 className='w-full p-1'>Quantity: {product?.ProductQuantity} </h2>
                 </section>
                 <section className='w-full items-end'>
                   <img
                     className='object-cover aspect-square drop-shadow-lg rounded h-64 md:h-48 shadow-lg'
-                    src={product.img}
-                    alt={product.name}
+                    src={product?.ProductImage}
+                    alt={product?.ProductName}
                   />
                 </section>
               </section>
@@ -53,8 +45,8 @@ const OrderDetail = () => {
                 <h2>Total Price: </h2>
               </section>
               <section className='w-full gap-y-4'>
-                {/* <h2>{totalQuantity}</h2>
-                <h2>{totalPrice.toFixed(2)}</h2> */}
+                <h2>{totalQuantity}</h2>
+                <h2>{parseInt(totalPrice)}</h2>
               </section>
             </section>
             <Link
