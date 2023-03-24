@@ -66,9 +66,9 @@ export const NavBarMobile = () => {
   return (
     <nav className='flex w-full justify-between items-center h-auto px-3 py-2 bg-primary dark:bg-dark-primary'>
       <section className='flex flex-col justify-start text-slate-100'>
-      <Link to='/' className='flex flex-col justify-start text-slate-100'>
-        <img src={logo} className='h-14 w-auto object-contain' />
-      </Link>
+        <Link to='/' className='flex flex-col justify-start text-slate-100'>
+          <img src={logo} className='h-14 w-auto object-contain' />
+        </Link>
       </section>
 
       <section

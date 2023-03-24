@@ -5,7 +5,6 @@ import { useGetAllCategoriesQuery } from '../../store/service/category/categoryS
 import { useGetProductByIdQuery, useUpdateProductMutation } from '../../store/service/product/productService'
 
 const EditProduct = ({ open, onClose, productId }) => {
-
   const { data } = useGetProductByIdQuery(productId)
   const [product, setProduct] = useState({
     id: productId,
@@ -110,8 +109,10 @@ const EditProduct = ({ open, onClose, productId }) => {
               <section className='flex flex-row gap-4'>
                 <section className='mb-4 w-full px-4'>
                   <label className='block font-bold mb-4'>Category</label>
-                  <select onChange={(e) =>
-                    setProduct({ ...product, categoryId: e.target.value })} id='categoryId' className='border rounded w-full h-11 dark:bg-black-variant'>
+                  <select
+                    onChange={(e) =>
+                      setProduct({ ...product, categoryId: e.target.value })} id='categoryId' className='border rounded w-full h-11 dark:bg-black-variant'
+                  >
                     <option>-Select a category-</option>
                     {categories?.map((category, key) => {
                       return (

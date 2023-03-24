@@ -115,12 +115,13 @@ const Address = () => {
                   <h2 className='p-1 border-2 dark:bg-black-variant border-transparent h-8 rounded shadow'>{addressData?.zipCode}</h2>
 
                 </section>
-              )
+                )
               : (
                 <form className='flex flex-col gap-2 md:w-1/2 w-1/2 px-5'>
                   <select onChange={handleChangeCountry} id='countryId' className='border rounded w-full h-8 dark:bg-black-variant'>
                     <option value='none'>-Select a country-</option>
-                    {countries.filter((country) => {
+                    {
+                    countries.filter((country) => {
                       if (country.id > 1) {
                         return country
                       }
@@ -128,31 +129,38 @@ const Address = () => {
                       return (
                         <option key={key} value={country?.id}>{country?.name}</option>
                       )
-                    })}
+                    })
+}
                   </select>
                   <select onChange={handleChangeState} id='stateId' className='border rounded w-full h-8 dark:bg-black-variant'>
                     <option value='none'>-Select a state-</option>
-                    {states?.filter((state) => {
-                      if (state?.id > 1) {
+                    {
+                      states?.filter((state) => {
+                        if (state?.id > 1) {
+                          return state
+                        }
                         return state
-                      }
-                    }).map((state, key) => {
-                      return (
-                        <option key={key} value={state?.id}>{state?.name}</option>
-                      )
-                    })}
+                      }).map((state, key) => {
+                        return (
+                          <option key={key} value={state?.id}>{state?.name}</option>
+                        )
+                      })
+                    }
                   </select>
                   <select onChange={handleChange} type='#' id='cityId' className='border rounded w-full h-8 dark:bg-black-variant'>
                     <option value='none'>-Select a city-</option>
-                    {cities?.filter((city) => {
-                      if (city?.id > 1) {
+                    {
+                      cities?.filter((city) => {
+                        if (city?.id > 1) {
+                          return city
+                        }
                         return city
-                      }
-                    }).map((city, key) => {
-                      return (
-                        <option key={key} value={city?.id}>{city?.name}</option>
-                      )
-                    })}
+                      }).map((city, key) => {
+                        return (
+                          <option key={key} value={city?.id}>{city?.name}</option>
+                        )
+                      })
+                    }
                   </select>
 
                   <input
@@ -174,7 +182,7 @@ const Address = () => {
                   />
 
                 </form>
-              )}
+                )}
           </section>
         </section>
         {!isEditMode

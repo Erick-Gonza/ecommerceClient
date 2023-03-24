@@ -5,7 +5,7 @@ import { useGetUserByIdQuery, useUpdateUserMutation } from '../../store/service/
 
 const Profile = () => {
   const { id } = useContext(AuthContext)
-  const { data: user, isError, isLoading, error } = useGetUserByIdQuery(id)
+  const { data: user } = useGetUserByIdQuery(id)
   const users = user?.data
   const [isEditMode, setIsEditMode] = useState(false)
   const [updateUser] = useUpdateUserMutation()
@@ -87,42 +87,41 @@ const Profile = () => {
                 )}
           </section>
         </section>
-          {!isEditMode
-            ? (
-              <button
-                onClick={toggleEditMode}
-                className='flex w-40  hover:scale-105 drop-shadow-md justify-center bg-primary text-white font-bold px-3 py-2 rounded-lg mt-4 mb-4 cursor-pointer h-10'
-              >
-                Edit Info
-              </button>
-              )
+        {!isEditMode
+          ? (
+            <button
+              onClick={toggleEditMode}
+              className='flex w-40  hover:scale-105 drop-shadow-md justify-center bg-primary text-white font-bold px-3 py-2 rounded-lg mt-4 mb-4 cursor-pointer h-10'
+            >
+              Edit Info
+            </button>
+            )
 
-            : (
-              <button
-                onClick={() => {
-                  updateUser(userEdit);
-                  toggleEditMode();
-                  Swal.fire({
-                    target: 'main',
-                    position: 'center',
-                    width: '30rem',
-                    heightAuto: false,
-                    icon: 'success',
-                    iconColor: '#efefef',
-                    backdrop: true,
-                    background: '#DE76B5',
-                    color: '#fefefe',
-                    title: 'Data successfully updated',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-                }
-              } 
-                className='flex w-40  hover:scale-105 drop-shadow-md justify-center bg-primary text-white font-bold px-3 py-2 rounded-lg mt-4 mb-4 cursor-pointer h-10'
-              >
-                Save
-              </button>
-              )}
+          : (
+            <button
+              onClick={() => {
+                updateUser(userEdit)
+                toggleEditMode()
+                Swal.fire({
+                  target: 'main',
+                  position: 'center',
+                  width: '30rem',
+                  heightAuto: false,
+                  icon: 'success',
+                  iconColor: '#efefef',
+                  backdrop: true,
+                  background: '#DE76B5',
+                  color: '#fefefe',
+                  title: 'Data successfully updated',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+              }}
+              className='flex w-40  hover:scale-105 drop-shadow-md justify-center bg-primary text-white font-bold px-3 py-2 rounded-lg mt-4 mb-4 cursor-pointer h-10'
+            >
+              Save
+            </button>
+            )}
       </section>
     </section>
   )

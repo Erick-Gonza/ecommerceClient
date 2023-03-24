@@ -5,7 +5,7 @@ import { modalsContext } from '../context/ModalsContext'
 import { HiX } from 'react-icons/hi'
 
 const SortFilter = () => {
-  const { openCard, openFilter, isCardOpen, isFilterOpen } =
+  const { openFilter, isFilterOpen } =
     useContext(modalsContext)
 
   return (

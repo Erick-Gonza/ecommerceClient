@@ -20,7 +20,7 @@ export const AdminProducts = ({ handleScreen }) => {
   const products = data?.data
   const [deleteProduct] = useDeleteProductMutation()
 
-  const handleDelete= () => {
+  const handleDelete = () => {
     Swal.fire({
       target: 'main',
       position: 'center',
@@ -116,7 +116,8 @@ export const AdminProducts = ({ handleScreen }) => {
                     <button onClick={() => {
                       deleteProduct(product.id)
                       handleDelete()
-                      } }>
+                    }}
+                    >
                       <HiOutlineTrash className='w-4 h-4 md:w-6 md:h-6 hover:text-red-600 m-1' />
                     </button>
                   </td>

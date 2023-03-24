@@ -6,7 +6,7 @@ import {
 import Form from '../components/Form/Form'
 import { loginInputsForm, registerInputsForm } from '../utils/formData'
 import Swal from 'sweetalert2'
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
 const SignIn = () => {
@@ -32,9 +32,9 @@ const SignIn = () => {
   const inputsRegister = registerInputsForm
   const { setToken } = useContext(AuthContext)
 
-  function refresh() {
+  function refresh () {
     setTimeout(function () {
-      navigate("/")
+      navigate('/')
     }, 1500)
     Swal.fire({
       target: 'main',
@@ -136,7 +136,6 @@ const SignIn = () => {
         timer: 1500
       })
     }
-
   }
 
   return (
@@ -151,7 +150,7 @@ const SignIn = () => {
             setIsLogin={setIsLogin}
             isLogin={isLogin}
           />
-        )
+          )
         : (
           <Form
             inputs={inputsRegister}
@@ -161,7 +160,7 @@ const SignIn = () => {
             setIsLogin={setIsLogin}
             isLogin={isLogin}
           />
-        )}
+          )}
     </section>
   )
 }

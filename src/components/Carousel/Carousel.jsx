@@ -5,12 +5,12 @@ import { useGetAllProductsQuery } from '../../store/service/product/productServi
 import { AuthContext } from '../../context/AuthContext'
 
 const Carousel = () => {
-  const { id : userId } = useContext(AuthContext)
+  const { id: userId } = useContext(AuthContext)
   const [helper, setHelper] = useState(null)
   useEffect(() => {
     userId === undefined ? setHelper(null) : setHelper(userId)
   }, [userId])
-  const { data, isError, isLoading, error, refetch } = useGetAllProductsQuery(helper)
+  const { data, isLoading, refetch } = useGetAllProductsQuery(helper)
   const products = data?.results
   const slideLeft = () => {
     const slider = document.getElementById('slider')

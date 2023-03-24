@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [id, setId] = useState(null)
   const [role, setRole] = useState(null)
-  const [currentView, setcurrentView] = useState("home")
+  const [currentView, setcurrentView] = useState('home')
 
   useEffect(() => {
     const token = getToken()
@@ -40,7 +40,6 @@ export const AuthProvider = ({ children }) => {
   const changeCurrent = (current) => {
     setcurrentView(current)
   }
-  
 
   // set cookie
   const setToken = (token) => {
