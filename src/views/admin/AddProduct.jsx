@@ -44,8 +44,25 @@ const AddProduct = () => {
     formData.append('categoryId', product.categoryId)
     formData.append('color', product.color)
     createProduct(formData)
+    Swal.fire({
+      target: 'main',
+      position: 'center',
+      width: '30rem',
+      heightAuto: false,
+      icon: 'success',
+      iconColor: '#green',
+      backdrop: true,
+      background: '#DE76B5',
+      color: '#fefefe',
+      title: 'Product has been created',
+      showConfirmButton: false,
+      timer: 1200
+    })
+    // set redirect to /admin with window location
+    setTimeout(() => {
+      window.location.href = '/admin'
+    }, 1200)
   }
-  
 
   return (
     <section className='flex flex-row justify-center my-4 text-xs md:text-lg'>
@@ -171,36 +188,21 @@ const AddProduct = () => {
             />
           </section>
         </section>
-        
+
         <section className='w-full object-center'>
           <div className='flex flex-row justify-evenly px-2 w-full'>
-            <Link to='/admin' >
+            <Link to='/admin'>
               <button
-                className='bg-gray-variant hover:bg-primary shadow-md rounded-md p-2 text-white w-24'>
+                className='bg-gray-variant hover:bg-primary shadow-md rounded-md p-2 text-white w-24'
+              >
                 Cancel
               </button>
             </Link>
             <div className='flex flex-row justify-end gap-3'>
               <button
-              type='button'
-              className='bg-gray-variant hover:bg-primary shadow-md rounded-md p-2 text-white w-24'
-              onClick={() =>{
-                Swal.fire({
-                  target: 'main',
-                  position: 'center',
-                  width: '30rem',
-                  heightAuto: false,
-                  icon: 'success',
-                  iconColor: '#green',
-                  backdrop: true,
-                  background: '#DE76B5',
-                  color: '#fefefe',
-                  title: 'Product has been created',
-                  showConfirmButton: false,
-                  timer: 1200
-                });
-              }}
-                >
+                type='submit'
+                className='bg-gray-variant hover:bg-primary shadow-md rounded-md p-2 text-white w-24'
+              >
                 Save
               </button>
             </div>
