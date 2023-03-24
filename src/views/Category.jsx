@@ -1,17 +1,29 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ProductCard } from '../components/Product/ProductCard'
+import { AuthContext } from '../context/AuthContext'
 import { modalsContext } from '../context/ModalsContext'
-import { useGetProductsByCategoryIdQuery } from '../store/service/product/productService'
+import { useGetAllProductsQuery, useGetProductsByCategoryIdQuery } from '../store/service/product/productService'
 
 const Category = () => {
   const { id } = useParams()
+  const { id : userId } = useContext(AuthContext)
   const { isFilterOpen } = useContext(modalsContext)
-
-  const { data, isError, isLoading, error } =
-    useGetProductsByCategoryIdQuery(id)
-  const products = data?.data?.products
-  const category = data?.data?.category
+  const [helper, setHelper] = useState(null)
+  useEffect(() => {
+    userId === undefined ? setHelper(null) : setHelper(userId)
+  }, [userId])
+  const {changeCurrent, currentView} = useContext(AuthContext)
+  const { data, isError, isLoading, error, refetch } = useGetAllProductsQuery(helper)
+  const { data : categoryData } = useGetProductsByCategoryIdQuery(id)
+  // const products = data?.data?.products
+  const category = categoryData?.data?.category
+  const productsData = data?.results
+  const products = productsData?.filter(product => product?.CategoryId === category?.id)
+  useEffect(() => {
+    const current = "category"
+    changeCurrent(current)
+  }, [])
 
   return (
     <section>
@@ -43,7 +55,7 @@ const Category = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8 max-w-sm mx-auto md:max-w-none md:mx-0'>
                   {products?.map((product, index) => {
                     return (
-                      <ProductCard product={product} key={product?.id} />
+                      <ProductCard product={product} key={product?.id} refetch={refetch} />
                     )
                   })}
                 </div>

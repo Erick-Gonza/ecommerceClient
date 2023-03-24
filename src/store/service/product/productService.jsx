@@ -6,14 +6,18 @@ export const products = createApi({
   tagTypes: ['Products'],
   endpoints: (builder) => ({
     getAllProducts: builder.query({
-      query: () => '/',
-      providesTags: ['Products']
+      query: (userId) => `/all/${userId}`,
+      invalidatesTags: ['Products']
     }),
     getProductById: builder.query({
-      query: (id) => `/${id}`
+      query: (id) => `/${id}`,
+      providesTags: ['Products'],
+      invalidatesTags: ['Products']
     }),
     getProductsByCategoryId: builder.query({
-      query: (id) => `/category/${id}`
+      query: (id) => `/category/${id}`,
+      providesTags: ['Products'],
+      invalidatesTags: ['Products']
     }),
     createProduct: builder.mutation({
       query: (body) => ({
