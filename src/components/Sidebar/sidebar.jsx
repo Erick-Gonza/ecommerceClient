@@ -12,6 +12,7 @@ import { FiTrash2 } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { useCreateOrderMutation, useCreateOrderDetailMutation } from '../../store/service/order/orderService'
 import { AuthContext } from '../../context/AuthContext'
+import Swal from 'sweetalert2'
 
 const Sidebar = () => {
   // use both contexts
@@ -28,6 +29,20 @@ const Sidebar = () => {
       await createOrderDetail({ orderId: res?.data?.data?.id, productId: item?.id, quantity: item?.amount })
     })
     setCart([])
+    Swal.fire({
+      target: 'main',
+      position: 'center',
+      width: '30rem',
+      heightAuto: false,
+      icon: 'success',
+      iconColor: '#fefefe',
+      backdrop: true,
+      background: '#DE76B5',
+      color: '#fefefe',
+      title: 'Order has been created',
+      showConfirmButton: false,
+      timer: 1200
+    })
   }
 
   return (

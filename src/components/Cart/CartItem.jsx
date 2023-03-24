@@ -38,7 +38,7 @@ const CartItem = ({ item }) => {
                   width: '30rem',
                   heightAuto: false,
                   icon: 'success',
-                  iconColor: 'fefefe',
+                  iconColor: '#efefef',
                   backdrop: true,
                   background: '#DE76B5',
                   color: '#fefefe',

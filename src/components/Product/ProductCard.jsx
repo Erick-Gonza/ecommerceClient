@@ -88,7 +88,7 @@ export const ProductCard = ({ product }) => {
                 color: '#fefefe',
                 title: 'Product has been added to Cart',
                 showConfirmButton: false,
-                timer: 1200
+                timer: 800
               })
           }
           }>
