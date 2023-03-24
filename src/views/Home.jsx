@@ -1,11 +1,18 @@
 import Carousel from '../components/Carousel/Carousel'
 import Card from '../components/Categories/Card'
 import Hero from '../components/Hero/Hero'
+import img1 from '../assets/img/1.jpeg'
+import img2 from '../assets/img/2.jpeg'
+import img3 from '../assets/img/3.jpeg'
+import img4 from '../assets/img/4.jpeg'
+import img5 from '../assets/img/5.jpeg'
+import img6 from '../assets/img/6.jpeg'
+
 import { useGetAllCategoriesQuery } from '../store/service/category/categoryService'
 
 const Home = () => {
   const { data, isError, isLoading, error } = useGetAllCategoriesQuery()
-
+  const img = [img1, img2, img3, img4, img5, img6]
   const categories = data?.data
 
   return (
@@ -30,7 +37,7 @@ const Home = () => {
                   return (
                     <Card
                       key={index}
-                      imgUrl='https://picsum.photos/1920/800'
+                      imgUrl={`${img[index]}`}
                       title={category.name}
                       categoryId={category.id}
                     />
