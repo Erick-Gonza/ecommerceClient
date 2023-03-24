@@ -77,13 +77,13 @@ const Address = () => {
       width: '30rem',
       heightAuto: false,
       icon: 'success',
-      iconColor: '#green',
+      iconColor: '#efefef',
       backdrop: true,
       background: '#DE76B5',
       color: '#efefef',
       title: 'Data Saved',
       showConfirmButton: false,
-      timer: 1500
+      timer: 1200
     })
   }
 
@@ -107,18 +107,18 @@ const Address = () => {
 
             {!isEditMode
               ? (
-                <section className='flex flex-col md:w-1/2 gap-y-2'>
-                  <h2 className='p-1'>{countryName === 'second' ? 'Loading...' : countryName}</h2>
-                  <h2 className='p-1'>{state?.data?.name}</h2>
-                  <h2 className='p-1'>{city?.data?.name}</h2>
-                  <h2 className='p-1'>{addressData?.street}</h2>
-                  <h2 className='p-1'>{addressData?.zipCode}</h2>
+                <section className='flex flex-col w-2/3 gap-y-2'>
+                  <h2 className='p-1 border-2 dark:bg-black-variant border-transparent h-8 rounded shadow'>{countryName === 'second' ? 'Loading...' : countryName}</h2>
+                  <h2 className='p-1 border-2 dark:bg-black-variant border-transparent h-8 rounded shadow'>{state?.data?.name}</h2>
+                  <h2 className='p-1 border-2 dark:bg-black-variant border-transparent h-8 rounded shadow'>{city?.data?.name}</h2>
+                  <h2 className='p-1 border-2 dark:bg-black-variant border-transparent h-8 rounded shadow'>{addressData?.street}</h2>
+                  <h2 className='p-1 border-2 dark:bg-black-variant border-transparent h-8 rounded shadow'>{addressData?.zipCode}</h2>
 
                 </section>
-                )
+              )
               : (
                 <form className='flex flex-col gap-2 md:w-1/2 w-1/2 px-5'>
-                  <select onChange={handleChangeCountry} id='countryId' className='border rounded w-full h-11'>
+                  <select onChange={handleChangeCountry} id='countryId' className='border rounded w-full h-8 dark:bg-black-variant'>
                     <option value='none'>-Select a country-</option>
                     {countries.filter((country) => {
                       if (country.id > 1) {
@@ -130,7 +130,7 @@ const Address = () => {
                       )
                     })}
                   </select>
-                  <select onChange={handleChangeState} id='stateId' className='border rounded w-full h-11'>
+                  <select onChange={handleChangeState} id='stateId' className='border rounded w-full h-8 dark:bg-black-variant'>
                     <option value='none'>-Select a state-</option>
                     {states?.filter((state) => {
                       if (state?.id > 1) {
@@ -142,7 +142,7 @@ const Address = () => {
                       )
                     })}
                   </select>
-                  <select onChange={handleChange} type='#' id='cityId' className='border rounded w-full h-11'>
+                  <select onChange={handleChange} type='#' id='cityId' className='border rounded w-full h-8 dark:bg-black-variant'>
                     <option value='none'>-Select a city-</option>
                     {cities?.filter((city) => {
                       if (city?.id > 1) {
@@ -174,7 +174,7 @@ const Address = () => {
                   />
 
                 </form>
-                )}
+              )}
           </section>
         </section>
         {!isEditMode

@@ -108,7 +108,7 @@ const Profile = () => {
                     width: '30rem',
                     heightAuto: false,
                     icon: 'success',
-                    iconColor: 'green',
+                    iconColor: '#efefef',
                     backdrop: true,
                     background: '#DE76B5',
                     color: '#fefefe',

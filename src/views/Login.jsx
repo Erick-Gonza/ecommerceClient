@@ -32,7 +32,7 @@ const SignIn = () => {
   const inputsRegister = registerInputsForm
   const { setToken } = useContext(AuthContext)
 
-  function refresh () {
+  function refresh() {
     setTimeout(function () {
       navigate("/")
     }, 1500)
@@ -42,7 +42,7 @@ const SignIn = () => {
       width: '30rem',
       heightAuto: false,
       icon: 'success',
-      iconColor: '#green',
+      iconColor: '#efefef',
       backdrop: true,
       background: '#DE76B5',
       color: '#efefef',
@@ -69,7 +69,6 @@ const SignIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     // Login form
-    var loginSucceeded = false;
     if (isLogin) {
       if (!loginData.userName || !loginData.password) {
         setError(true)
@@ -77,7 +76,7 @@ const SignIn = () => {
       }
       // login user
       loginUser(loginData).then((response) => {
-        if(response.data?.token){
+        if (response.data?.token) {
           setToken(response.data?.token)
           refresh()
         }
@@ -128,7 +127,7 @@ const SignIn = () => {
         width: '30rem',
         heightAuto: false,
         icon: 'success',
-        iconColor: 'green',
+        iconColor: 'efefef',
         backdrop: true,
         background: '#DE76B5',
         color: '#efefef',
@@ -137,6 +136,7 @@ const SignIn = () => {
         timer: 1500
       })
     }
+
   }
 
   return (
@@ -151,7 +151,7 @@ const SignIn = () => {
             setIsLogin={setIsLogin}
             isLogin={isLogin}
           />
-          )
+        )
         : (
           <Form
             inputs={inputsRegister}
@@ -161,7 +161,7 @@ const SignIn = () => {
             setIsLogin={setIsLogin}
             isLogin={isLogin}
           />
-          )}
+        )}
     </section>
   )
 }

@@ -10,14 +10,32 @@ import {
   useDeleteProductMutation,
   useGetAllProductsQuery
 } from '../../store/service/product/productService'
+import Swal from 'sweetalert2'
 
 export const AdminProducts = ({ handleScreen }) => {
   const [searchString, setSearchString] = useState('')
-  const [deleteProduct] = useDeleteProductMutation()
   const [openModal, setOpenModal] = useState(false)
   const [id, setId] = useState(null)
   const { data } = useGetAllProductsQuery()
   const products = data?.data
+  const [deleteProduct] = useDeleteProductMutation()
+
+  const handleDelete= () => {
+    Swal.fire({
+      target: 'main',
+      position: 'center',
+      width: '30rem',
+      heightAuto: false,
+      icon: 'success',
+      iconColor: '#fefefe',
+      backdrop: true,
+      background: '#DE76B5',
+      color: '#fefefe',
+      title: 'Product has been deleted!',
+      showConfirmButton: false,
+      timer: 1200
+    })
+  }
 
   return (
     <section className='py-4 px-4 flex flex-col static items-center '>
@@ -95,7 +113,10 @@ export const AdminProducts = ({ handleScreen }) => {
                     >
                       <HiOutlinePencil className='w-4 h-4 md:w-6 md:h-6 hover:text-green-600 m-1' />
                     </button>
-                    <button onClick={() => deleteProduct(product.id)}>
+                    <button onClick={() => {
+                      deleteProduct(product.id)
+                      handleDelete()
+                      } }>
                       <HiOutlineTrash className='w-4 h-4 md:w-6 md:h-6 hover:text-red-600 m-1' />
                     </button>
                   </td>

@@ -12,21 +12,21 @@ const ProductDetail = () => {
 
   return (
     <section className='flex py-4 px-2 pb-12 h-full items-center'>
-      <div className='container h-auto mx-auto dark:bg-black py-6 bg-gray-variant rounded-md drop-shadow-xl'>
+      <div className='container h-auto mx-auto dark:bg-black py-6 bg-white rounded-md shadow-xl'>
         <div className='flex flex-col lg:flex-row items-center h-full'>
           {/* image */}
           <div className='flex flex-1 justify-center items-center mb-8 lg:mb-0'>
             <img
-              className='object-cover aspect-square drop-shadow-lg rounded-md h-64 md:h-96'
+              className='object-cover aspect-square shadow-xl rounded-md h-64 md:h-96'
               src={`${product?.imageUrl}`} alt={product?.name}
             />
           </div>
 
           {/* title */}
-          <div className='flex-1 text-center lg:text-left'>
-            <h2 className='text-[26px] font-medium mb-2 max-w-[450px] mx-auto lg:mx-0'>{product?.name}</h2>
-            <p className='text-xl text-red-500 font-medium mb-6'>$ {product?.price}</p>
-            <p className='mb-8'>{product?.description}</p>
+          <div className='flex-1 text-center'>
+            <h2 className='w-full text-[26px] mb-8 lg:mx-0 uppercase font-bold'>{product?.name}</h2>
+            <p className='w-full text-xl text-primary mb-8 font-bold'>$ {product?.price}</p>
+            <p className='w-full text-xl mb-8 uppercase font-bold'>{product?.description}</p>
             <button
               onClick={() => {
                 addToCart(product, product.id)
@@ -45,7 +45,7 @@ const ProductDetail = () => {
                   timer: 1200
                 })
               }}
-              className='bg-primary py-4 px-8 text-white rounded-sm'
+              className='bg-gray-variant hover:bg-primary py-4 px-8 text-white rounded-md shadow-md hover:scale-105'
             >
               Add to cart
             </button>

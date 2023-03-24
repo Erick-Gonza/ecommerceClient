@@ -18,7 +18,7 @@ const Order = () => {
           <h2 className='text-center text-2xl font-bold '>My Orders</h2>
         </section>
 
-        <section className='w-full md:w-1/2 flex flex-col gap-4 px-3 py-4 bg-white rounded-lg dark:bg-gray-variant'>
+        <section className='w-full flex flex-col gap-4 px-3 py-4 bg-white rounded-lg dark:bg-gray-variant'>
           {
           isSuccess && data?.data.map((order) => (
             <Link

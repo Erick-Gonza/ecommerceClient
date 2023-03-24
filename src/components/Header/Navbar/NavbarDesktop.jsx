@@ -101,7 +101,7 @@ const NavBarDesktop = () => {
             onClick={handleTheme}
             className='flex flex-row justify-center items-center gap-1 text-white'
           >
-            {theme === 'dark'
+            {theme === 'light'
               ? (
                 <BsFillSunFill className='w-6 h-6' />
                 )
