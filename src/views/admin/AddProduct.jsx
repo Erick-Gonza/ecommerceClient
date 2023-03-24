@@ -59,9 +59,9 @@ const AddProduct = () => {
       timer: 1200
     })
     // set redirect to /admin with window location
-    setTimeout(() => {
-      window.location.href = '/admin'
-    }, 1200)
+    // setTimeout(() => {
+    //   window.location.href = '/admin'
+    // }, 1200)
   }
 
   return (

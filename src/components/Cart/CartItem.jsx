@@ -19,7 +19,7 @@ const CartItem = ({ item }) => {
         {/* image */}
         <Link to={`/product/${id}`}>
           <div>
-            <img className='aspect-square rounded-md max-w-[85px]' src={'https://picsum.photos/200'} alt={title} />
+            <img className='aspect-square rounded-md max-w-[85px]' src={imageUrl} alt={title} />
           </div>
         </Link>
         <div className='w-full flex flex-col'>
@@ -29,23 +29,25 @@ const CartItem = ({ item }) => {
               {title}
             </Link>
             {/* remove icon */}
-            <button className='text-2xl cursor-pointer' onClick={() =>{
-              removeFromCart(id)
-              Swal.fire({
-                target: 'main',
-                position: 'center',
-                width: '30rem',
-                heightAuto: false,
-                icon: 'success',
-                iconColor: 'fefefe',
-                backdrop: true,
-                background: '#DE76B5',
-                color: '#fefefe',
-                title: 'Product removed successfully',
-                showConfirmButton: false,
-                timer: 1250
-              })
-            }}>
+            <button
+              className='text-2xl cursor-pointer' onClick={() => {
+                removeFromCart(id)
+                Swal.fire({
+                  target: 'main',
+                  position: 'center',
+                  width: '30rem',
+                  heightAuto: false,
+                  icon: 'success',
+                  iconColor: 'fefefe',
+                  backdrop: true,
+                  background: '#DE76B5',
+                  color: '#fefefe',
+                  title: 'Product removed successfully',
+                  showConfirmButton: false,
+                  timer: 1250
+                })
+              }}
+            >
               <FiTrash2 className='text-gray-500 hover:text-red-500 transition' />
             </button>
           </div>
