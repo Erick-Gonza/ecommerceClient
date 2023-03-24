@@ -17,14 +17,14 @@ const Address = () => {
   const [updateAddress] = useUpdateAddressMutation()
   const [addressEdit, setAddressEdit] = useState({ ...addressData })
   const { data: citiesData } = useGetAllCitiesQuery(stateId)
-  const { data: countriesData } = useGetAllCountriesQuery()
+  const { data: countriesData, isSuccess } = useGetAllCountriesQuery()
   const { data: statesData } = useGetAllStatesQuery(countryId)
   const { data: state } = useGetStateByIdQuery(stateId)
   const { data: city } = useGetCityByIdQuery(cityId)
   const cities = citiesData?.cities
   const countries = countriesData?.countries
   const states = statesData?.states
-
+  const country = countries?.filter(country => country?.id === addressData?.countryId)
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode)
   }
@@ -33,9 +33,6 @@ const Address = () => {
     setCountryId(addressData?.countryId)
     setStateId(addressData?.stateId)
     setCityId(addressData?.cityId)
-    const country = countries?.filter(country => country?.id === addressData?.countryId)
-    setCountryName(country[0].name)
-
     setAddressEdit({
       id: addressData?.id,
       street: addressData?.street,
@@ -44,7 +41,8 @@ const Address = () => {
       zipCode: addressData?.zipCode,
       county: addressData?.Country?.name
     })
-  }, [addressData])
+    isSuccess && setCountryName(country[0]?.name)
+  }, [addressData, isSuccess])
 
   const handleChange = (e) => {
     const value = parseInt(e.target.value)
@@ -110,7 +108,7 @@ const Address = () => {
             {!isEditMode
               ? (
                 <section className='flex flex-col md:w-1/2 gap-y-2'>
-                  <h2 className='p-1'>{countryName}</h2>
+                  <h2 className='p-1'>{countryName === 'second' ? 'Loading...' : countryName}</h2>
                   <h2 className='p-1'>{state?.data?.name}</h2>
                   <h2 className='p-1'>{city?.data?.name}</h2>
                   <h2 className='p-1'>{addressData?.street}</h2>
