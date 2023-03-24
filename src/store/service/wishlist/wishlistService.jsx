@@ -11,15 +11,28 @@ export const wishlist = createApi({
         method: 'POST',
         body
       }),
+      providesTags: ['Wishlist'],
       invalidatesTags:['Wishlist']
     }),
     getWishlist: builder.query({
-      query: (userId) => `/${userId}`
+      query: (userId) => `/${userId}`,
+      providesTags: ['Wishlist'],
+      invalidatesTags:['Wishlist']
+    }),
+    deleteWishlistItem: builder.mutation({
+      query: (body)=>({
+        url: '/',
+        method: 'DELETE',
+        body
+      }),
+      providesTags: ['Wishlist'],
+      invalidatesTags:['Wishlist']
     })
   })
 })
 
 export const {
   useCreateWishlistMutation,
-  useGetWishlistQuery
+  useGetWishlistQuery,
+  useDeleteWishlistItemMutation
 } = wishlist

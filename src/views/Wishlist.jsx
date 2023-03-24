@@ -1,17 +1,26 @@
 import { ProductCard } from '../components/Product/ProductCard'
 import { useParams } from 'react-router-dom'
 import { useGetWishlistQuery } from '../store/service/wishlist/wishlistService'
+import { useEffect, useContext, useState } from 'react'
+import { AuthContext } from '../context/AuthContext'
 
 const Wishlist = () => {
   const { userId } = useParams()
+  const {changeCurrent, currentView} = useContext(AuthContext)
   const { data, isError, isLoading } = useGetWishlistQuery(userId)
   const products = data?.data
+  
+  useEffect(() => {
+    const current = "wishlist"
+    changeCurrent(current)
+  }, [])
+
   return (
     <div className='m-4'>
       {products?.length === 0
         ? (
           <section>
-            <p>No hay productos en esta categoria</p>
+            <p>Sign in to add products to wishlist</p>
           </section>
           )
         : (

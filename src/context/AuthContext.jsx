@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [id, setId] = useState(null)
   const [role, setRole] = useState(null)
+  const [currentView, setcurrentView] = useState("home")
 
   useEffect(() => {
     const token = getToken()
@@ -21,6 +22,8 @@ export const AuthProvider = ({ children }) => {
     if (!token || token === null) {
       setUser(null)
       setIsAuthenticated(false)
+      setId(null)
+      setRole(null)
     }
 
     setTimeout(async () => {
@@ -34,6 +37,10 @@ export const AuthProvider = ({ children }) => {
   const getToken = () => {
     return Cookies.get('token')
   }
+  const changeCurrent = (current) => {
+    setcurrentView(current)
+  }
+  
 
   // set cookie
   const setToken = (token) => {
@@ -53,7 +60,9 @@ export const AuthProvider = ({ children }) => {
     user,
     isAuthenticated,
     id,
-    role
+    role,
+    changeCurrent,
+    currentView
   }
 
   return <AuthContext.Provider value={functions}>{children}</AuthContext.Provider>

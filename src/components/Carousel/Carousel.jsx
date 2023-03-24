@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ProductCard } from '../Product/ProductCard'
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl'
 import { useGetAllProductsQuery } from '../../store/service/product/productService'
+import { AuthContext } from '../../context/AuthContext'
 
 const Carousel = () => {
-  const { data, isError, isLoading, error } = useGetAllProductsQuery()
-  const products = data?.data
-
+  const { id : userId } = useContext(AuthContext)
+  const [helper, setHelper] = useState(null)
+  useEffect(() => {
+    userId === undefined ? setHelper(null) : setHelper(userId)
+  }, [userId])
+  const { data, isError, isLoading, error, refetch } = useGetAllProductsQuery(helper)
+  const products = data?.results
   const slideLeft = () => {
     const slider = document.getElementById('slider')
     slider.scrollLeft = slider.scrollLeft - 300
@@ -40,7 +45,7 @@ const Carousel = () => {
                   key={index}
                 >
                   <ProductCard
-                    product={product} key={product?.id}
+                    product={product} key={product?.id} refetch={refetch} isLoading={isLoading} useGetAllProductsQuery={useGetAllProductsQuery}
                   />
                 </div>
               )
