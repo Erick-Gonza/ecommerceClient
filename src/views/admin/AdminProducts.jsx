@@ -16,8 +16,8 @@ export const AdminProducts = ({ handleScreen }) => {
   const [searchString, setSearchString] = useState('')
   const [openModal, setOpenModal] = useState(false)
   const [id, setId] = useState(null)
-  const { data } = useGetAllProductsQuery()
-  const products = data?.data
+  const { data } = useGetAllProductsQuery(null)
+  const products = data?.results
   const [deleteProduct] = useDeleteProductMutation()
 
   const handleDelete = () => {

@@ -58,10 +58,9 @@ const AddProduct = () => {
       showConfirmButton: false,
       timer: 1200
     })
-    // set redirect to /admin with window location
-    // setTimeout(() => {
-    //   window.location.href = '/admin'
-    // }, 1200)
+    setTimeout(() => {
+      window.location.href = '/admin'
+    }, 1200)
   }
 
   return (
@@ -135,7 +134,7 @@ const AddProduct = () => {
               <section className='mb-4 w-2/4'>
                 <label className='block font-bold mb-4'>Category</label>
                 <select onChange={handleChange} id='categoryId' className='border rounded w-full h-11 dark:bg-black-variant'>
-                  <option disabled>-Select a category-</option>
+                  <option value='none'>-Select a category-</option>
                   {categories?.map((category, key) => {
                     return (
                       <option key={key} value={category?.id}>{category?.name}</option>
@@ -176,15 +175,6 @@ const AddProduct = () => {
               placeholder=''
               className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:bg-black-variant'
               onChange={handleChange}
-            />
-          </section>
-          <section className='mb-4 w-1/4'>
-            <label className='block font-bold mb-4'>Discount</label>
-            <input
-              type='text'
-              id='discount'
-              placeholder=''
-              className='border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:bg-black-variant'
             />
           </section>
         </section>

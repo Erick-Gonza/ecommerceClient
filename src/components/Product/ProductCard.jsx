@@ -9,7 +9,7 @@ import { AuthContext } from '../../context/AuthContext'
 export const ProductCard = ({ product, refetch }) => {
   const { id: userId, changeCurrent, currentView } = useContext(AuthContext)
   const { addToCart } = useContext(CartContext)
-  const { id: productId, name, description, price, stock, imageUrl, color, category, isFavorite } = product
+  const { id: productId, name, price, imageUrl, category, isFavorite } = product
   const [isFav, setIsFav] = useState(false)
   const [createWishlist] = useCreateWishlistMutation()
   const [deleteFromWishlist] = useDeleteWishlistItemMutation()
@@ -33,21 +33,23 @@ export const ProductCard = ({ product, refetch }) => {
 
   const handleFavoriteClick = () => {
     if (isFav === false) {
-      createWishlist(newWishlistItem)
-      Swal.fire({
-        target: 'main',
-        position: 'center',
-        width: '30rem',
-        heightAuto: false,
-        icon: 'success',
-        iconColor: '#fefefe',
-        backdrop: true,
-        background: '#DE76B5',
-        color: '#fefefe',
-        title: 'Se ha agregado a Favoritos',
-        showConfirmButton: false,
-        timer: 1200
-      })
+      if (userId !== undefined || userId !== null) {
+        createWishlist(newWishlistItem)
+        Swal.fire({
+          target: 'main',
+          position: 'center',
+          width: '30rem',
+          heightAuto: false,
+          icon: 'success',
+          iconColor: '#fefefe',
+          backdrop: true,
+          background: '#DE76B5',
+          color: '#fefefe',
+          title: 'Se ha agregado a Favoritos',
+          showConfirmButton: false,
+          timer: 1200
+        })
+      }
     } else if (isFav === true) {
       deleteFromWishlist({ productId, userId })
     }
