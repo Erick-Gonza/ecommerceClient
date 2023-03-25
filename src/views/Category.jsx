@@ -47,9 +47,7 @@ const Category = () => {
             </section>
           )}
         </div>
-
       </div>
-
     </section>
   )
 }

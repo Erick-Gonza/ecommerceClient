@@ -100,7 +100,7 @@ export const AdminProducts = ({ handleScreen }) => {
                 >
                   <td>{product?.id}</td>
                   <td>{product?.name}</td>
-                  <td>{product?.Category?.name}</td>
+                  <td>{product?.CategoryId}</td>
                   <td className='hidden md:block'>{product?.description}</td>
                   <td>{product?.color}</td>
                   <td>{product?.price}</td>

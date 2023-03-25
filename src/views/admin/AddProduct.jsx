@@ -88,7 +88,7 @@ const AddProduct = () => {
                 type='file'
                 name='file'
                 id='file'
-                accept='image/png, image/jpeg image/jpg'
+                accept='image/*'
                 onChange={fileChangeHandler}
               />
               Upload image

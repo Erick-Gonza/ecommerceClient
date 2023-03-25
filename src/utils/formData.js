@@ -12,7 +12,7 @@ const loginInputsForm = [
     index: 1,
     label: 'Password',
     labelClass: 'block font-bold mb-4',
-    type: 'text',
+    type: 'password',
     id: 'password',
     placeholder: 'Password...',
     className: 'border-2 w-full p-2 rounded-md placeholder-gray shadow-md dark:bg-black-variant'
@@ -82,7 +82,7 @@ const registerInputsForm = [
     index: 4,
     label: 'Password',
     labelClass: 'block font-bold pb-2',
-    type: 'text',
+    type: 'password',
     id: 'password',
     placeholder: 'Password...',
     className: 'border-2 w-full rounded-md placeholder-gray shadow-md p-2 dark:bg-black-variant'

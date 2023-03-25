@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Input = ({ input, index, handleChange, data }) => {
-  if (input.type === 'text') {
+  if (input.type === 'text' || input.type === 'password') {
     return (
       <section className='mb-4 w-3/4' key={index}>
         <label htmlFor={input.id} className={input.labelClass}>
